@@ -9,13 +9,22 @@ $accountObj = new Account();
 $loginErr = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = clean_input(($_POST['username']));
+    $username = clean_input($_POST['username']);
     $password = clean_input($_POST['password']);
 
     if ($accountObj->login($username, $password)) {
         $data = $accountObj->fetch($username);
         $_SESSION['account'] = $data;
-        header('location: ../views/admin/admin_dashboard');
+
+        if ($data['role'] == 'admin') {
+            header('location: ../views/admin/admin_dashboard');
+            exit();
+        } elseif ($data['role'] == 'sub-admin') {
+            header('location: ../views/sub-admin/dashboard');
+            exit();
+        } else {
+            $loginErr = 'Invalid username or password';
+        }
     } else {
         $loginErr = 'Invalid username or password';
     }
@@ -37,17 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <form action="login.php" method="post">
+    <form action="" method="post">
         <h2>Login</h2>
         <label for="username">Username/Email</label>
         <br>
-        <input type="text" name="username" id="username">
+        <input type="text" name="username" id="username" value="<?= $username ?>">
         <br>
         <label for="password">Password</label>
         <br>
         <input type="password" name="password" id="password">
         <br>
-        <input type="submit" value="Login" name="login">
         <?php
         if (!empty($loginErr)) {
         ?>
@@ -55,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php
         }
         ?>
+        <input type="submit" value="Login" name="login">
     </form>
 </body>
 
