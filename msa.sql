@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2025 at 01:11 PM
+-- Generation Time: Feb 24, 2025 at 09:40 AM
 -- Server version: 11.4.5-MariaDB
 -- PHP Version: 8.2.12
 
@@ -108,7 +108,9 @@ CREATE TABLE `events` (
 
 CREATE TABLE `executive_officers` (
   `officer_id` int(11) NOT NULL,
-  `full_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `middle_name` varchar(255) NOT NULL,
   `position_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `school_year_id` int(11) NOT NULL,
@@ -167,6 +169,14 @@ CREATE TABLE `officer_positions` (
   `position_id` int(11) NOT NULL,
   `position_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `officer_positions`
+--
+
+INSERT INTO `officer_positions` (`position_id`, `position_name`) VALUES
+(1, 'President'),
+(2, 'Vice President');
 
 -- --------------------------------------------------------
 
@@ -234,11 +244,32 @@ CREATE TABLE `users` (
   `first_name` varchar(255) NOT NULL,
   `middle_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('admin','sub-admin') NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
+  `role` enum('admin','sub-admin') NOT NULL DEFAULT 'sub-admin',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `position_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `first_name`, `middle_name`, `last_name`, `username`, `email`, `password`, `role`, `created_at`, `position_id`) VALUES
+(1, 'admin', 'admin', 'admin', 'admin', 'admin@wmsu.edu.ph', '$2y$10$cpAg005FgxgFGWv2uauF4egLs8ONXcMUSzOPlbaF0guCcdyOLmGZi', 'admin', '2025-02-23 03:11:49', NULL),
+(2, 'Shane', 'admin', 'Jimenez', 'ashxeynx', 'HZ202300259@wmsu.edu.ph', '$2y$10$Aow.SzRWGFBga4v5153m8Oe1IDlKWewGIZ5CPrNELpEJnzOVB4OTS', 'admin', '2025-02-23 04:03:09', NULL),
+(3, 'Rone', 'admin', 'Kulong', 'ron', 'admin@gmail.com', '$2y$10$agnEQCmt8ADyI/4a2dtvlOlGkDbbxvo/50I9Av11RQjuwluVKCrOe', 'admin', '2025-02-23 04:04:44', NULL),
+(7, 'sheesh', 'admin', 'bnb', 'rronn', 'ron@wmsu.edu.ph', '$2y$10$o4peCliKj4cIXPooJOYOfu8e.MIuwvkWiuTcdMANEH4QIef1QxFO6', 'admin', '2025-02-24 07:24:44', NULL),
+(8, 'ron paullan', NULL, 'kulong', 'enorr', '12345@wmsu.edu.ph', '$2y$10$D1Oz8C9NfYDfAZ1ejpev.ejvFuvfunGTYkH37hd.SW0awww70GbQ2', 'sub-admin', '2025-02-24 07:29:11', NULL),
+(9, 'sfvf', 'admin', 'dfvf', 'manager12', 'dvd@wmsu.edu.ph', '$2y$10$c4Igsr/pEcBpW742vdBvheznDxPHt0NlHkM3K1L8gzqKBBwtaAnIq', 'admin', '2025-02-24 07:32:26', NULL),
+(10, 'assd', NULL, 'asdasd', 'asdas', 'HZ202210259@wmsu.edu.ph', '$2y$10$.KzO.v0vsmmj3SffHhYY3.VUG83M9el6XAubikvBAipBsdU7m/MQS', 'sub-admin', '2025-02-24 07:46:01', NULL),
+(11, 'asdd', NULL, 'asdqd', 'asdd', 'asdas@wmsu.edu.ph', '$2y$10$Gxjz.Npic42ijRpbSCHqZe7ROSMNHQ7nbBTc7yemzjVEWFTBIcRdm', 'sub-admin', '2025-02-24 07:46:23', NULL),
+(12, 'rertwe', NULL, 'rdthrh', 'dhdrtyer', 'dfhfth@wmsu.edu.ph', '$2y$10$XW9O/0dn0B8Fv0sqVi9hPeQLdgPCtCD/9YMpX1ekVZWOi8nsK2SZq', 'sub-admin', '2025-02-24 07:51:48', NULL),
+(13, 'Rone', NULL, 'Kulong', 'paullan', 'paullan@wmsu.edu.ph', '$2y$10$9vvoQ1.OsPnWsGmNSXUHPeQcM6tyaHB2lP6tB9nIp/hAMWIPgNbpG', 'sub-admin', '2025-02-24 08:26:05', NULL),
+(14, 'asda', NULL, 'asdasd', 'asdasdas', 'johndoe@wmsu.edu.ph', '$2y$10$J5JORVXlS1HuTEDnKN8jAO29hX8Befzz7xpAMWYZXdxO//DFZqgvG', 'sub-admin', '2025-02-24 08:28:23', NULL),
+(15, 'asf', 'adfa', 'dfd', 'sdfsdf', 'sdfsfd@wmsu.edu.ph', '$2y$10$rmHtcnmEM82ck2Krif8grep1SwjNmUQOFSUQ/Othx1rC8hQKGctOK', 'sub-admin', '2025-02-24 08:34:17', NULL),
+(16, 'asdasd', 'asdasfa', 'adfaef', 'asdfefe', 'HZ2234300259@wmsu.edu.ph', '$2y$10$9r626N9kIa2AynwspQ2qJuFF.jGWTI9eYzBuH8w4inKomC0Uizw/O', 'sub-admin', '2025-02-24 08:37:21', 1);
 
 -- --------------------------------------------------------
 
@@ -375,7 +406,8 @@ ALTER TABLE `students`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `fk_users_officer_positions` (`position_id`);
 
 --
 -- Indexes for table `volunteers`
@@ -441,7 +473,7 @@ ALTER TABLE `friday_prayers`
 -- AUTO_INCREMENT for table `officer_positions`
 --
 ALTER TABLE `officer_positions`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -471,7 +503,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `volunteers`
@@ -533,6 +565,12 @@ ALTER TABLE `programs`
 --
 ALTER TABLE `students`
   ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`program_id`) REFERENCES `programs` (`program_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `fk_users_officer_positions` FOREIGN KEY (`position_id`) REFERENCES `officer_positions` (`position_id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `volunteers`
