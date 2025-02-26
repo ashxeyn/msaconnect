@@ -4,57 +4,56 @@ require_once '../classes/accountClass.php';
 
 session_start();
 
-$username = $password = '';
 $accountObj = new Account();
 $positions = $accountObj->fetchOfficerPositions();
-$first_name = $last_name = $middle_name = $username = $password = $email = $role = $position = '';
-$first_nameErr = $last_nameErr = $usernameErr = $passwordErr = $roleErr = $emailErr = $positionErr = '';
+
+$first_name = $last_name = $middle_name = $username = $password = $email = $position = '';
+$first_nameErr = $last_nameErr = $usernameErr = $passwordErr = $emailErr = $positionErr = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $first_name = clean_input(($_POST['firstname']));
-    $last_name = clean_input(($_POST['lastname']));
-    $middle_name = clean_input(($_POST['middlename']));
-    $username = clean_input(($_POST['username']));
-    $email = clean_input(($_POST['email']));
-    $position = clean_input(($_POST['position']));
+    $first_name = clean_input($_POST['firstname']);
+    $last_name = clean_input($_POST['lastname']);
+    $middle_name = clean_input($_POST['middlename']);
+    $username = clean_input($_POST['username']);
+    $email = clean_input($_POST['email']);
+    $position = clean_input($_POST['position']);
     $password = clean_input($_POST['password']);
 
-    if (empty($first_name)) {
-        $first_nameErr = "First name is Required!";
-    }
-    if (empty($last_name)) {
-        $last_nameErr = "Last name is Required!";
-    }
+    if (empty($first_name)) $first_nameErr = "First name is required!";
+    if (empty($last_name)) $last_nameErr = "Last name is required!";
     if (empty($username)) {
-        $usernameErr = "Username is Required!";
+        $usernameErr = "Username is required!";
     } elseif ($accountObj->usernameExist($username)) {
         $usernameErr = "Username already taken!";
     }
     if (empty($email)) {
-        $emailErr = "Email is Required!";
+        $emailErr = "Email is required!";
     } elseif ($accountObj->emailExist($email)) {
         $emailErr = "Email already taken!";
     } elseif (!$accountObj->validateEmail($email)) {
         $emailErr = "Please use WMSU email!";
     }
     if (empty($password)) {
-        $passwordErr = "Password is Required!";
-    }elseif (!$accountObj->validatePassword($password)) {
+        $passwordErr = "Password is required!";
+    } elseif (!$accountObj->validatePassword($password)) {
         $passwordErr = "Password must be at least 8 characters!";
     }
     if (empty($position)) {
-        $positionErr = "Please enter officer's position!";
+        $positionErr = "Please select a position!";
     }
-    if (empty($first_nameErr) && empty($last_nameErr) && empty($emailErr) && empty($usernameErr) && empty($passwordErr) && empty($positionErr)) {
+
+    if (empty($first_nameErr) && empty($last_nameErr) && empty($usernameErr) && empty($emailErr) && empty($passwordErr) && empty($positionErr)) {
         $accountObj->first_name = $first_name;
         $accountObj->last_name = $last_name;
+        $accountObj->middle_name = $middle_name;
         $accountObj->username = $username;
         $accountObj->email = $email;
-        $accountObj->middle_name = $middle_name;
         $accountObj->position = $position;
         $accountObj->password = $password;
         $accountObj->signup();
+
         header("location: ../views/admin/admin_dashboard");
+        exit();
     }
 }
 ?>
@@ -65,53 +64,68 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/signup.css">
 </head>
 <body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="signup-box">
+            <h2 class="text-center mb-4">Sign Up</h2>
+            <form action="" method="POST">
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">First Name</label>
+                    <input type="text" name="firstname" id="firstname" class="form-control" value="<?= $first_name ?>">
+                    <span class="error"><p><?= $first_nameErr ?></p></span>
+                </div>
 
-    <form action="" method="POST">
-        <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" name="firstname" placeholder="First Name" value="<?= $first_name ?>">
-        <span><p><?= $first_nameErr ?></p></span>
-        <br>
+                <div class="mb-3">
+                    <label for="middlename" class="form-label">Middle Name</label>
+                    <input type="text" name="middlename" id="middlename" class="form-control" value="<?= $middle_name ?>">
+                </div>
 
-        <label for="middlename">Middle Name:</label>
-        <input type="text" id="middlename" name="middlename" placeholder="Middle Name" value="<?= $middle_name ?>">
-        <br>
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Last Name</label>
+                    <input type="text" name="lastname" id="lastname" class="form-control" value="<?= $last_name ?>">
+                    <span class="error"><p><?= $last_nameErr ?></p></span>
+                </div>
 
-        <label for="lastname">Last Name:</label>
-        <input type="text" id="lastname" name="lastname" placeholder="Last Name" value="<?= $last_name ?>">
-        <span><p><?= $last_nameErr ?></p></span>
-        <br>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" value="<?= $username ?>">
+                    <span class="error"><p><?= $usernameErr ?></p></span>
+                </div>
 
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" placeholder="Username" value="<?= $username ?>">
-        <span><p><?= $usernameErr ?></p></span>
-        <br>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="johndoe@wmsu.edu.ph" value="<?= $email ?>">
+                    <span class="error"><p><?= $emailErr ?></p></span>
+                </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="johndoe@wmsu.edu.ph" value="<?= $email ?>">
-        <span><p><?= $emailErr ?></p></span>
-        <br>
+                <div class="mb-3">
+                    <label for="position" class="form-label">Position</label>
+                    <select name="position" id="position" class="form-select">
+                        <option value="">Select Position</option>
+                        <?php foreach ($positions as $pos): ?>
+                            <option value="<?= $pos['position_id'] ?>" <?= ($position == $pos['position_id']) ? 'selected' : '' ?>>
+                                <?= clean_input($pos['position_name']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <span class="error"><p><?= $positionErr ?></p></span>
+                </div>
 
-        <label for="position">Position:</label>
-        <select id="position" name="position">
-            <option value="">Select Position</option>
-            <?php foreach ($positions as $pos): ?>
-                <option value="<?= $pos['position_id'] ?>" <?= ($position == $pos['position_id']) ? 'selected' : '' ?>>
-                    <?= clean_input($pos['position_name']) ?>
-                </option>
-            <?php endforeach; ?>
-            <span><p><?= $positionErr ?></p></span>
-        </select>
-        <br>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" id="password" class="form-control">
+                    <span class="error"><p><?= $passwordErr ?></p></span>
+                </div>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" placeholder="Password" value="<?= $password ?>">
-        <span><p><?= $passwordErr ?></p></span>
-        <br>
-
-        <button type="submit">Sign Up</button>
-    </form>
-
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-danger">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>

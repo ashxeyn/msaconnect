@@ -1,5 +1,5 @@
 <?php
-require_once '../classes/databaseClass.php';
+require_once 'databaseClass.php';
 
 class Account {
 
@@ -10,7 +10,10 @@ class Account {
     public $email;
     public $password; 
     public $position;
+    public $image;
+    public $school_year;
     public $role;
+    public $officer;
 
     protected $db;
 
@@ -51,7 +54,7 @@ class Account {
     }
 
     public function fetchOfficerPositions() {
-        $sql = "SELECT * FROM officer_positions ORDER BY position_name ASC";
+        $sql = "SELECT * FROM officer_positions ORDER BY position_id ASC";
         $query = $this->db->connect()->prepare($sql);
         $query->execute();
         
@@ -122,9 +125,6 @@ class Account {
 
         return $count > 0;
     }
-
-    
-
     
 }
 

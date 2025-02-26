@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2025 at 09:40 AM
+-- Generation Time: Feb 26, 2025 at 12:23 PM
 -- Server version: 11.4.5-MariaDB
 -- PHP Version: 8.2.12
 
@@ -87,6 +87,13 @@ CREATE TABLE `colleges` (
   `college_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `colleges`
+--
+
+INSERT INTO `colleges` (`college_id`, `college_name`) VALUES
+(1, 'CCS');
+
 -- --------------------------------------------------------
 
 --
@@ -114,7 +121,8 @@ CREATE TABLE `executive_officers` (
   `position_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `school_year_id` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `program_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -175,8 +183,27 @@ CREATE TABLE `officer_positions` (
 --
 
 INSERT INTO `officer_positions` (`position_id`, `position_name`) VALUES
+(6, 'Auditor'),
+(15, 'Budget and Finance'),
+(12, 'Dahwa and Religious Instructions'),
+(20, 'Documentation'),
+(13, 'Documentation and Publication'),
+(3, 'External Vice President'),
+(2, 'Internal Vice President'),
+(14, 'Logistics and Operations'),
+(7, 'P.I.O.'),
+(11, 'P.I.O. External'),
+(10, 'P.I.O. Internal'),
 (1, 'President'),
-(2, 'Vice President');
+(8, 'Project Manager'),
+(19, 'Publication'),
+(21, 'Registration'),
+(17, 'Registration and Membership'),
+(4, 'Secretary'),
+(16, 'Statistics and Evaluations'),
+(18, 'Tahara'),
+(5, 'Treasurer'),
+(9, 'Vice President');
 
 -- --------------------------------------------------------
 
@@ -204,6 +231,13 @@ CREATE TABLE `programs` (
   `program_name` varchar(255) NOT NULL,
   `college_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `programs`
+--
+
+INSERT INTO `programs` (`program_id`, `program_name`, `college_id`) VALUES
+(1, 'BS in Computer Science', 1);
 
 -- --------------------------------------------------------
 
@@ -269,7 +303,9 @@ INSERT INTO `users` (`user_id`, `first_name`, `middle_name`, `last_name`, `usern
 (13, 'Rone', NULL, 'Kulong', 'paullan', 'paullan@wmsu.edu.ph', '$2y$10$9vvoQ1.OsPnWsGmNSXUHPeQcM6tyaHB2lP6tB9nIp/hAMWIPgNbpG', 'sub-admin', '2025-02-24 08:26:05', NULL),
 (14, 'asda', NULL, 'asdasd', 'asdasdas', 'johndoe@wmsu.edu.ph', '$2y$10$J5JORVXlS1HuTEDnKN8jAO29hX8Befzz7xpAMWYZXdxO//DFZqgvG', 'sub-admin', '2025-02-24 08:28:23', NULL),
 (15, 'asf', 'adfa', 'dfd', 'sdfsdf', 'sdfsfd@wmsu.edu.ph', '$2y$10$rmHtcnmEM82ck2Krif8grep1SwjNmUQOFSUQ/Othx1rC8hQKGctOK', 'sub-admin', '2025-02-24 08:34:17', NULL),
-(16, 'asdasd', 'asdasfa', 'adfaef', 'asdfefe', 'HZ2234300259@wmsu.edu.ph', '$2y$10$9r626N9kIa2AynwspQ2qJuFF.jGWTI9eYzBuH8w4inKomC0Uizw/O', 'sub-admin', '2025-02-24 08:37:21', 1);
+(16, 'asdasd', 'asdasfa', 'adfaef', 'asdfefe', 'HZ2234300259@wmsu.edu.ph', '$2y$10$9r626N9kIa2AynwspQ2qJuFF.jGWTI9eYzBuH8w4inKomC0Uizw/O', 'sub-admin', '2025-02-24 08:37:21', 1),
+(17, 'sub', 'sub', 'sub', 'sub', 'sub@wmsu.edu.ph', '$2y$10$5CO4kvwyMDftD4aDxRR3Wu1VNPcQGPIftETFGlOYJDQOcRy8x0uYi', 'sub-admin', '2025-02-24 08:51:33', 2),
+(18, 'sheesh', 'asdasd', 'bnb', 'shhesh', 'Hdd02300259@wmsu.edu.ph', '$2y$10$uUUPK4LYhRzBdVMjK3H40.tiBJLLi3njdnH25eQ8R5u6Lerezw0Nu', 'sub-admin', '2025-02-26 11:04:30', 19);
 
 -- --------------------------------------------------------
 
@@ -343,7 +379,8 @@ ALTER TABLE `events`
 ALTER TABLE `executive_officers`
   ADD PRIMARY KEY (`officer_id`),
   ADD KEY `position_id` (`position_id`),
-  ADD KEY `school_year_id` (`school_year_id`);
+  ADD KEY `school_year_id` (`school_year_id`),
+  ADD KEY `fk_program_id` (`program_id`);
 
 --
 -- Indexes for table `faqs`
@@ -443,7 +480,7 @@ ALTER TABLE `calendar_activities`
 -- AUTO_INCREMENT for table `colleges`
 --
 ALTER TABLE `colleges`
-  MODIFY `college_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `college_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -473,7 +510,7 @@ ALTER TABLE `friday_prayers`
 -- AUTO_INCREMENT for table `officer_positions`
 --
 ALTER TABLE `officer_positions`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -485,7 +522,7 @@ ALTER TABLE `payments`
 -- AUTO_INCREMENT for table `programs`
 --
 ALTER TABLE `programs`
-  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `school_years`
@@ -503,7 +540,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `volunteers`
@@ -539,7 +576,8 @@ ALTER TABLE `events`
 --
 ALTER TABLE `executive_officers`
   ADD CONSTRAINT `executive_officers_ibfk_1` FOREIGN KEY (`position_id`) REFERENCES `officer_positions` (`position_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `executive_officers_ibfk_2` FOREIGN KEY (`school_year_id`) REFERENCES `school_years` (`school_year_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `executive_officers_ibfk_2` FOREIGN KEY (`school_year_id`) REFERENCES `school_years` (`school_year_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_program_id` FOREIGN KEY (`program_id`) REFERENCES `programs` (`program_id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `friday_prayers`

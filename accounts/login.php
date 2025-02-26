@@ -38,33 +38,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        .error {
-            color: red;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"> 
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 
 <body>
-    <form action="" method="post">
-        <h2>Login</h2>
-        <label for="username">Username/Email</label>
-        <br>
-        <input type="text" name="username" id="username" value="<?= $username ?>">
-        <br>
-        <label for="password">Password</label>
-        <br>
-        <input type="password" name="password" id="password">
-        <br>
-        <?php
-        if (!empty($loginErr)) {
-        ?>
-            <p class="error"><?= $loginErr ?></p>
-        <?php
-        }
-        ?>
-        <input type="submit" value="Login" name="login">
-    </form>
+    <div class="container-fluid login-container">
+        <div class="row g-0">
+            <div class="col-md-6 login-image d-none d-md-block"></div>
+
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <div class="login-box">
+                    <h2 class="text-center mb-4">Login</h2>
+                    <form action="" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username/Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input type="text" name="username" id="username" class="form-control" value="<?= $username ?>">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                                <input type="password" name="password" id="password" class="form-control">
+                            </div>
+                        </div>
+
+                        <?php if (!empty($loginErr)) : ?>
+                            <p class="error text-center text-danger"><?= $loginErr ?></p>
+                        <?php endif; ?>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-danger">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
