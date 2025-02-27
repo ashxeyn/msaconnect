@@ -9,6 +9,12 @@ class Admin {
     public $position;
     public $image;
     public $school_year;
+    public $year;
+    public $contact;
+    public $email;
+    public $program;
+    public $section;
+    public $cor_file;
 
     protected $db;
 
@@ -31,7 +37,26 @@ class Admin {
         $query->bindParam(':school_year', $this->school_year);
     
         $query->execute();
-    }    
+    } 
+    
+    function addVolunteer() {
+        $sql = "INSERT INTO volunteers (last_name, first_name, middle_name, year, section, program_id, contact, email, cor_file)
+                VALUES (:last_name, :first_name, :middle_name, :year, :section, :program, :contact, :email, :cor_file)";
+        
+        $query = $this->db->connect()->prepare($sql);
+
+        $query->bindParam(':last_name', $this->last_name);
+        $query->bindParam(':first_name', $this->first_name);
+        $query->bindParam(':middle_name', $this->middle_name);
+        $query->bindParam(':year', $this->year);
+        $query->bindParam(':section', $this->section);
+        $query->bindParam(':contact', $this->contact);
+        $query->bindParam(':email', $this->email);
+        $query->bindParam(':cor_file', $this->cor_file);
+        $query->bindParam(':program', $this->program);
+
+        $query->execute();
+    }
 
     function fetchSy(){
         $sql = "SELECT * FROM school_years ORDER BY school_year_id ASC;";

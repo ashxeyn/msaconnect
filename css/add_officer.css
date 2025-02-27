@@ -1,0 +1,27 @@
+.image-preview {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 10px;
+}
+.image-preview img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+.remove-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+}
