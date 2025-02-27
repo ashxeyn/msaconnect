@@ -1,0 +1,105 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+}
+
+/* Content Wrapper */
+.content {
+    flex: 1; /* Allow the content to grow and push the footer to the bottom */
+    padding: 20px; /* Add some padding for spacing */
+}
+
+/* Hero Section */
+.hero {
+    width: 80%; /* Adjust the width of the hero section */
+    max-width: 600px; /* Set a maximum width to keep it from getting too wide */
+    margin: 20px auto; /* Center the hero section and add some margin */
+    padding: 20px; /* Add padding inside the hero section */
+    background-color: #d72f2f; /* Add a light background color */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    text-align: center; /* Center the text inside the hero section */
+}
+
+.hero h2 {
+    font-size: 24px; /* Adjust the heading size */
+    margin-bottom: 10px; /* Add space below the heading */
+}
+
+.hero p {
+    font-size: 16px; /* Adjust the paragraph text size */
+    line-height: 1.6; /* Improve readability with line height */
+}
+
+/* Mission and Vision Sections */
+.mission-section, .vision-section {
+    width: 80%; /* Match the width of the hero section */
+    max-width: 600px; /* Set a maximum width */
+    margin: 20px auto; /* Center the sections */
+    text-align: center; /* Center the text */
+}
+
+.mission-section h3, .vision-section h3 {
+    font-size: 20px; /* Adjust heading size */
+    margin-bottom: 10px; /* Add space below the heading */
+}
+
+.mission-section p, .vision-section p {
+    font-size: 16px; /* Adjust paragraph text size */
+    line-height: 1.6; /* Improve readability with line height */
+}
+
+/* Executive Officers Section */
+.officers-section {
+    width: 80%;
+    max-width: 1200px; /* Adjust the max-width as needed */
+    margin: 40px auto; /* Center the section and add spacing */
+    text-align: center; /* Center the heading */
+}
+
+.officers-section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Officers Grid */
+.officers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 20px; /* Spacing between grid items */
+}
+
+/* Individual Officer Styling */
+.officer {
+    background-color: #f9f9f9; /* Light background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 15px; /* Padding inside the officer card */
+    text-align: center; /* Center the content */
+}
+
+.officer img {
+    width: 100%; /* Make the image responsive */
+    max-width: 150px; /* Limit the image size */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Circular image */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+.officer .name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.officer .position {
+    font-size: 16px;
+    color: #555; /* Slightly muted text color */
+}
+
+/* Footer Styles */

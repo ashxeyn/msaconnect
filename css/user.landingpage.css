@@ -1,0 +1,238 @@
+
+
+/* Hero Section */
+.hero {
+  background: #007bff;
+  color: #fff;
+  text-align: center;
+  padding: 50px 20px; /* Adjust padding as needed */
+  height: 300px; /* Adjust height as needed */
+  position: relative;
+  overflow: hidden;
+  z-index: 1; /* Ensure carousel is below the header */
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.cta-button:hover {
+  background: #0056b3;
+}
+
+/* Carousel Styles */
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire slide */
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 36px; /* Adjust font size as needed */
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 16px; /* Adjust font size as needed */
+  margin-bottom: 30px;
+}
+
+/* Carousel Navigation Buttons */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 3;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+.carousel-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* About, Services, and Contact Sections */
+.about,
+.services,
+.contact {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.about h2,
+.services h2,
+.contact h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.service-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.service-item {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px;
+  width: 30%;
+  margin: 10px;
+}
+
+.service-item h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+/* Add this to your CSS file */
+/* Center the table and add styling */
+.prayer-schedule {
+  text-align: center;
+  padding: 20px;
+}
+
+.table-container {
+  display: inline-block;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 1000px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+}
+/* Volunteer Section Styling */
+.volunteer {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+}
+
+.volunteer-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.volunteer h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.volunteer p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.volunteer .cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.volunteer .cta-button:hover {
+  background-color: #0056b3;
+}
+
+th,
+td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+.contact form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact button {
+  background: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Footer Styles */
