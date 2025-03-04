@@ -17,7 +17,7 @@ function removeImage() {
 
 function loadDashboardSection() {
     $.ajax({
-        url: "../views/admin/adminAnalytics.php",
+        url: "../admin/viewAnalytics.php",
         method: 'GET',
         success: function (response) {
             $('#contentArea').html(response);
@@ -31,7 +31,7 @@ function loadDashboardSection() {
 
 function loadSchoolConfigSection() {
     $.ajax({
-        url: "../views/admin/schoolConfig.php",
+        url: "../admin/schoolConfig.php",
         method: 'GET',
         success: function (response) {
             $('#contentArea').html(response);
@@ -45,7 +45,7 @@ function loadSchoolConfigSection() {
 
 function loadEventsSection() {
     $.ajax({
-        url: "../views/admin/events.php",
+        url: "../admin/events.php",
         method: 'GET',
         success: function (response) {
             $('#contentArea').html(response);
@@ -59,7 +59,7 @@ function loadEventsSection() {
 
 function loadCalendarSection() {
     $.ajax({
-        url: "../views/admin/calendar.php",
+        url: "../admin/calendar.php",
         method: 'GET',
         success: function (response) {
             $('#contentArea').html(response);
@@ -73,7 +73,7 @@ function loadCalendarSection() {
 
 function loadTransparencySection() {
     $.ajax({
-        url: "../views/admin/transparency.php",
+        url: "../admin/transparency.php",
         method: 'GET',
         success: function (response) {
             $('#contentArea').html(response);
@@ -87,7 +87,7 @@ function loadTransparencySection() {
 
 function loadAboutsSection() {
     $.ajax({
-        url: "../views/admin/abouts.php",
+        url: "../admin/abouts.php",
         method: 'GET',
         success: function (response) {
             $('#contentArea').html(response);
@@ -101,7 +101,7 @@ function loadAboutsSection() {
 
 function loadFaqsSection() {
     $.ajax({
-        url: "../views/admin/faqs.php",
+        url: "../admin/faqs.php",
         method: 'GET',
         success: function (response) {
             $('#contentArea').html(response);
@@ -115,7 +115,7 @@ function loadFaqsSection() {
 
 function loadOfficersSection() {
     $.ajax({
-        url: "../views/admin/officers.php",
+        url: "../admin/officers.php",
         method: 'GET',
         success: function (response) {
             $('#contentArea').html(response);
@@ -129,7 +129,7 @@ function loadOfficersSection() {
 
 function loadVolunteersSection() {
     $.ajax({
-        url: "../views/admin/volunteers.php",
+        url: "../admin/volunteers.php",
         method: 'GET',
         success: function (response) {
             $('#contentArea').html(response);
@@ -155,50 +155,16 @@ function loadModeratorsSection() {
     });
 }
 
-$(document).ready(function() {
-    $(document).on('click', '[data-section]', function(e) {
-        e.preventDefault();
-        const section = $(this).data('section');
-        
-        $('.nav-link').removeClass('active');
-        $(this).addClass('active');
-        
-        switch(section) {
-            case 'dashboard':
-                loadDashboardSection();
-                break;
-            case 'school-config':
-                loadSchoolConfigSection();
-                break;
-            case 'events':
-                loadEventsSection();
-                break;
-            case 'calendar':
-                loadCalendarSection();
-                break;
-            case 'transparency':
-                loadTransparencySection();
-                break;
-            case 'abouts':
-                loadAboutsSection();
-                break;
-            case 'faqs':
-                loadFaqsSection();
-                break;
-            case 'officers':
-                loadOfficersSection();
-                break;
-            case 'volunteers':
-                loadVolunteersSection();
-                break;
-            case 'registrations':
-                loadRegistrationsSection();
-                break;
-            case 'moderators':
-                loadModeratorsSection();
-                break;
-            default:
-                console.log('Section not found');
+function loadRegistrationsSection() {
+    $.ajax({
+        url: "../admin/registrations.php",
+        method: 'GET',
+        success: function (response) {
+            $('#contentArea').html(response);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error loading registration section:', error);
+            $('#contentArea').html('<p class="text-danger">Failed to load Registration section. Please try again.</p>');
         }
     });
-});
+}
