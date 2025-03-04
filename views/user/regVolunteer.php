@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if (!empty($_FILES['image']['name'])) {
-        $target_dir = "../../assets/officers/";
+        $target_dir = "../../assets/cors/";
     
         if (!is_dir($target_dir) && !mkdir($target_dir, 0777, true)) {
             $imageErr = "Failed to create upload directory.";

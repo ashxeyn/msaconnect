@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2025 at 12:23 PM
+-- Generation Time: Mar 04, 2025 at 01:45 PM
 -- Server version: 11.4.5-MariaDB
 -- PHP Version: 8.2.12
 
@@ -125,6 +125,18 @@ CREATE TABLE `executive_officers` (
   `program_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `executive_officers`
+--
+
+INSERT INTO `executive_officers` (`officer_id`, `last_name`, `first_name`, `middle_name`, `position_id`, `image`, `school_year_id`, `created_at`, `program_id`) VALUES
+(1, 'sad', 'sA', 'sa', 1, '1740543025_9a5c2190-2ba0-45a3-bd54-52b7e9bb404e.jpg', 1, '2025-02-26 04:10:25', NULL),
+(2, 'Jimenez', 'Shane', 'Duran', 1, '', 1, '2025-02-26 04:11:08', NULL),
+(3, 'asd', 'asd', 'asd', 3, '1740546778_476328821_1861332794634994_9100291471033062968_n.jpg', 1, '2025-02-26 05:12:58', NULL),
+(4, 'asd', 'asd', 'asdasdas', 1, '1740546797_9a5c2190-2ba0-45a3-bd54-52b7e9bb404e.jpg', 1, '2025-02-26 05:13:17', NULL),
+(5, 'asd', 'asd', 'asdasdas', 1, '1740546920_9a5c2190-2ba0-45a3-bd54-52b7e9bb404e.jpg', 1, '2025-02-26 05:15:20', NULL),
+(6, 'Kulong', 'Ron', '', 4, '1740568054_WIN_20250222_21_54_58_Pro.jpg', 2, '2025-02-26 11:07:34', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -208,21 +220,6 @@ INSERT INTO `officer_positions` (`position_id`, `position_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payments`
---
-
-CREATE TABLE `payments` (
-  `payment_id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
-  `amount` decimal(10,2) NOT NULL,
-  `payment_date` date NOT NULL,
-  `school_year_id` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `programs`
 --
 
@@ -250,21 +247,29 @@ CREATE TABLE `school_years` (
   `school_year` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `school_years`
+--
+
+INSERT INTO `school_years` (`school_year_id`, `school_year`) VALUES
+(1, '2023-2024'),
+(2, '2024-2025');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `students`
+-- Table structure for table `transparency_report`
 --
 
-CREATE TABLE `students` (
-  `student_id` int(11) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `middle_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `year` int(11) NOT NULL,
-  `section` varchar(10) NOT NULL,
-  `program_id` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
+CREATE TABLE `transparency_report` (
+  `report_id` int(11) NOT NULL,
+  `report_date` date NOT NULL,
+  `expense_detail` text NOT NULL,
+  `expense_category` varchar(255) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `transaction_type` enum('Cash In','Cash Out') NOT NULL,
+  `semester` enum('1st','2nd') NOT NULL,
+  `school_year_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -328,6 +333,16 @@ CREATE TABLE `volunteers` (
   `registered_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `volunteers`
+--
+
+INSERT INTO `volunteers` (`volunteer_id`, `first_name`, `middle_name`, `last_name`, `year`, `section`, `program_id`, `contact`, `email`, `cor_file`, `status`, `registered_by`, `created_at`) VALUES
+(1, 'Shane', 'Duran', 'Jimenez', 1, 'C', 1, '09926314071', 'HZ202300259@wmsu.edu.ph', '1740573648_Screenshot 2024-08-28 183144.png', 'pending', NULL, '2025-02-26 12:40:48'),
+(2, 'SASD', 'DASD', 'ASDA', 3, 'C', 1, '09926314071', 'HSSD02300259@wmsu.edu.ph', '', 'pending', NULL, '2025-02-26 12:51:16'),
+(3, 'Shane', 'sdcsd', 'sdfsd', 2, 'sd', 1, '09926314071', 'H2332300259@wmsu.edu.ph', '', 'pending', NULL, '2025-02-26 12:51:48'),
+(4, 'sheesh', '', 'asdasd', 4, 'C', 1, '09926314071', 'HZ209900259@wmsu.edu.ph', '', 'pending', NULL, '2025-02-27 04:40:04');
 
 --
 -- Indexes for dumped tables
@@ -409,14 +424,6 @@ ALTER TABLE `officer_positions`
   ADD UNIQUE KEY `position_name` (`position_name`);
 
 --
--- Indexes for table `payments`
---
-ALTER TABLE `payments`
-  ADD PRIMARY KEY (`payment_id`),
-  ADD KEY `student_id` (`student_id`),
-  ADD KEY `school_year_id` (`school_year_id`);
-
---
 -- Indexes for table `programs`
 --
 ALTER TABLE `programs`
@@ -432,11 +439,11 @@ ALTER TABLE `school_years`
   ADD UNIQUE KEY `school_year` (`school_year`);
 
 --
--- Indexes for table `students`
+-- Indexes for table `transparency_report`
 --
-ALTER TABLE `students`
-  ADD PRIMARY KEY (`student_id`),
-  ADD KEY `program_id` (`program_id`);
+ALTER TABLE `transparency_report`
+  ADD PRIMARY KEY (`report_id`),
+  ADD KEY `school_year_id` (`school_year_id`);
 
 --
 -- Indexes for table `users`
@@ -492,7 +499,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `executive_officers`
 --
 ALTER TABLE `executive_officers`
-  MODIFY `officer_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `officer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `faqs`
@@ -513,12 +520,6 @@ ALTER TABLE `officer_positions`
   MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `payments`
---
-ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `programs`
 --
 ALTER TABLE `programs`
@@ -528,13 +529,13 @@ ALTER TABLE `programs`
 -- AUTO_INCREMENT for table `school_years`
 --
 ALTER TABLE `school_years`
-  MODIFY `school_year_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `school_year_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `students`
+-- AUTO_INCREMENT for table `transparency_report`
 --
-ALTER TABLE `students`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `transparency_report`
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -546,7 +547,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `volunteers`
 --
 ALTER TABLE `volunteers`
-  MODIFY `volunteer_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `volunteer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -586,23 +587,16 @@ ALTER TABLE `friday_prayers`
   ADD CONSTRAINT `friday_prayers_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL;
 
 --
--- Constraints for table `payments`
---
-ALTER TABLE `payments`
-  ADD CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `payments_ibfk_2` FOREIGN KEY (`school_year_id`) REFERENCES `school_years` (`school_year_id`) ON DELETE CASCADE;
-
---
 -- Constraints for table `programs`
 --
 ALTER TABLE `programs`
   ADD CONSTRAINT `programs_ibfk_1` FOREIGN KEY (`college_id`) REFERENCES `colleges` (`college_id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `students`
+-- Constraints for table `transparency_report`
 --
-ALTER TABLE `students`
-  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`program_id`) REFERENCES `programs` (`program_id`) ON DELETE CASCADE;
+ALTER TABLE `transparency_report`
+  ADD CONSTRAINT `transparency_report_ibfk_1` FOREIGN KEY (`school_year_id`) REFERENCES `school_years` (`school_year_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users`
