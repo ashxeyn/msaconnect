@@ -182,14 +182,14 @@ table {
   padding: 10px 20px;
   font-size: 1rem;
   color: #fff;
-  background-color: #007bff;
+  background-color: #d72f2f;
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
 .volunteer .cta-button:hover {
-  background-color: #0056b3;
+  background-color: #1ea82c;
 }
 
 th,

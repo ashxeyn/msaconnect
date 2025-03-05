@@ -1,6 +1,91 @@
+/* Footer Styles (Scoped to Footer Only) */
 footer {
-    background: #000000;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-  }
+  background: #000000;
+  color: #fff;
+  padding: 10px; /* Reduced padding */
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto; /* Ensure footer stays at the bottom */
+}
+
+footer .footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px; /* Reduced padding */
+  position: relative; /* Added for positioning */
+}
+
+/* Footer Upper Left Section */
+footer .footer-upper-left {
+  display: flex;
+  align-items: center; /* Align logo and text vertically */
+  margin-bottom: 10px; /* Reduced margin */
+}
+
+footer .logo {
+  width: 50px; /* Adjust logo size */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 10px; /* Space between logo and text */
+}
+
+footer .logo-text p {
+  margin: 2px 0; /* Reduced margin */
+}
+
+footer .logo-text p strong {
+  font-size: 1.1rem; /* Slightly smaller font size */
+}
+
+/* Horizontal Line (Divider) */
+footer .footer-divider {
+  width: 100%; /* Full width */
+  border: 0; /* Remove default border */
+  border-top: 1px solid #444; /* Add a light gray line */
+  margin: 10px 0; /* Space above and below the line */
+}
+
+/* Footer Middle Section */
+footer .footer-middle {
+  text-align: center;
+  margin: 0 auto 10px; /* Center the middle section */
+  width: 100%; /* Ensure it spans the full width */
+}
+
+footer .socials {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between icons */
+  margin-bottom: 5px; /* Space between socials and contact info */
+}
+
+footer .socials a {
+  color: #fff;
+  font-size: 1.2rem; /* Slightly smaller icons */
+  text-decoration: none;
+}
+
+footer .socials a:hover {
+  color: #ccc;
+}
+
+footer .contact-info p {
+  margin: 3px 0; /* Reduced margin */
+  font-size: 0.9rem; /* Slightly smaller font size */
+}
+
+/* Footer Lower Right Section */
+footer .footer-lower-right {
+  text-align: right;
+  position: absolute; /* Position it absolutely */
+  bottom: 10px; /* Distance from the bottom */
+  right: 10px; /* Distance from the right */
+}
+
+footer .footer-lower-right p {
+  margin: 0;
+  font-size: 0.9rem; /* Slightly smaller font size */
+}

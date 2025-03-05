@@ -87,7 +87,7 @@
     <div class="volunteer-content">
         <h2>Join our Volunteers!</h2>
         <p>Volunteering is a great way to give back to the community, develop new skills, and make a positive impact. Whether you're helping with events, organizing activities, or supporting our initiatives, your contribution matters!</p>
-        <a href="#join" class="cta-button">Join Now!</a>
+        <a href="regVolunteer.php" class="cta-button">Join Now!</a>
     </div>
 </section>
 

@@ -1,0 +1,109 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+}
+
+/* Hero Section */
+.hero {
+    width: 80%; /* Match the width of the hero section in other pages */
+    max-width: 600px; /* Set a maximum width */
+    margin: 20px auto; /* Center the hero section and add some margin */
+    padding: 20px; /* Add padding inside the hero section */
+    background-color: #d72f2f; /* Match the background color */
+    border-radius: 10px; /* Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    text-align: center; /* Center the text inside the hero section */
+}
+
+.hero h2 {
+    font-size: 24px; /* Adjust the heading size */
+    margin-bottom: 10px; /* Add space below the heading */
+}
+
+.hero p {
+    font-size: 16px; /* Adjust the paragraph text size */
+    line-height: 1.6; /* Improve readability with line height */
+}
+
+.hero a {
+    color: #fff; /* White color for links */
+    text-decoration: underline; /* Underline links for clarity */
+}
+
+.hero a:hover {
+    color: #f0f0f0; /* Lighten link color on hover */
+}
+
+/* FAQs Content */
+.faqs-content {
+    width: 80%; /* Match the width of the hero section */
+    max-width: 800px; /* Slightly wider for FAQs content */
+    margin: 20px auto; /* Center the sections */
+    text-align: left; /* Align text to the left */
+}
+
+.faqs-content h3 {
+    font-size: 20px; /* Adjust heading size */
+    margin-bottom: 10px; /* Add space below the heading */
+    color: #d72f2f; /* Match the hero section color */
+}
+
+/* FAQ Item Styling */
+.faq-item {
+    margin-bottom: 20px; /* Space between FAQ items */
+    padding: 10px;
+    background-color: #f9f9f9; /* Light background for questions */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.faq-question {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; /* Space between text and arrow */
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #e0e0e0; /* Change background on hover */
+}
+
+/* Arrow Styling */
+.faq-question .arrow {
+    font-size: 14px;
+    transition: transform 0.3s ease; /* Smooth rotation */
+}
+
+/* Rotate arrow when question is open */
+.faq-question.open .arrow {
+    transform: rotate(180deg); /* Rotate arrow downward */
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 10px;
+    transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.faq-answer.open {
+    max-height: 200px; /* Adjust based on content */
+    padding: 10px;
+}
+
+.faq-answer a {
+    color: #d72f2f; /* Match the hero section color */
+    text-decoration: underline; /* Underline links for clarity */
+}
+
+.faq-answer a:hover {
+    color: #b02525; /* Darken link color on hover */
+}

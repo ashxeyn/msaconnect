@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<?php echo $base_url; ?>css/user.calendar.css">
-    <link rel="stylesheet" href="calendar.css"> <!-- External CSS -->
     <title>Calendar</title>
-    <!-- Include Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <?php $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/msaconnect/'; ?>
+
+    <link rel="stylesheet" href="<?php echo $base_url; ?>css/calendar.css">
 </head>
 <body>
-    <?php include '../../includes/header.php'; ?>
-    <link rel="stylesheet" href="<?php echo $base_url; ?>css/volunteering.css">
-    
-    <!-- Hero Section (Unchanged) -->
+    <!-- Wrap Header in a Specific Class -->
+    <div id="main-header">
+        <?php include '../../includes/header.php'; ?>
+    </div>
+
+    <!-- Hero Section -->
     <div class="hero">
         <h2>MSA Calendar</h2>
         <p>
@@ -23,25 +24,24 @@
     </div>
 
     <!-- Calendar Section -->
-    <div class="container mx-auto px-4 py-12">
-        <!-- Navigation Controls -->
-        <div class="flex justify-between items-center mb-8">
-            <button id="prev-month" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                Previous Month
-            </button>
-            <h2 id="current-month-year" class="text-2xl font-bold text-gray-800"></h2>
-            <button id="next-month" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                Next Month
-            </button>
-        </div>
+    <div class="calendar-container">
+        <div class="container">
+            <!-- Navigation Controls -->
+            <div class="calendar-navigation">
+                <button id="prev-month" class="nav-button">Previous Month</button>
+                <h2 id="current-month-year" class="month-year"></h2>
+                <button id="next-month" class="nav-button">Next Month</button>
+            </div>
 
-        <!-- Calendar Grid -->
-        <div id="calendar-grid" class="grid grid-cols-7 gap-4 p-6 text-lg"></div>
+            <!-- Calendar Grid -->
+            <div id="calendar-grid" class="calendar-grid"></div>
+        </div>
     </div>
 
+    <!-- Include Footer -->
     <?php include '../../includes/footer.php'; ?>
 
-    <!-- External JavaScript -->
+    <!-- Include Calendar JavaScript -->
     <script src="<?php echo $base_url; ?>js/calendar.js"></script>
 </body>
 </html>

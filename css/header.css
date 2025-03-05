@@ -8,20 +8,38 @@ body {
 
 /* Header Styles */
 header {
-  background: #333;
+  background: #000000;
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 20px !important; /* Force consistent padding */
   display: flex;
   justify-content: space-between; /* Push logo to left and nav to center */
   align-items: center; /* Center vertically */
-  height: 50px; /* Adjust the height of the header */
+  height: 50px !important; /* Adjust the height of the header */
   position: relative; /* Required for z-index */
   z-index: 1000; /* Ensure header is above the carousel */
 }
 
 header .logo {
+  display: flex;
+  align-items: center;
+}
+
+header .logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+header .logo .logo-image {
+  height: 40px;
+  margin-right: 10px;
+}
+
+header .logo .logo-text {
   font-size: 24px;
   font-weight: bold;
+  color: white;
 }
 
 header .nav-links {
@@ -32,7 +50,8 @@ header .nav-links {
   position: absolute; /* Position the nav absolutely */
   left: 50%; /* Move nav to the center */
   transform: translateX(-50%); /* Adjust for exact centering */
-  top: 30px; /* Raise the position of the nav links */
+  top: 50%; /* Center the nav links vertically */
+  transform: translate(-50%, -50%); /* Adjust for exact centering */
 }
 
 header .nav-links li {
@@ -103,4 +122,22 @@ header .nav-links > li > a:hover::after {
 /* Optional: Change text color on hover */
 header .nav-links li a:hover {
   color: #be0b0b; /* Change to your preferred hover color */
+}
+header .navbar {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+header .nav-links .dropdown .arrow {
+  display: inline-block;
+  margin-left: 5px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid white; /* Arrow color */
+  transition: transform 0.3s ease; /* Smooth rotation */
+}
+
+header .nav-links .dropdown:hover .arrow {
+  transform: rotate(180deg); /* Rotate arrow on hover */
 }

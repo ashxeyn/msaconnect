@@ -20,24 +20,9 @@
         </p>
     </div>
 
-    <!-- Mission Section -->
-    <div class="mission-section">
-        <h3>MISSION</h3>
-        <p>
-            Our mission is to empower individuals to make a meaningful impact in their communities through volunteering. 
-            We aim to provide opportunities for people to share their skills, time, and compassion to address societal challenges 
-            and foster a culture of giving and collaboration.
-        </p>
-    </div>
-
-    <!-- Vision Section -->
-    <div class="vision-section">
-        <h3>VISION</h3>
-        <p>
-            Our vision is a world where everyone is actively engaged in creating positive change. 
-            We envision communities where volunteering is a way of life, and individuals work together 
-            to build a more equitable, sustainable, and compassionate society.
-        </p>
+    <!-- Volunteer Now Button -->
+    <div class="volunteer-button-container">
+        <button class="volunteer-button" onclick="window.location.href='regVolunteer.php'">Volunteer Now!</button>
     </div>
 
     <!-- Executive Officers Section -->

@@ -3,16 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Footer with Logo</title>
     <link rel="stylesheet" href="<?php echo $base_url; ?>css/footer.css">
-
+    <!-- Add Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    
-<footer>
-    <p>&copy; 2023 MyBrand. All rights reserved.</p>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <footer>
+        <div class="footer-content">
+            <!-- Upper Left: Logo, MSA CONNECT, and University Name -->
+            <div class="footer-upper-left">
+                <img src="<?php echo $base_url; ?>assets/images/msa_logo.png" alt="MSA Connect Logo" class="logo">
+                <div class="logo-text">
+                    <p><strong>MSA CONNECT</strong></p>
+                    <p>Western Mindanao State University</p>
+                </div>
+            </div>
 
+            <!-- Horizontal Line -->
+            <hr class="footer-divider">
+
+            <!-- Middle: Socials and Contact -->
+            <div class="footer-middle">
+                <div class="socials">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="contact-info">
+                    <p>Contact Us: +123 456 7890</p>
+                    <p>Email: info@msaconnect.com</p>
+                </div>
+            </div>
+
+            <!-- Lower Right: Year Established -->
+            <div class="footer-lower-right">
+                <p>@Established 2025</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
