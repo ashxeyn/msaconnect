@@ -103,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Volunteer Registration</title>
     <script src="../../js/admin.js"></script>
     <link rel="stylesheet" href="../../css/add_officer.css">
+    <?php include '../../includes/header.php'; ?>
 </head>
 <body>
     <form action="" method="POST" enctype="multipart/form-data">
@@ -171,5 +172,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <button type="submit">Sign Up</button>
     </form>
+    <?php include '../../includes/footer.php'; ?>
 </body>
 </html>

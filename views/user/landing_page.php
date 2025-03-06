@@ -37,11 +37,34 @@
 
 <section id="latest-updates" class="latest-updates">
     <h2>LATEST UPDATES</h2>
-    <div class="update-item">
-        <img src="update-image.jpg" alt="Latest Update">
-        <div class="update-details">
-            <p class="update-date">October 10, 2023</p>
-            <h3 class="update-title">Exciting New Features Launched!</h3>
+    <div class="updates-container">
+        <div class="update-item">
+            <img src="<?php echo $base_url; ?>assets/images/images.png" alt="Latest Update">
+            <div class="update-details">
+                <p class="update-date">October 10, 2023</p>
+                <h3 class="update-title">Exciting New Features Launched!</h3>
+            </div>
+        </div>
+        <div class="update-item">
+            <img src="<?php echo $base_url; ?>assets/images/images.png" alt="Update 2">
+            <div class="update-details">
+                <p class="update-date">November 5, 2023</p>
+                <h3 class="update-title">New Community Initiatives</h3>
+            </div>
+        </div>
+        <div class="update-item">
+            <img src="<?php echo $base_url; ?>assets/images/images.png" alt="Update 3">
+            <div class="update-details">
+                <p class="update-date">December 1, 2023</p>
+                <h3 class="update-title">Upcoming Events for the Holiday Season</h3>
+            </div>
+        </div>
+        <div class="update-item">
+            <img src="<?php echo $base_url; ?>assets/images/images.png" alt="Update 4">
+            <div class="update-details">
+                <p class="update-date">January 15, 2024</p>
+                <h3 class="update-title">New Year Celebrations</h3>
+            </div>
         </div>
     </div>
 </section>

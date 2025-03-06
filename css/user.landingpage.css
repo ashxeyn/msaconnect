@@ -233,6 +233,52 @@ tr:hover {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}/* Latest Updates Section */
+.latest-updates {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.latest-updates h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.updates-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.update-item {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  text-align: left;
+}
+
+.update-item img {
+  width: 100%;
+  height: auto;
+}
+
+.update-details {
+  padding: 15px;
+}
+
+.update-date {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 10px;
+}
+
+.update-title {
+  font-size: 1.2rem;
+  color: #333;
 }
 
 /* Footer Styles */
