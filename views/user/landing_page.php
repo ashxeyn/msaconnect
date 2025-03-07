@@ -1,66 +1,72 @@
 <?php include '../../includes/header.php'; ?>
+
 <link rel="stylesheet" href="<?php echo $base_url; ?>css/user.landingpage.css">
 
-<section id="home" class="hero">
-    <div class="carousel">
-        <!-- Carousel Slides -->
-        <div class="carousel-slide active">
-            <img src="image1.jpg" alt="Slide 1">
-            <div class="hero-content">
-                <h1>Welcome to MyBrand</h1>
-                <p>Your success is our priority. Let's build something amazing together!</p>
-                <a href="#contact" class="cta-button">Get Started</a>
-            </div>
+<section id="home" class="carousel">
+    <!-- Carousel Slides -->
+    <div class="carousel-slide active">
+        <div class="carousel-background" style="background-image: url('<?php echo $base_url; ?>assets/images/login.jpg');"></div>
+        <div class="carousel-overlay"></div>
+        <div class="hero-content">
+            <h2>Welcome to Our Community</h2>
+            <p>Join us in making a difference through volunteering and community initiatives.</p>
         </div>
-        <div class="carousel-slide">
-            <img src="image2.jpg" alt="Slide 2">
-            <div class="hero-content">
-                <h1>Innovative Solutions</h1>
-                <p>We provide cutting-edge solutions tailored to your needs.</p>
-                <a href="#services" class="cta-button">Learn More</a>
-            </div>
-        </div>
-        <div class="carousel-slide">
-            <img src="image3.jpg" alt="Slide 3">
-            <div class="hero-content">
-                <h1>Join Us Today</h1>
-                <p>Be part of a community that values growth and innovation.</p>
-                <a href="#latest-updates" class="cta-button">Latest Updates</a>
-            </div>
-        </div>
-
-        <!-- Carousel Navigation Buttons -->
-        <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
-        <button class="carousel-button next" onclick="nextSlide()">&#10095;</button>
     </div>
+    <div class="carousel-slide">
+        <div class="carousel-background" style="background-image: url('<?php echo $base_url; ?>assets/images/file-28065-f13c4b6341cbf0b3faeb63a57bbefe55.jpg');"></div>
+        <div class="carousel-overlay"></div>
+        <div class="hero-content">
+            <h2>Upcoming Events</h2>
+            <p>Stay informed about our latest events and activities.</p>
+        </div>
+    </div>
+    <div class="carousel-slide">
+        <div class="carousel-background" style="background-image: url('<?php echo $base_url; ?>assets/images/file-28065-f13c4b6341cbf0b3faeb63a57bbefe55.jpg');"></div>
+        <div class="carousel-overlay"></div>
+        <div class="hero-content">
+            <h2>Community Event</h2>
+            <p>Join us in our community events and make a positive impact.</p>
+        </div>
+    </div>
+    <div class="carousel-slide">
+        <div class="carousel-background" style="background-image: url('<?php echo $base_url; ?>assets/images/file-28065-f13c4b6341cbf0b3faeb63a57bbefe55.jpg');"></div>
+        <div class="carousel-overlay"></div>
+        <div class="hero-content">
+            <h2>Prayer Schedule</h2>
+            <p>Check out our upcoming prayer schedules and topics.</p>
+        </div>
+    </div>
+    <!-- Carousel Navigation Buttons -->
+    <button class="carousel-button prev" onclick="prevSlide()">&#10094;</button>
+    <button class="carousel-button next" onclick="nextSlide()">&#10095;</button>
 </section>
 
 <section id="latest-updates" class="latest-updates">
     <h2>LATEST UPDATES</h2>
     <div class="updates-container">
         <div class="update-item">
-            <img src="<?php echo $base_url; ?>assets/images/images.png" alt="Latest Update">
+            <img src="<?php echo $base_url; ?>assets/images/login.jpg" alt="Latest Update">
             <div class="update-details">
                 <p class="update-date">October 10, 2023</p>
                 <h3 class="update-title">Exciting New Features Launched!</h3>
             </div>
         </div>
         <div class="update-item">
-            <img src="<?php echo $base_url; ?>assets/images/images.png" alt="Update 2">
+            <img src="<?php echo $base_url; ?>assets/images/login.jpg" alt="Update 2">
             <div class="update-details">
                 <p class="update-date">November 5, 2023</p>
                 <h3 class="update-title">New Community Initiatives</h3>
             </div>
         </div>
         <div class="update-item">
-            <img src="<?php echo $base_url; ?>assets/images/images.png" alt="Update 3">
+            <img src="<?php echo $base_url; ?>assets/images/login.jpg" alt="Update 3">
             <div class="update-details">
                 <p class="update-date">December 1, 2023</p>
                 <h3 class="update-title">Upcoming Events for the Holiday Season</h3>
             </div>
         </div>
         <div class="update-item">
-            <img src="<?php echo $base_url; ?>assets/images/images.png" alt="Update 4">
+            <img src="<?php echo $base_url; ?>assets/images/login.jpg" alt="Update 4">
             <div class="update-details">
                 <p class="update-date">January 15, 2024</p>
                 <h3 class="update-title">New Year Celebrations</h3>
@@ -115,3 +121,5 @@
 </section>
 
 <?php include '../../includes/footer.php'; ?>
+
+<script src="<?php echo $base_url; ?>js/landingpage.js"></script>

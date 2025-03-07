@@ -1,36 +1,24 @@
-
-
-/* Hero Section */
-.hero {
-  background: #007bff;
-  color: #fff;
-  text-align: center;
-  padding: 50px 20px; /* Adjust padding as needed */
-  height: 300px; /* Adjust height as needed */
-  position: relative;
-  overflow: hidden;
-  z-index: 1; /* Ensure carousel is below the header */
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
 }
 
-.hero h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  font-size: 18px;
-  margin-bottom: 30px;
-}
-
-.cta-button:hover {
-  background: #0056b3;
+/* Content Wrapper */
+.content {
+  flex: 1; /* Allow the content to grow and push the footer to the bottom */
+  padding: 20px; /* Add some padding for spacing */
 }
 
 /* Carousel Styles */
 .carousel {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 300px; /* Match the height of the hero section */
 }
 
 .carousel-slide {
@@ -47,10 +35,27 @@
   opacity: 1;
 }
 
-.carousel-slide img {
+.carousel-background {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the image covers the entire slide */
+  background-size: cover; /* Ensure the image covers the entire area */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1a9626; /* Updated color */
+  opacity: 0.6;
+  z-index: 2;
 }
 
 .hero-content {
@@ -60,7 +65,11 @@
   transform: translate(-50%, -50%);
   text-align: center;
   color: #fff;
-  z-index: 2;
+  z-index: 3;
+  max-width: 800px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 
 .hero-content h1 {
@@ -84,7 +93,7 @@
   padding: 10px;
   cursor: pointer;
   font-size: 24px;
-  z-index: 3;
+  z-index: 4;
 }
 
 .carousel-button.prev {
@@ -132,8 +141,8 @@
   font-size: 24px;
   margin-bottom: 10px;
 }
-/* Add this to your CSS file */
-/* Center the table and add styling */
+
+/* Prayer Schedule Section */
 .prayer-schedule {
   text-align: center;
   padding: 20px;
@@ -154,7 +163,27 @@ table {
   font-size: 16px;
   text-align: left;
 }
-/* Volunteer Section Styling */
+
+th,
+td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Volunteer Section */
 .volunteer {
   text-align: center;
   padding: 40px 20px;
@@ -192,24 +221,7 @@ table {
   background-color: #1ea82c;
 }
 
-th,
-td {
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-}
-
-th {
-  background-color: #f4f4f4;
-  font-weight: bold;
-}
-
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-tr:hover {
-  background-color: #f1f1f1;
-}
+/* Contact Form */
 .contact form {
   display: flex;
   flex-direction: column;
@@ -233,7 +245,9 @@ tr:hover {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}/* Latest Updates Section */
+}
+
+/* Latest Updates Section */
 .latest-updates {
   padding: 40px 20px;
   background-color: #f9f9f9;
@@ -264,6 +278,9 @@ tr:hover {
 .update-item img {
   width: 100%;
   height: auto;
+  max-width: 1536px;
+  max-height: 1536px;
+  object-fit: cover; /* Ensure the image covers the entire area */
 }
 
 .update-details {
@@ -282,3 +299,10 @@ tr:hover {
 }
 
 /* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: auto; /* Push footer to the bottom */
+}

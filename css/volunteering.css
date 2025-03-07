@@ -14,26 +14,53 @@ body {
   padding: 20px; /* Add some padding for spacing */
 }
 
-/* Hero Section */
 .hero {
-  width: 80%; /* Adjust the width of the hero section */
-  max-width: 600px; /* Set a maximum width to keep it from getting too wide */
-  margin: 20px auto; /* Center the hero section and add some margin */
-  padding: 20px; /* Add padding inside the hero section */
-  background-color: #d72f2f; /* Add a light background color */
-  border-radius: 10px; /* Add rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  text-align: center; /* Center the text inside the hero section */
+  position: relative; /* Ensure the hero section is a positioning context */
+  width: 100%; /* Full width */
+  height: 400px; /* Adjust height as needed */
+  overflow: hidden; /* Ensure the background doesn't overflow */
+  display: flex;
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  text-align: center; /* Center text */
+  color: white; /* White text for better contrast */
 }
 
-.hero h2 {
-  font-size: 24px; /* Adjust the heading size */
-  margin-bottom: 10px; /* Add space below the heading */
+/* Hero Background */
+.hero-background {
+  position: absolute; /* Position the background absolutely within the hero section */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../assets/images/file-28065-f13c4b6341cbf0b3faeb63a57bbefe55.jpg'); /* Add your image path here */
+  background-size: cover; /* Ensure the image covers the entire area */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  z-index: 1; /* Place the background behind the content */
 }
 
-.hero p {
-  font-size: 16px; /* Adjust the paragraph text size */
-  line-height: 1.6; /* Improve readability with line height */
+/* Overlay with Red Color and Lower Opacity */
+.hero-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1a9626; /* Red color */
+  opacity: 0.6; /* Lower opacity (adjust as needed, must be between 0 and 1) */
+  z-index: 2; /* Place the overlay above the background image */
+}
+
+/* Hero Content */
+.hero-content {
+  position: relative; /* Ensure content is above the background and overlay */
+  z-index: 3; /* Place content above the overlay */
+  max-width: 800px; /* Adjust width of the content */
+  padding: 20px; /* Add padding for spacing */
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: Slightly darken the content background for better readability */
+  border-radius: 10px; /* Optional: Add rounded corners */
 }
 
 /* Volunteer Button */

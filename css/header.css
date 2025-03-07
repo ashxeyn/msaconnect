@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Header Styles */
@@ -17,6 +18,8 @@ header {
   height: 50px !important; /* Adjust the height of the header */
   position: relative; /* Required for z-index */
   z-index: 1000; /* Ensure header is above the carousel */
+  width: 100%; /* Ensure header spans the full width of the screen */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 header .logo {
@@ -72,10 +75,13 @@ header .nav-links .dropdown-content {
   position: absolute;
   top: 100%; /* Position below the parent link */
   left: 0;
-  background-color: #333;
+  background-color: #1a9626;
   min-width: 200px; /* Increased min-width */
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1001; /* Ensure dropdown is above the carousel */
+  list-style: none; /* Remove bullets from dropdown */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
 }
 
 header .nav-links .dropdown-content li {
@@ -90,7 +96,7 @@ header .nav-links .dropdown-content li a {
 }
 
 header .nav-links .dropdown-content li a:hover {
-  background-color: #575757;
+ 
   text-decoration: none; /* Remove underline on hover */
 }
 
@@ -114,19 +120,23 @@ header .nav-links > li > a::after {
 }
 
 /* Show the line on hover */
-header .nav-links > li > a:hover::after {
+header .nav-links > li > a:hover::after,
+header .nav-links > li > a.active::after {
   transform: scaleX(1); /* Expand the line */
   transform-origin: bottom left;
 }
 
 /* Optional: Change text color on hover */
-header .nav-links li a:hover {
+header .nav-links li a:hover,
+header .nav-links li a.active {
   color: #be0b0b; /* Change to your preferred hover color */
 }
+
 header .navbar {
   margin: 0 !important;
   padding: 0 !important;
 }
+
 header .nav-links .dropdown .arrow {
   display: inline-block;
   margin-left: 5px;

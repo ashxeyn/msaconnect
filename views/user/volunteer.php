@@ -11,18 +11,20 @@
     
     <!-- Hero Section -->
     <div class="hero">
-        <h2>About Volunteering</h2>
-        <p>
-            Volunteering is about giving your time and skills to help others without expecting financial reward. 
-            It’s a way to contribute to your community, make a difference, and gain new experiences. 
-            Whether it’s helping at a local shelter, teaching, or cleaning up the environment, 
-            volunteering brings people together and creates positive change.
-        </p>
-    </div>
-
-    <!-- Volunteer Now Button -->
-    <div class="volunteer-button-container">
-        <button class="volunteer-button" onclick="window.location.href='regVolunteer.php'">Volunteer Now!</button>
+        <div class="hero-background"></div> <!-- Background image container -->
+        <div class="hero-content">
+            <h2>About Volunteering</h2>
+            <p>
+                Volunteering is about giving your time and skills to help others without expecting financial reward. 
+                It’s a way to contribute to your community, make a difference, and gain new experiences. 
+                Whether it’s helping at a local shelter, teaching, or cleaning up the environment, 
+                volunteering brings people together and creates positive change.
+            </p>
+            <!-- Volunteer Now Button -->
+            <div class="volunteer-button-container">
+                <button class="volunteer-button" onclick="window.location.href='regVolunteer.php'">Volunteer Now!</button>
+            </div>
+        </div>
     </div>
 
     <!-- Executive Officers Section -->
@@ -86,7 +88,6 @@
         </div>
     </div>
 
- 
+    <?php include '../../includes/footer.php'; ?>
 </body>
 </html>
-<?php include '../../includes/footer.php'; ?>
