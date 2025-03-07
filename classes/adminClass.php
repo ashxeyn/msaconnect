@@ -72,7 +72,59 @@ class Admin {
         return $query->fetchAll();
     }
 
+    function fetchPendingVolunteer() { 
+        $sql = "SELECT v.volunteer_id, CONCAT(v.last_name, ', ', v.first_name, ' ', v.middle_name) AS full_name, p.program_name, CONCAT(v.year, '-', v.section) AS yr_section, 
+                v.contact, v.email, v.cor_file AS cor, v.status FROM volunteers v
+                LEFT JOIN programs p ON v.program_id = p.program_id WHERE v.status = 'pending'";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
 
+    function fetchApprovedVolunteer() { 
+        $sql = "SELECT v.volunteer_id, CONCAT(v.last_name, ', ', v.first_name, ' ', v.middle_name) AS full_name, p.program_name, CONCAT(v.year, '-', v.section) AS yr_section, 
+                v.contact, v.email, v.cor_file AS cor, v.status, u.username AS registered_by FROM volunteers v 
+                LEFT JOIN users u ON v.user_id = u.user_id LEFT JOIN programs p ON v.program_id = p.program_id WHERE v.status = 'approved'";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+    
 
+    function fetchRejectedVolunteer() { 
+        $sql = "SELECT v.volunteer_id, CONCAT(v.last_name, ', ', v.first_name, ' ', v.middle_name) AS full_name, p.program_name, CONCAT(v.year, '-', v.section) AS yr_section, 
+                v.contact, v.email, v.cor_file AS cor, v.status, u.username AS registered_by FROM volunteers v LEFT JOIN users u ON v.registered_by = u.user_id 
+                LEFT JOIN programs p ON v.program_id = p.program_id WHERE v.status = 'rejected'";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    function approveVolunteer($volunteerId, $adminUserId) {
+        $sql = "UPDATE volunteers SET status = 'approved', user_id = :admin_id WHERE volunteer_id = :volunteer_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':admin_id', $adminUserId);
+        $query->bindParam(':volunteer_id', $volunteerId);
+        if (!$query->execute()) {
+            return "Sad di magawa";
+        }
+        return true;
+    }
+    
+    function rejectVolunteer($volunteerId, $adminUserId) {
+        $sql = "UPDATE volunteers SET status = 'rejected', user_id = :admin_id WHERE volunteer_id = :volunteer_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':admin_id', $adminUserId);
+        $query->bindParam(':volunteer_id', $volunteerId);
+        if (!$query->execute()) {
+            return "Sad di magawa";
+        }
+        return true;
+    }
+    
+    
+    
 }
-?>
