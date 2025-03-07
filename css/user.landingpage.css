@@ -1,4 +1,8 @@
 /* General Styles */
+html, body {
+  background-color: #e6dfdf;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -19,6 +23,7 @@ body {
   position: relative;
   width: 100%;
   height: 300px; /* Match the height of the hero section */
+  background-color: #e6dfdf; /* Ensure background color is applied */
 }
 
 .carousel-slide {
@@ -114,6 +119,7 @@ body {
 .contact {
   padding: 50px 20px;
   text-align: center;
+  background-color: #e6dfdf; /* Ensure background color is applied */
 }
 
 .about h2,
@@ -146,6 +152,7 @@ body {
 .prayer-schedule {
   text-align: center;
   padding: 20px;
+  background-color: #e6dfdf; /* Ensure background color is applied */
 }
 
 .table-container {
@@ -187,7 +194,7 @@ tr:hover {
 .volunteer {
   text-align: center;
   padding: 40px 20px;
-  background-color: #f9f9f9;
+  background-color: #e6dfdf; /* Ensure background color is applied */
 }
 
 .volunteer-content {
@@ -250,7 +257,7 @@ tr:hover {
 /* Latest Updates Section */
 .latest-updates {
   padding: 40px 20px;
-  background-color: #f9f9f9;
+  background-color: #e6dfdf; /* Ensure background color is applied */
   text-align: center;
 }
 

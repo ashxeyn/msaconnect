@@ -6,6 +6,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+  background-color: #e6dfdf; /* Dirty white background color */
 }
 
 /* Content Wrapper */
@@ -42,6 +43,10 @@ body {
   max-width: 600px; /* Set a maximum width */
   margin: 20px auto; /* Center the sections */
   text-align: center; /* Center the text */
+  background-color: #1a9626; /* Add background color */
+  color: white; /* Ensure text is readable on the dark background */
+  padding: 20px; /* Add padding inside the section */
+  border-radius: 10px; /* Add rounded corners */
 }
 
 .bylaws-content h3 {
