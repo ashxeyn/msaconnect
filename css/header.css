@@ -1,153 +1,205 @@
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-}
+  /* General Styles */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+  }
 
-/* Header Styles */
-header {
-  background: #000000;
-  color: #fff;
-  padding: 10px 20px !important; /* Force consistent padding */
-  display: flex;
-  justify-content: space-between; /* Push logo to left and nav to center */
-  align-items: center; /* Center vertically */
-  height: 50px !important; /* Adjust the height of the header */
-  position: relative; /* Required for z-index */
-  z-index: 1000; /* Ensure header is above the carousel */
-  width: 100%; /* Ensure header spans the full width of the screen */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
-}
+  /* Header Styles */
+  header {
+    background: #000000;
+    color: #fff;
+    padding: 10px 20px !important; /* Force consistent padding */
+    display: flex;
+    justify-content: space-between; /* Push logo to left and nav to center */
+    align-items: center; /* Center vertically */
+    height: 50px !important; /* Adjust the height of the header */
+    position: relative; /* Required for z-index */
+    z-index: 1000; /* Ensure header is above the carousel */
+    width: 100%; /* Ensure header spans the full width of the screen */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
 
-header .logo {
-  display: flex;
-  align-items: center;
-}
+  header .logo {
+    display: flex;
+    align-items: center;
+  }
 
-header .logo a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: white;
-}
+  header .logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+  }
 
-header .logo .logo-image {
-  height: 40px;
-  margin-right: 10px;
-}
+  header .logo .logo-image {
+    height: 40px;
+    margin-right: 10px;
+  }
 
-header .logo .logo-text {
-  font-size: 24px;
-  font-weight: bold;
-  color: white;
-}
+  header .logo .logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+  }
 
-header .nav-links {
-  list-style: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-  position: absolute; /* Position the nav absolutely */
-  left: 50%; /* Move nav to the center */
-  transform: translateX(-50%); /* Adjust for exact centering */
-  top: 50%; /* Center the nav links vertically */
-  transform: translate(-50%, -50%); /* Adjust for exact centering */
-}
+  header .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    position: absolute; /* Position the nav absolutely */
+    left: 50%; /* Move nav to the center */
+    transform: translateX(-50%); /* Adjust for exact centering */
+    top: 50%; /* Center the nav links vertically */
+    transform: translate(-50%, -50%); /* Adjust for exact centering */
+  }
 
-header .nav-links li {
-  position: relative; /* Required for the hover effect */
-  margin-left: 20px;
-}
+  header .nav-links li {
+    position: relative; /* Required for the hover effect */
+    margin-left: 20px;
+  }
 
-header .nav-links li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px;
-  transition: color 0.3s ease; /* Smooth color transition */
-}
+  header .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease; /* Smooth color transition */
+  }
 
-/* Dropdown menu styles */
-header .nav-links .dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%; /* Position below the parent link */
-  left: 0;
-  background-color: #1a9626;
-  min-width: 200px; /* Increased min-width */
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1001; /* Ensure dropdown is above the carousel */
-  list-style: none; /* Remove bullets from dropdown */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margin */
-}
+  /* Dropdown menu styles */
+  header .nav-links .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position below the parent link */
+    left: 0;
+    background-color: #ffffff; /* White background */
+    min-width: 200px; /* Increased min-width */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1001; /* Ensure dropdown is above the carousel */
+    list-style: none; /* Remove bullets from dropdown */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    border-radius: 5px; /* Rounded corners */
+    overflow: hidden; /* Ensure rounded corners are visible */
+  }
 
-header .nav-links .dropdown-content li {
-  padding: 16px 20px; /* Increased padding */
-}
+  header .nav-links .dropdown-content li {
+    padding: 16px 20px; /* Increased padding */
+    background-color: #ffffff; /* White background */
+    border-bottom: 1px solid #ddd; /* Add a subtle border */
+  }
 
-header .nav-links .dropdown-content li a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  transition: background-color 0.3s ease;
-}
+  header .nav-links .dropdown-content li:last-child {
+    border-bottom: none; /* Remove border from the last item */
+  }
 
-header .nav-links .dropdown-content li a:hover {
- 
-  text-decoration: none; /* Remove underline on hover */
-}
+  header .nav-links .dropdown-content li a {
+    color: #000000;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+  }
 
-/* Show the dropdown menu on hover */
-header .nav-links .dropdown:hover .dropdown-content {
-  display: block;
-}
+  header .nav-links .dropdown-content li a:hover {
+    background-color: #f1f1f1; /* Light grey background on hover */
+    text-decoration: none; /* Remove underline on hover */
+  }
 
-/* Hover effect for the line */
-header .nav-links > li > a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px; /* Adjust this to control the distance of the line from the text */
-  width: 100%;
-  height: 2px; /* Thickness of the line */
-  background-color: #1a9626; /* Color of the line */
-  transform: scaleX(0); /* Initially hidden */
-  transform-origin: bottom right;
-  transition: transform 0.3s ease; /* Smooth animation */
-}
+  /* Show the dropdown menu on hover */
+  header .nav-links .dropdown:hover .dropdown-content {
+    display: block;
+  }
 
-/* Show the line on hover */
-header .nav-links > li > a:hover::after,
-header .nav-links > li > a.active::after {
-  transform: scaleX(1); /* Expand the line */
-  transform-origin: bottom left;
-}
+  /* Hover effect for the line */
+  header .nav-links > li > a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Adjust this to control the distance of the line from the text */
+    width: 100%;
+    height: 2px; /* Thickness of the line */
+    background-color: #1a9626; /* Color of the line */
+    transform: scaleX(0); /* Initially hidden */
+    transform-origin: bottom right;
+    transition: transform 0.3s ease; /* Smooth animation */
+  }
 
-/* Optional: Change text color on hover */
-header .nav-links li a:hover,
-header .nav-links li a.active {
-  color: #be0b0b; /* Change to your preferred hover color */
-}
+  /* Show the line on hover */
+  header .nav-links > li > a:hover::after,
+  header .nav-links > li > a.active::after {
+    transform: scaleX(1); /* Expand the line */
+    transform-origin: bottom left;
+  }
 
-header .navbar {
-  margin: 0 !important;
-  padding: 0 !important;
-}
+  /* Optional: Change text color on hover */
+  header .nav-links li a:hover,
+  header .nav-links li a.active {
+    color: #be0b0b; /* Change to your preferred hover color */
+  }
 
-header .nav-links .dropdown .arrow {
-  display: inline-block;
-  margin-left: 5px;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-top: 5px solid white; /* Arrow color */
-  transition: transform 0.3s ease; /* Smooth rotation */
-}
+  header .navbar {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 
-header .nav-links .dropdown:hover .arrow {
-  transform: rotate(180deg); /* Rotate arrow on hover */
-}
+  header .nav-links .dropdown .arrow {
+    display: inline-block;
+    margin-left: 5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid white; /* Arrow color */
+    transition: transform 0.3s ease; /* Smooth rotation */
+  }
+
+  header .nav-links .dropdown:hover .arrow {
+    transform: rotate(180deg); /* Rotate arrow on hover */
+  }
+
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      height: auto; /* Adjust height for smaller screens */
+    }
+
+    header .nav-links {
+      position: static; /* Remove absolute positioning */
+      transform: none; /* Remove transform */
+      flex-direction: column; /* Stack links vertically */
+      width: 100%; /* Full width */
+      text-align: center; /* Center align text */
+    }
+
+    header .nav-links li {
+      margin: 10px 0; /* Add margin between items */
+    }
+
+    header .nav-links .dropdown-content {
+      position: static; /* Remove absolute positioning */
+      box-shadow: none; /* Remove box shadow */
+      border-radius: 0; /* Remove border radius */
+    }
+
+    header .nav-links .dropdown-content li {
+      padding: 10px 15px; /* Adjust padding */
+    }
+  }
+
+  @media (max-width: 480px) {
+    header .logo .logo-text {
+      font-size: 20px; /* Adjust font size for smaller screens */
+    }
+
+    header .nav-links li a {
+      font-size: 14px; /* Adjust font size for smaller screens */
+    }
+
+    header .nav-links .dropdown-content li {
+      padding: 8px 10px; /* Adjust padding */
+    }
+  }

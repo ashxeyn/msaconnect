@@ -6,7 +6,30 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-    background-color: #e6dfdf;
+    background: linear-gradient(135deg, 
+        #000000, /* Black */
+        #D72828, /* Red */
+        #009639, /* Green */
+        #FFFFFF  /* White */
+    );
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
+    margin: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #333; /* Adjust text color for readability */
+    
+}
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* Content Wrapper */
@@ -25,10 +48,11 @@ body {
     border-radius: 10px; /* Add rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
     text-align: center; /* Center the text inside the hero section */
+    color: #fff;
 }
 
 .hero h2 {
-    font-size: 24px; /* Adjust txhe heading size */
+    font-size: 24px; /* Adjust the heading size */
     margin-bottom: 10px; /* Add space below the heading */
 }
 
@@ -106,4 +130,19 @@ body {
     color: #555; /* Slightly muted text color */
 }
 
-/* Footer Styles */
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .hero, .mission-section, .vision-section {
+        width: 90%; /* Increase width for smaller screens */
+    }
+
+    .officers-grid {
+        grid-template-columns: 1fr; /* Single column layout for smaller screens */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .officers-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
+    }
+}

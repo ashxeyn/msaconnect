@@ -1,0 +1,136 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-color: #f4f4f4; /* Light background color */
+    color: #333; /* Default text color */
+}
+
+/* Form Styles */
+form {
+    max-width: 1200px; /* Adjusted max-width for better responsiveness */
+    width: 90%; /* Use percentage for better responsiveness */
+    margin: 50px auto; /* Center the form */
+    padding: 40px; /* Reduced padding for better proportions */
+    background-color: #fff;
+    border-radius: 15px; /* Larger border radius for a softer look */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Softer shadow for a modern look */
+}
+
+label {
+    display: block;
+    margin-bottom: 20px; /* Increased margin for better spacing */
+    font-weight: 600; /* Semi-bold for better readability */
+    color: #333; /* Darker color for better contrast */
+    font-size: 18px; /* Increased font size for better readability */
+}
+
+input[type="text"],
+input[type="email"],
+select,
+input[type="file"] {
+    width: 100%; /* Full width for better responsiveness */
+    padding: 15px; /* Slightly reduced padding for better proportions */
+    margin-bottom: 25px; /* Increased margin for better spacing */
+    border: 2px solid #ddd; /* Softer border color */
+    border-radius: 10px; /* Larger border radius for a softer look */
+    font-size: 16px; /* Adjusted font size for better readability */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    background-color: #f9f9f9; /* Light background for inputs */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus,
+input[type="file"]:focus {
+    border-color: #007bff; /* Blue border color on focus */
+    background-color: #fff; /* White background on focus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); /* Subtle glow effect */
+    outline: none; /* Remove default outline */
+}
+
+span p {
+    color: red;
+    font-size: 14px; /* Adjusted font size for better readability */
+    margin: 0;
+    font-weight: 500; /* Medium weight for error messages */
+}
+
+/* Image Preview Styles */
+.image-preview {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 25px; /* Increased margin for spacing */
+}
+
+.image-preview img {
+    max-width: 100%;
+    border-radius: 10px; /* Larger border radius for a softer look */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.remove-image {
+    position: absolute;
+    top: 15px; /* Adjusted position for better alignment */
+    right: 15px; /* Adjusted position for better alignment */
+    background: #ff4d4d; /* Brighter red for better visibility */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px; /* Increased font size for better visibility */
+    width: 30px; /* Increased size for better clickability */
+    height: 30px; /* Increased size for better clickability */
+    text-align: center;
+    line-height: 30px; /* Adjusted line height for better alignment */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.remove-image:hover {
+    background: #ff1a1a; /* Darker red on hover */
+}
+
+/* Button Container Styles */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px; /* Increased margin for better spacing */
+}
+
+.back-button,
+.sign-up-button {
+    flex: 1; /* Equal width for both buttons */
+    margin: 0 10px; /* Spacing between buttons */
+    padding: 15px 20px; /* Adjusted padding for better proportions */
+    font-size: 16px; /* Adjusted font size for better readability */
+    border-radius: 10px; /* Larger border radius for a softer look */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    text-align: center; /* Center text */
+    border: none; /* Remove default border */
+}
+
+.back-button {
+    background-color: #1ea82c; /* Green color */
+    color: white; /* White text color */
+}
+
+.back-button:hover {
+    background-color: #18a028; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+
+.sign-up-button {
+    background-color: #d72f2f; /* Red color */
+    color: white; /* White text color */
+}
+
+.sign-up-button:hover {
+    background-color: #c62828; /* Darker red on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}

@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Volunteer Registration</title>
     <script src="../../js/admin.js"></script>
-    <link rel="stylesheet" href="../../css/add_officer.css">
+    <link rel="stylesheet" href="../../css/registerVolunteer.css">
     <?php include '../../includes/header.php'; ?>
 </head>
 <body>
@@ -170,7 +170,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="button" class="remove-image" onclick="removeImage()">x</button>
         </div>
 
-        <button type="submit">Sign Up</button>
+        <div class="button-container">
+            <button type="button" class="back-button" onclick="window.location.href='volunteer.php'">Back</button>
+            <button type="submit" class="sign-up-button">Sign Up</button>
+        </div>
     </form>
     <?php include '../../includes/footer.php'; ?>
 </body>
