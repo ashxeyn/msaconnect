@@ -53,7 +53,7 @@ class Account {
         return $data;
     }
 
-    public function fetchOfficerPositions() {
+    function fetchOfficerPositions() {
         $sql = "SELECT * FROM officer_positions ORDER BY position_id ASC";
         $query = $this->db->connect()->prepare($sql);
         $query->execute();

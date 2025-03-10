@@ -1,3 +1,4 @@
+// GENERAL FUNCTIONS
 function previewImage(event) {
     const file = event.target.files[0];
     if (file) {
@@ -16,9 +17,10 @@ function removeImage() {
 }
 
 $(document).ready(function() {
-    $('#volunteerTable').DataTable();
+    $('#table').DataTable();
 });
 
+// SIDEBAR FUNCTIONS
 function loadDashboardSection() {
     $.ajax({
         url: "../admin/viewAnalytics.php",
@@ -173,19 +175,21 @@ function loadRegistrationsSection() {
     });
 }
 
+// VOLUNTEER FUNCTIONS
 // function viewPhoto(photoName) {
 //     const photoPath = `../../assets/cors/${photoName}`;
 //     console.log("Photo Path:", photoPath);
 //     document.getElementById('modalPhoto').src = photoPath;
 // }
 
-function viewPhoto(photoName) {
+function viewPhoto(photoName, folder) {
     $('.modal').modal('hide'); 
-    // $('.modal-backdrop').remove(); 
     setTimeout(() => {
         const modal = $('#photoModal');
-        modal.attr('aria-hidden', 'false');
-        $('#modalPhoto').attr('src', `../../assets/cors/${photoName}`);
+        modal.attr({
+            'aria-hidden': 'false'
+        });
+        $('#modalPhoto').attr('src', `../../assets/${folder}/${photoName}`);
         modal.modal('show'); 
     }, 300);
 }
@@ -201,12 +205,12 @@ function openModal(modalId, volunteerId, action) {
     }, 300);
 }
 
-$(document).on('hidden.bs.modal', function () {
-    if ($('.modal.show').length === 0) { 
-        $('body').removeClass('modal-open'); 
-        $('.modal-backdrop').remove();
-    }
-});
+// $(document).on('hidden.bs.modal', function () {
+//     if ($('.modal.show').length === 0) { 
+//         $('body').removeClass('modal-open'); 
+//         $('.modal-backdrop').remove();
+//     }
+// });
 
 function setVolunteerId(volunteerId, action) {
     if (action === 'approve') {
@@ -240,3 +244,100 @@ function processVolunteer(volunteerId, action) {
         }
     });
 }
+
+// OFFICER FUNCTIONS
+function openOfficerModal(modalId, officerId, action) {
+    $('.modal').modal('hide'); 
+    $('.modal-backdrop').remove(); 
+    setTimeout(() => {
+        const modal = $('#' + modalId);
+        modal.attr('aria-hidden', 'false');
+        modal.modal('show'); 
+        setOfficerId(officerId, action);
+    }, 300);
+}
+
+function setOfficerId(officerId, action) {
+    if (action === 'edit') {
+        $.ajax({
+            url: "../../handler/admin/getOfficer.php",
+            type: "GET",
+            data: { officer_id: officerId },
+            success: function(response) {
+                const officer = JSON.parse(response);
+                $('#officerId').val(officer.officer_id);
+                $('#firstName').val(officer.first_name);
+                $('#middleName').val(officer.middle_name);
+                $('#surname').val(officer.last_name);
+                $('#program').val(officer.program_id);
+                $('#position').val(officer.position_id);
+                $('#schoolYear').val(officer.school_year_id);
+                $('#modalTitle').text('Edit Officer');
+                $('#confirmSaveOfficer').text('Update Officer');
+
+                if (officer.image) {
+                    $('#image-preview').show();
+                    $('#preview-img').attr('src', `../../assets/officers/${officer.image}`);
+                } else {
+                    $('#image-preview').hide();
+                }
+            },
+            error: function() {
+                alert("An error occurred while fetching the officer data.");
+            }
+        });
+
+        $('#confirmSaveOfficer').off('click').on('click', function (e) {
+            e.preventDefault(); 
+            processOfficer(officerId, 'edit');
+        });
+    } else if (action === 'delete') {
+        $('#confirmDeleteOfficer').off('click').on('click', function () {
+            processOfficer(officerId, 'delete');
+        });
+    } else if (action === 'add') {
+        $('#officerForm')[0].reset();
+        $('#modalTitle').text('Add Officer');
+        $('#confirmSaveOfficer').text('Add Officer');
+        $('#confirmSaveOfficer').off('click').on('click', function (e) {
+            e.preventDefault();
+            processOfficer(null, 'add');
+        });
+    }
+}
+
+function processOfficer(officerId, action) {
+    let formData = new FormData(document.getElementById('officerForm'));
+    if (officerId) {
+        formData.append('officer_id', officerId);
+    }
+    formData.append('action', action);
+
+    $.ajax({
+        url: "../../handler/admin/officersAction.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            if (response.trim() === "success") {
+                $(".modal").modal("hide");
+                $("body").removeClass("modal-open");
+                $(".modal-backdrop").remove();
+                loadOfficersSection()
+            } else {
+                alert("Failed to process request: " + response);
+            }
+        },
+        error: function() {
+            alert("An error occurred while processing the request.");
+        }
+    });
+}
+
+$(document).on('hidden.bs.modal', function () {
+    if ($('.modal.show').length === 0) { 
+        $('body').removeClass('modal-open'); 
+        $('.modal-backdrop').remove();
+    }
+});

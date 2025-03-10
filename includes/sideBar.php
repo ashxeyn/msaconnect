@@ -1,7 +1,14 @@
+<?php
+session_start();
+require_once '../../tools/function.php'; 
+
+$userRole = $_SESSION['role'] ?? '';
+require_once 'head.php'; 
+?>
+
 <head>
     <link rel="stylesheet" href="../../css/sideBar.css">
 </head>
-<?php require_once 'head.php'; ?>
 
 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebar" id="sidebar">
     <a href="#" class="d-flex align-items-center mb-3 text-white text-decoration-none logo-container">
@@ -73,6 +80,7 @@
             </a>
         </li>
 
+        <?php if ($userRole === 'admin'): ?>
         <li>
             <hr class="text-white">
             <span class="text-uppercase text-muted small fw-bold sidebar-text">Access Management</span>
@@ -82,12 +90,13 @@
                 <i class="bi bi-person-gear me-2"></i> <span class="sidebar-text">Moderators</span>
             </a>
         </li>
+        <?php endif; ?>
     </ul>
 
     <hr class="text-white">
 
     <div class="text-center">
-        <a href="../accounts/logout.php" class="btn btn-outline-danger w-100">
+        <a href="../../accounts/logout.php" class="btn btn-outline-danger w-100">
             <i class="bi bi-box-arrow-right me-2"></i> <span class="sidebar-text">Logout</span>
         </a>
     </div>

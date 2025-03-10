@@ -21,7 +21,7 @@ $result = $adminObj->fetchApprovedVolunteer();
 <div>
     <h2 class="mb-4">Volunteers</h2>
 
-    <table id="volunteerTable" class="table table-bordered table-striped">
+    <table id="table" class="table table-bordered table-striped">
         <thead>
             <tr>
                 <th>ID</th>
@@ -32,6 +32,7 @@ $result = $adminObj->fetchApprovedVolunteer();
                 <th>Email</th>
                 <th>COR</th>
                 <th>Approved By</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -47,7 +48,7 @@ $result = $adminObj->fetchApprovedVolunteer();
                         <td><?= clean_input($row['email']) ?></td>
                         <td>
                             <?php if (!empty($row['cor'])): ?>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#photoModal" onclick="viewPhoto('<?= clean_input($row['cor']) ?>')">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#photoModal" onclick="viewPhoto('<?= clean_input($row['cor']) ?>', 'cors')">
                                     <img src="../../assets/cors/<?= clean_input($row['cor']) ?>" alt="COR Photo" width="80" height="80" class="img-thumbnail">
                                 </a>
                             <?php else: ?>
@@ -55,6 +56,10 @@ $result = $adminObj->fetchApprovedVolunteer();
                             <?php endif; ?>
                         </td>
                         <td><?= clean_input($row['registered_by']) ?></td>
+                        <td>
+                            <button class="btn btn-primary btn-sm" onclick="openVolunteerModal('editVolunteerModal', <?= $row['volunteer_id'] ?>, 'edit')">Edit</button>
+                            <button class="btn btn-danger btn-sm" onclick="openVolunteerModal('deleteVolunteerModal', <?= $row['volunteer_id'] ?>, 'delete')">Delete</button>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -65,5 +70,11 @@ $result = $adminObj->fetchApprovedVolunteer();
         </tbody>
     </table>
 </div>
+
+<?php include '../adminModals/corView.html'; 
+include '../adminModals/deleteVolunteer.html';
+include '../adminModals/editVolunteer.php';
+?>
+
 </body>
 </html>

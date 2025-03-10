@@ -20,7 +20,7 @@ $result = $adminObj->fetchPendingVolunteer();
     <div>
         <h2 class="mb-4">Pending Volunteer Registrations</h2>
 
-        <table id="volunteerTable" class="table table-bordered table-striped">
+        <table id="table" class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -47,7 +47,7 @@ $result = $adminObj->fetchPendingVolunteer();
                             <td><?= clean_input($row['email']) ?></td>
                             <td>
                                 <?php if (!empty($row['cor'])): ?>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#photoModal" onclick="viewPhoto('<?= clean_input($row['cor']) ?>')">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#photoModal" onclick="viewPhoto('<?= clean_input($row['cor']) ?>', 'cors')">
                                 <img src="../../assets/cors/<?= clean_input($row['cor']) ?>" alt="COR Photo" width="80" height="80" class="img-thumbnail">
                                     </a>
                                 <?php else: ?>
