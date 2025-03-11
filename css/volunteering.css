@@ -107,9 +107,6 @@ body {
   line-height: 1.6; /* Improve readability with line height */
 }
 
-/* Executive Officers Section */
-/* Volunteer Section */
-/* Volunteer Section */
 .volunteer-section {
   width: 80%;
   max-width: 1200px; /* Adjust the max-width as needed */
@@ -145,6 +142,7 @@ body {
   font-size: 18px;
   font-weight: bold;
   margin: 0; /* Remove default margin */
+  
 }
 
 /* Media Queries for Responsiveness */
