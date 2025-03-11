@@ -1,205 +1,233 @@
-  /* General Styles */
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Header Styles */
+header {
+  background: #000000; /* Dark background for the header */
+  color: #fff;
+  display: flex;
+  flex-direction: column; /* Stack logo and navbar vertically */
+  align-items: flex-start; /* Align content to the left */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Top Section: Logo and MSA CONNECT */
+.header-top {
+  background: #00441b; /* Green background for the top section */
+  width: 100%;
+  padding: 20px 40px; /* Increased padding */
+  display: flex;
+  justify-content: flex-start; /* Move logo and text to the left */
+  align-items: center;
+}
+
+.header-top .logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-top .logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+.header-top .logo .logo-image {
+  height: 50px; /* Slightly larger logo */
+  margin-right: 15px; /* Increased margin */
+}
+
+.header-top .logo .logo-text-container {
+  display: flex;
+  flex-direction: column; /* Stack text vertically */
+  align-items: flex-start; /* Align text to the left */
+}
+
+.header-top .logo .logo-text {
+  font-size: 28px; /* Larger font size */
+  font-weight: bold;
+  color: white;
+  margin-bottom: 5px; /* Space between main text and subtext */
+}
+
+.header-top .logo .logo-subtext {
+  font-size: 14px; /* Smaller font size for subtext */
+  color: white;
+  text-align: left; /* Align subtext to the left */
+}
+
+/* Bottom Section: Navigation Bar */
+.navbar {
+  background: #000000; /* Black background for the navbar */
+  width: 100%;
+  padding: 15px 40px; /* Increased padding */
+  display: flex;
+  justify-content: center; /* Center navigation links */
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+  margin-left: 20px;
+}
+
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+/* Dropdown Menu Styles */
+.nav-links .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.nav-links .dropdown-content li {
+  padding: 16px 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-links .dropdown-content li:last-child {
+  border-bottom: none;
+}
+
+.nav-links .dropdown-content li a {
+  color: #000000;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links .dropdown-content li a:hover {
+  background-color: #f1f1f1;
+  text-decoration: none;
+}
+
+/* Show the dropdown menu on hover */
+.nav-links .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Hover effect for the line */
+.nav-links > li > a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background-color: #1a9626;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+/* Show the line on hover */
+.nav-links > li > a:hover::after,
+.nav-links > li > a.active::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Optional: Change text color on hover */
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: #be0b0b;
+}
+
+/* Dropdown Arrow */
+.nav-links .dropdown .arrow {
+  display: inline-block;
+  margin-left: 5px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid white;
+  transition: transform 0.3s ease;
+}
+
+.nav-links .dropdown:hover .arrow {
+  transform: rotate(180deg);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .header-top {
+      padding: 15px 20px; /* Adjusted padding for smaller screens */
   }
 
-  /* Header Styles */
-  header {
-    background: #000000;
-    color: #fff;
-    padding: 10px 20px !important; /* Force consistent padding */
-    display: flex;
-    justify-content: space-between; /* Push logo to left and nav to center */
-    align-items: center; /* Center vertically */
-    height: 50px !important; /* Adjust the height of the header */
-    position: relative; /* Required for z-index */
-    z-index: 1000; /* Ensure header is above the carousel */
-    width: 100%; /* Ensure header spans the full width of the screen */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  .header-top .logo .logo-text {
+      font-size: 24px; /* Adjusted font size */
   }
 
-  header .logo {
-    display: flex;
-    align-items: center;
+  .header-top .logo .logo-subtext {
+      font-size: 12px; /* Adjusted font size */
   }
 
-  header .logo a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-  }
-
-  header .logo .logo-image {
-    height: 40px;
-    margin-right: 10px;
-  }
-
-  header .logo .logo-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-  }
-
-  header .nav-links {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    position: absolute; /* Position the nav absolutely */
-    left: 50%; /* Move nav to the center */
-    transform: translateX(-50%); /* Adjust for exact centering */
-    top: 50%; /* Center the nav links vertically */
-    transform: translate(-50%, -50%); /* Adjust for exact centering */
-  }
-
-  header .nav-links li {
-    position: relative; /* Required for the hover effect */
-    margin-left: 20px;
-  }
-
-  header .nav-links li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 16px;
-    transition: color 0.3s ease; /* Smooth color transition */
-  }
-
-  /* Dropdown menu styles */
-  header .nav-links .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%; /* Position below the parent link */
-    left: 0;
-    background-color: #ffffff; /* White background */
-    min-width: 200px; /* Increased min-width */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1001; /* Ensure dropdown is above the carousel */
-    list-style: none; /* Remove bullets from dropdown */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
-    border-radius: 5px; /* Rounded corners */
-    overflow: hidden; /* Ensure rounded corners are visible */
-  }
-
-  header .nav-links .dropdown-content li {
-    padding: 16px 20px; /* Increased padding */
-    background-color: #ffffff; /* White background */
-    border-bottom: 1px solid #ddd; /* Add a subtle border */
-  }
-
-  header .nav-links .dropdown-content li:last-child {
-    border-bottom: none; /* Remove border from the last item */
-  }
-
-  header .nav-links .dropdown-content li a {
-    color: #000000;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.3s ease;
-  }
-
-  header .nav-links .dropdown-content li a:hover {
-    background-color: #f1f1f1; /* Light grey background on hover */
-    text-decoration: none; /* Remove underline on hover */
-  }
-
-  /* Show the dropdown menu on hover */
-  header .nav-links .dropdown:hover .dropdown-content {
-    display: block;
-  }
-
-  /* Hover effect for the line */
-  header .nav-links > li > a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -5px; /* Adjust this to control the distance of the line from the text */
-    width: 100%;
-    height: 2px; /* Thickness of the line */
-    background-color: #1a9626; /* Color of the line */
-    transform: scaleX(0); /* Initially hidden */
-    transform-origin: bottom right;
-    transition: transform 0.3s ease; /* Smooth animation */
-  }
-
-  /* Show the line on hover */
-  header .nav-links > li > a:hover::after,
-  header .nav-links > li > a.active::after {
-    transform: scaleX(1); /* Expand the line */
-    transform-origin: bottom left;
-  }
-
-  /* Optional: Change text color on hover */
-  header .nav-links li a:hover,
-  header .nav-links li a.active {
-    color: #be0b0b; /* Change to your preferred hover color */
-  }
-
-  header .navbar {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  header .nav-links .dropdown .arrow {
-    display: inline-block;
-    margin-left: 5px;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid white; /* Arrow color */
-    transition: transform 0.3s ease; /* Smooth rotation */
-  }
-
-  header .nav-links .dropdown:hover .arrow {
-    transform: rotate(180deg); /* Rotate arrow on hover */
-  }
-
-  /* Media Queries for Responsiveness */
-  @media (max-width: 768px) {
-    header {
+  .nav-links {
       flex-direction: column;
-      height: auto; /* Adjust height for smaller screens */
-    }
-
-    header .nav-links {
-      position: static; /* Remove absolute positioning */
-      transform: none; /* Remove transform */
-      flex-direction: column; /* Stack links vertically */
-      width: 100%; /* Full width */
-      text-align: center; /* Center align text */
-    }
-
-    header .nav-links li {
-      margin: 10px 0; /* Add margin between items */
-    }
-
-    header .nav-links .dropdown-content {
-      position: static; /* Remove absolute positioning */
-      box-shadow: none; /* Remove box shadow */
-      border-radius: 0; /* Remove border radius */
-    }
-
-    header .nav-links .dropdown-content li {
-      padding: 10px 15px; /* Adjust padding */
-    }
+      text-align: center;
   }
 
-  @media (max-width: 480px) {
-    header .logo .logo-text {
-      font-size: 20px; /* Adjust font size for smaller screens */
-    }
-
-    header .nav-links li a {
-      font-size: 14px; /* Adjust font size for smaller screens */
-    }
-
-    header .nav-links .dropdown-content li {
-      padding: 8px 10px; /* Adjust padding */
-    }
+  .nav-links li {
+      margin: 10px 0;
   }
+
+  .nav-links .dropdown-content {
+      position: static;
+      box-shadow: none;
+      border-radius: 0;
+  }
+
+  .nav-links .dropdown-content li {
+      padding: 10px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-top .logo .logo-text {
+      font-size: 20px; /* Adjusted font size */
+  }
+
+  .header-top .logo .logo-subtext {
+      font-size: 10px; /* Adjusted font size */
+  }
+
+  .nav-links li a {
+      font-size: 14px;
+  }
+
+  .nav-links .dropdown-content li {
+      padding: 8px 10px;
+  }
+}

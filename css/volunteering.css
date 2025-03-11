@@ -35,7 +35,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../assets/images/file-28065-f13c4b6341cbf0b3faeb63a57bbefe55.jpg'); /* Add your image path here */
+  background-image: url('../assets/images/login.jpg'); /* Add your image path here */
   background-size: cover; /* Ensure the image covers the entire area */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent the image from repeating */

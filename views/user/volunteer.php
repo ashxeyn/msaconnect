@@ -22,53 +22,53 @@
             </p>
             <!-- Volunteer Now Button -->
             <div class="volunteer-button-container">
-                <button class="volunteer-button" onclick="window.location.href='regVolunteer.php'">Volunteer Now!</button>
+                <button class="volunteer-button" onclick="window.location.href='regVolunteer'">Volunteer Now!</button>
             </div>
         </div>
     </div>
 
     <!-- Volunteer Section -->
-        <div class="volunteer-section">
+    <div class="volunteer-section">
         <h3>VOLUNTEERS</h3>
         <div class="volunteer-grid">
             <!-- Volunteer 1 -->
             <div class="volunteer">
-            <p class="name">John Doe</p>
+                <p class="name">John Doe</p>
             </div>
             <!-- Volunteer 2 -->
             <div class="volunteer">
-            <p class="name">Jane Smith</p>
+                <p class="name">Jane Smith</p>
             </div>
             <!-- Volunteer 3 -->
             <div class="volunteer">
-            <p class="name">Mike Johnson</p>
+                <p class="name">Mike Johnson</p>
             </div>
             <!-- Volunteer 4 -->
             <div class="volunteer">
-            <p class="name">Sarah Brown</p>
+                <p class="name">Sarah Brown</p>
             </div>
             <!-- Volunteer 5 -->
             <div class="volunteer">
-            <p class="name">Chris Green</p>
+                <p class="name">Chris Green</p>
             </div>
             <!-- Volunteer 6 -->
             <div class="volunteer">
-            <p class="name">Emily White</p>
+                <p class="name">Emily White</p>
             </div>
             <!-- Volunteer 7 -->
             <div class="volunteer">
-            <p class="name">David Black</p>
+                <p class="name">David Black</p>
             </div>
             <!-- Volunteer 8 -->
             <div class="volunteer">
-            <p class="name">Laura Blue</p>
+                <p class="name">Laura Blue</p>
             </div>
             <!-- Volunteer 9 -->
             <div class="volunteer">
-            <p class="name">Kevin Yellow</p>
+                <p class="name">Kevin Yellow</p>
             </div>
         </div>
-        </div>
+    </div>
 
     <?php include '../../includes/footer.php'; ?>
 </body>

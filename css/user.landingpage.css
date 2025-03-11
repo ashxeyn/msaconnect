@@ -285,9 +285,8 @@ tr:hover {
 .update-item img {
   width: 100%;
   height: auto;
-  max-width: 1536px;
-  max-height: 1536px;
-  object-fit: cover; /* Ensure the image covers the entire area */
+  max-height: 200px; /* Set a maximum height for the images */
+  object-fit: cover; /* Ensure the image maintains its aspect ratio */
 }
 
 .update-details {
