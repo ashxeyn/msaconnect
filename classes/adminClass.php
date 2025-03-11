@@ -16,6 +16,11 @@ class Admin {
     public $section;
     public $cor_file;
     public $officer_id;
+    public $status;
+    public $user_id;
+    public $created_at;
+    public $program_id;
+    public $school_year_id;
     
     protected $db;
 
@@ -39,7 +44,6 @@ class Admin {
             $query->bindParam(':image', $data['image']['name']);
     
             if ($query->execute()) {
-                // Move the uploaded file to the target directory
                 if (!empty($data['image']['tmp_name'])) {
                     move_uploaded_file($data['image']['tmp_name'], "../../assets/officers/" . $data['image']['name']);
                 }
@@ -147,18 +151,17 @@ class Admin {
                     v.first_name,
                     v.middle_name,
                     v.last_name,
-                    v.year,
+                    v.year AS year_level,
                     v.section,
                     v.program_id,
                     v.contact,
                     v.email,
                     v.cor_file,
                     v.status,
-                    v.registered_by,
                     v.created_at,
                     p.program_name
                 FROM volunteers v
-                LEFT JOIN programs p ON v.program_id = p.program_id
+                JOIN programs p ON v.program_id = p.program_id
                 WHERE v.volunteer_id = :volunteer_id";
     
         $query = $this->db->connect()->prepare($sql);
