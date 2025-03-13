@@ -92,3 +92,18 @@ body {
     line-height: 18px;
     text-align: center;
   }
+  @media (max-width: 768px) {
+    .hero, .mission-section, .vision-section {
+        width: 90%; 
+    }
+
+    .officers-grid {
+        grid-template-columns: 1fr; 
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .officers-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for medium screens */
+    }
+}

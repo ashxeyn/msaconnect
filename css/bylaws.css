@@ -6,8 +6,31 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-  background-color: #e6dfdf; /* Dirty white background color */
+  background: linear-gradient(135deg, 
+  #000000, /* Black */
+  #D72828, /* Red */
+  #009639, /* Green */
+  #FFFFFF  /* White */
+);
+background-size: 400% 400%;
+animation: gradientAnimation 10s ease infinite;
+margin: 0;
+height: 100vh;
+font-family: Arial, sans-serif;
+color: #333; /* Adjust text color for readability */
 }
+
+@keyframes gradientAnimation {
+0% {
+  background-position: 0% 50%;
+}
+50% {
+  background-position: 100% 50%;
+}
+100% {
+  background-position: 0% 50%;
+}
+} /* Dirty white background color */
 
 /* Content Wrapper */
 .content {
@@ -25,6 +48,7 @@ body {
   border-radius: 10px; /* Add rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   text-align: center; /* Center the text inside the hero section */
+  color: #fff;
 }
 
 .hero h2 {
@@ -43,7 +67,7 @@ body {
   max-width: 600px; /* Set a maximum width */
   margin: 20px auto; /* Center the sections */
   text-align: center; /* Center the text */
-  background-color: #1a9626; /* Add background color */
+  background: linear-gradient(135deg, #008000, #4D0000);
   color: white; /* Ensure text is readable on the dark background */
   padding: 20px; /* Add padding inside the section */
   border-radius: 10px; /* Add rounded corners */
@@ -57,4 +81,11 @@ body {
 .bylaws-content p {
   font-size: 16px; /* Adjust paragraph text size */
   line-height: 1.6; /* Improve readability with line height */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .hero, .bylaws-content {
+    width: 90%; /* Increase width for smaller screens */
+  }
 }

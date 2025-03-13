@@ -15,6 +15,7 @@ body {
   padding: 20px; /* Add some padding for spacing */
 }
 
+/* Hero Section */
 .hero {
   position: relative; /* Ensure the hero section is a positioning context */
   width: 100%; /* Full width */
@@ -34,7 +35,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../assets/images/file-28065-f13c4b6341cbf0b3faeb63a57bbefe55.jpg'); /* Add your image path here */
+  background-image: url('../assets/images/login.jpg'); /* Add your image path here */
   background-size: cover; /* Ensure the image covers the entire area */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent the image from repeating */
@@ -106,51 +107,129 @@ body {
   line-height: 1.6; /* Improve readability with line height */
 }
 
-/* Executive Officers Section */
-.officers-section {
+.volunteer-section {
   width: 80%;
   max-width: 1200px; /* Adjust the max-width as needed */
   margin: 40px auto; /* Center the section and add spacing */
   text-align: center; /* Center the heading */
 }
 
-.officers-section h3 {
+.volunteer-section h3 {
   font-size: 24px;
   margin-bottom: 20px;
 }
 
-/* Officers Grid */
-.officers-grid {
+/* Volunteers Grid */
+.volunteer-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columns */
   gap: 20px; /* Spacing between grid items */
 }
 
-/* Individual Officer Styling */
-.officer {
+/* Individual Volunteer Styling */
+.volunteer {
   background-color: #f9f9f9; /* Light background */
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  padding: 15px; /* Padding inside the officer card */
+  padding: 15px; /* Padding inside the volunteer card */
+  text-align: center; /* Center the content */
+  display: flex;
+  align-items: center; /* Vertically center the name */
+  justify-content: center; /* Horizontally center the name */
 }
 
-.officer img {
-  width: 100%; /* Make the image responsive */
-  max-width: 150px; /* Limit the image size */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 50%; /* Circular image */
-  margin-bottom: 10px; /* Space below the image */
-}
-
-.officer .name {
+.volunteer .name {
   font-size: 18px;
   font-weight: bold;
-  margin: 5px 0;
+  margin: 0; /* Remove default margin */
+  
 }
 
-.officer .position {
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .volunteer-grid {
+    grid-template-columns: 1fr 1fr; /* 2 columns for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .volunteer-grid {
+    grid-template-columns: 1fr; /* Single column for smaller screens */
+  }
+}
+
+.volunteer .position {
   font-size: 16px;
   color: #555; /* Slightly muted text color */
 }
 
-/* Footer Styles */
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .volunteer-grid {
+    grid-template-columns: 1fr 1fr; /* 2 columns for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .volunteer-grid {
+    grid-template-columns: 1fr; /* Single column for smaller screens */
+  }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .hero {
+    height: 300px; /* Adjust height for smaller screens */
+  }
+
+  .hero-content {
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  .volunteer-button {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    padding: 8px 16px; /* Adjust padding for smaller screens */
+  }
+
+  .mission-section,
+  .vision-section {
+    width: 90%; /* Increase width for smaller screens */
+  }
+
+  .officers-grid {
+    grid-template-columns: 1fr 1fr; /* 2 columns for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 250px; /* Adjust height for smaller screens */
+  }
+
+  .hero-content h2 {
+    font-size: 20px; /* Adjust heading size for smaller screens */
+  }
+
+  .hero-content p {
+    font-size: 14px; /* Adjust paragraph text size for smaller screens */
+  }
+
+  .volunteer-button {
+    font-size: 12px; /* Adjust font size for smaller screens */
+    padding: 6px 12px; /* Adjust padding for smaller screens */
+  }
+
+  .mission-section h3,
+  .vision-section h3 {
+    font-size: 18px; /* Adjust heading size for smaller screens */
+  }
+
+  .mission-section p,
+  .vision-section p {
+    font-size: 14px; /* Adjust paragraph text size for smaller screens */
+  }
+
+  .officers-grid {
+    grid-template-columns: 1fr; /* Single column for smaller screens */
+  }
+}

@@ -9,145 +9,225 @@ body {
 
 /* Header Styles */
 header {
-  background: #000000;
+  background: #000000; /* Dark background for the header */
   color: #fff;
-  padding: 10px 20px !important; /* Force consistent padding */
   display: flex;
-  justify-content: space-between; /* Push logo to left and nav to center */
-  align-items: center; /* Center vertically */
-  height: 50px !important; /* Adjust the height of the header */
-  position: relative; /* Required for z-index */
-  z-index: 1000; /* Ensure header is above the carousel */
-  width: 100%; /* Ensure header spans the full width of the screen */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  flex-direction: column; /* Stack logo and navbar vertically */
+  align-items: flex-start; /* Align content to the left */
+  width: 100%;
+  box-sizing: border-box;
 }
 
-header .logo {
+/* Top Section: Logo and MSA CONNECT */
+.header-top {
+  background: #00441b; /* Green background for the top section */
+  width: 100%;
+  padding: 20px 40px; /* Increased padding */
+  display: flex;
+  justify-content: flex-start; /* Move logo and text to the left */
+  align-items: center;
+}
+
+.header-top .logo {
   display: flex;
   align-items: center;
 }
 
-header .logo a {
+.header-top .logo a {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
-header .logo .logo-image {
-  height: 40px;
-  margin-right: 10px;
+.header-top .logo .logo-image {
+  height: 50px; /* Slightly larger logo */
+  margin-right: 15px; /* Increased margin */
 }
 
-header .logo .logo-text {
-  font-size: 24px;
+.header-top .logo .logo-text-container {
+  display: flex;
+  flex-direction: column; /* Stack text vertically */
+  align-items: flex-start; /* Align text to the left */
+}
+
+.header-top .logo .logo-text {
+  font-size: 28px; /* Larger font size */
   font-weight: bold;
   color: white;
+  margin-bottom: 5px; /* Space between main text and subtext */
 }
 
-header .nav-links {
+.header-top .logo .logo-subtext {
+  font-size: 14px; /* Smaller font size for subtext */
+  color: white;
+  text-align: left; /* Align subtext to the left */
+}
+
+/* Bottom Section: Navigation Bar */
+.navbar {
+  background: #fefefef1; /* Black background for the navbar */
+  width: 100%;
+  padding: 15px 40px; /* Increased padding */
+  display: flex;
+  justify-content: center; /* Center navigation links */
+  align-items: center;
+}
+
+.nav-links {
   list-style: none;
   display: flex;
   margin: 0;
   padding: 0;
-  position: absolute; /* Position the nav absolutely */
-  left: 50%; /* Move nav to the center */
-  transform: translateX(-50%); /* Adjust for exact centering */
-  top: 50%; /* Center the nav links vertically */
-  transform: translate(-50%, -50%); /* Adjust for exact centering */
 }
 
-header .nav-links li {
-  position: relative; /* Required for the hover effect */
+.nav-links li {
+  position: relative;
   margin-left: 20px;
 }
 
-header .nav-links li a {
-  color: #fff;
+.nav-links li a {
+  color: #000; /* Change text color to black */
   text-decoration: none;
   font-size: 16px;
-  transition: color 0.3s ease; /* Smooth color transition */
+  transition: color 0.3s ease;
 }
 
-/* Dropdown menu styles */
-header .nav-links .dropdown-content {
+/* Dropdown Menu Styles */
+.nav-links .dropdown-content {
   display: none;
   position: absolute;
-  top: 100%; /* Position below the parent link */
+  top: 100%;
   left: 0;
-  background-color: #1a9626;
-  min-width: 200px; /* Increased min-width */
+  background-color: #ffffff;
+  min-width: 200px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1001; /* Ensure dropdown is above the carousel */
-  list-style: none; /* Remove bullets from dropdown */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margin */
+  z-index: 1001;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-header .nav-links .dropdown-content li {
-  padding: 16px 20px; /* Increased padding */
+.nav-links .dropdown-content li {
+  padding: 16px 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
 }
 
-header .nav-links .dropdown-content li a {
-  color: #fff;
+.nav-links .dropdown-content li:last-child {
+  border-bottom: none;
+}
+
+.nav-links .dropdown-content li a {
+  color: #000000;
   text-decoration: none;
   display: block;
   transition: background-color 0.3s ease;
 }
 
-header .nav-links .dropdown-content li a:hover {
- 
-  text-decoration: none; /* Remove underline on hover */
+.nav-links .dropdown-content li a:hover {
+  background-color: #f1f1f1;
+  text-decoration: none;
 }
 
 /* Show the dropdown menu on hover */
-header .nav-links .dropdown:hover .dropdown-content {
+.nav-links .dropdown:hover .dropdown-content {
   display: block;
 }
 
 /* Hover effect for the line */
-header .nav-links > li > a::after {
+.nav-links > li > a::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -5px; /* Adjust this to control the distance of the line from the text */
+  bottom: -5px;
   width: 100%;
-  height: 2px; /* Thickness of the line */
-  background-color: #1a9626; /* Color of the line */
-  transform: scaleX(0); /* Initially hidden */
+  height: 2px;
+  background-color: #1a9626;
+  transform: scaleX(0);
   transform-origin: bottom right;
-  transition: transform 0.3s ease; /* Smooth animation */
+  transition: transform 0.3s ease;
 }
 
 /* Show the line on hover */
-header .nav-links > li > a:hover::after,
-header .nav-links > li > a.active::after {
-  transform: scaleX(1); /* Expand the line */
+.nav-links > li > a:hover::after,
+.nav-links > li > a.active::after {
+  transform: scaleX(1);
   transform-origin: bottom left;
 }
 
 /* Optional: Change text color on hover */
-header .nav-links li a:hover,
-header .nav-links li a.active {
-  color: #be0b0b; /* Change to your preferred hover color */
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: #be0b0b;
 }
 
-header .navbar {
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-header .nav-links .dropdown .arrow {
+/* Dropdown Arrow */
+.nav-links .dropdown .arrow {
   display: inline-block;
   margin-left: 5px;
   width: 0;
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid white; /* Arrow color */
-  transition: transform 0.3s ease; /* Smooth rotation */
+  border-top: 5px solid rgb(0, 0, 0);
+  transition: transform 0.3s ease;
 }
 
-header .nav-links .dropdown:hover .arrow {
-  transform: rotate(180deg); /* Rotate arrow on hover */
+.nav-links .dropdown:hover .arrow {
+  transform: rotate(180deg);
+} 
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .header-top {
+      padding: 15px 20px; /* Adjusted padding for smaller screens */
+  }
+
+  .header-top .logo .logo-text {
+      font-size: 24px; /* Adjusted font size */
+  }
+
+  .header-top .logo .logo-subtext {
+      font-size: 12px; /* Adjusted font size */
+  }
+
+  .nav-links {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .nav-links li {
+      margin: 10px 0;
+  }
+
+  .nav-links .dropdown-content {
+      position: static;
+      box-shadow: none;
+      border-radius: 0;
+  }
+
+  .nav-links .dropdown-content li {
+      padding: 10px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-top .logo .logo-text {
+      font-size: 20px; /* Adjusted font size */
+  }
+
+  .header-top .logo .logo-subtext {
+      font-size: 10px; /* Adjusted font size */
+  }
+
+  .nav-links li a {
+      font-size: 14px;
+  }
+
+  .nav-links .dropdown-content li {
+      padding: 8px 10px;
+  }
 }

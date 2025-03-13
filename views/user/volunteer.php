@@ -22,68 +22,50 @@
             </p>
             <!-- Volunteer Now Button -->
             <div class="volunteer-button-container">
-                <button class="volunteer-button" onclick="window.location.href='regVolunteer.php'">Volunteer Now!</button>
+                <button class="volunteer-button" onclick="window.location.href='regVolunteer'">Volunteer Now!</button>
             </div>
         </div>
     </div>
 
-    <!-- Executive Officers Section -->
-    <div class="officers-section">
-        <h3>EXECUTIVE OFFICERS</h3>
-        <div class="officers-grid">
-            <!-- Officer 1 -->
-            <div class="officer">
-                <img src="officer1.jpg" alt="Officer 1">
+    <!-- Volunteer Section -->
+    <div class="volunteer-section">
+        <h3>VOLUNTEERS</h3>
+        <div class="volunteer-grid">
+            <!-- Volunteer 1 -->
+            <div class="volunteer">
                 <p class="name">John Doe</p>
-                <p class="position">President</p>
             </div>
-            <!-- Officer 2 -->
-            <div class="officer">
-                <img src="officer2.jpg" alt="Officer 2">
+            <!-- Volunteer 2 -->
+            <div class="volunteer">
                 <p class="name">Jane Smith</p>
-                <p class="position">Vice President</p>
             </div>
-            <!-- Officer 3 -->
-            <div class="officer">
-                <img src="officer3.jpg" alt="Officer 3">
+            <!-- Volunteer 3 -->
+            <div class="volunteer">
                 <p class="name">Mike Johnson</p>
-                <p class="position">Secretary</p>
             </div>
-            <!-- Officer 4 -->
-            <div class="officer">
-                <img src="officer4.jpg" alt="Officer 4">
+            <!-- Volunteer 4 -->
+            <div class="volunteer">
                 <p class="name">Sarah Brown</p>
-                <p class="position">Treasurer</p>
             </div>
-            <!-- Officer 5 -->
-            <div class="officer">
-                <img src="officer5.jpg" alt="Officer 5">
+            <!-- Volunteer 5 -->
+            <div class="volunteer">
                 <p class="name">Chris Green</p>
-                <p class="position">Public Relations</p>
             </div>
-            <!-- Officer 6 -->
-            <div class="officer">
-                <img src="officer6.jpg" alt="Officer 6">
+            <!-- Volunteer 6 -->
+            <div class="volunteer">
                 <p class="name">Emily White</p>
-                <p class="position">Event Coordinator</p>
             </div>
-            <!-- Officer 7 -->
-            <div class="officer">
-                <img src="officer7.jpg" alt="Officer 7">
+            <!-- Volunteer 7 -->
+            <div class="volunteer">
                 <p class="name">David Black</p>
-                <p class="position">Volunteer Manager</p>
             </div>
-            <!-- Officer 8 -->
-            <div class="officer">
-                <img src="officer8.jpg" alt="Officer 8">
+            <!-- Volunteer 8 -->
+            <div class="volunteer">
                 <p class="name">Laura Blue</p>
-                <p class="position">Marketing Head</p>
             </div>
-            <!-- Officer 9 -->
-            <div class="officer">
-                <img src="officer9.jpg" alt="Officer 9">
+            <!-- Volunteer 9 -->
+            <div class="volunteer">
                 <p class="name">Kevin Yellow</p>
-                <p class="position">IT Support</p>
             </div>
         </div>
     </div>

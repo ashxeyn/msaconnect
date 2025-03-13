@@ -285,9 +285,8 @@ tr:hover {
 .update-item img {
   width: 100%;
   height: auto;
-  max-width: 1536px;
-  max-height: 1536px;
-  object-fit: cover; /* Ensure the image covers the entire area */
+  max-height: 200px; /* Set a maximum height for the images */
+  object-fit: cover; /* Ensure the image maintains its aspect ratio */
 }
 
 .update-details {
@@ -312,4 +311,91 @@ footer {
   text-align: center;
   padding: 20px;
   margin-top: auto; /* Push footer to the bottom */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 10px;
+  }
+
+  .carousel {
+    height: 250px; /* Adjust height for smaller screens */
+  }
+
+  .carousel-button {
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  .about h2,
+  .services h2,
+  .contact h2 {
+    font-size: 28px;
+  }
+
+  .service-item {
+    width: 45%;
+  }
+
+  .volunteer h2 {
+    font-size: 1.8rem;
+  }
+
+  .volunteer p {
+    font-size: 1rem;
+  }
+
+  .latest-updates h2 {
+    font-size: 1.8rem;
+  }
+
+  .update-item {
+    width: 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 24px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .carousel {
+    height: 200px; /* Adjust height for smaller screens */
+  }
+
+  .carousel-button {
+    font-size: 18px;
+    padding: 6px;
+  }
+
+  .about h2,
+  .services h2,
+  .contact h2 {
+    font-size: 24px;
+  }
+
+  .service-item {
+    width: 100%;
+  }
+
+  .volunteer h2 {
+    font-size: 1.6rem;
+  }
+
+  .volunteer p {
+    font-size: 0.9rem;
+  }
+
+  .latest-updates h2 {
+    font-size: 1.6rem;
+  }
+
+  .update-item {
+    width: 100%;
+  }
 }
