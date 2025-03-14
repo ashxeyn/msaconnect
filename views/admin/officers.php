@@ -13,8 +13,11 @@ $result = $adminObj->fetchOfficers();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Executive Officers</title>
+    <link rel="stylesheet" href="../../css/adminofficers.css?v=<?php echo time(); ?>">
     <script src="../../js/admin.js"></script>
     <?php include '../../includes/head.php'; ?> 
+    
+
 </head>
 <body>
     <div>
@@ -69,6 +72,9 @@ $result = $adminObj->fetchOfficers();
 
     <?php include '../adminModals/deleteOfficer.html'; 
         include '../adminModals/addEditOfficer.php'; ?>
+
+
+
 
 </body>
 </html>
