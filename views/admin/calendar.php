@@ -34,80 +34,215 @@ $startDay = date('w', $firstDayOfMonth);
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <style>
-        .calendar-container {
-            width: 60%;
-            margin: auto;
-        }
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            margin-top: 20px;
-        }
-        .calendar div {
-            padding: 15px;
-            border: 1px solid #ccc;
-            cursor: pointer;
-        }
-        .calendar div:hover {
-            background: #f0f0f0;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-        .modal-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 50%;
-            border-radius: 8px;
-            text-align: left;
-        }
-        .close {
-            float: right;
-            font-size: 28px;
-            cursor: pointer;
-        }
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 10px;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            background: #007a3d;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            border-radius: 5px;
-            margin-top: 10px;
-            width: 175px;
-        }
-        button:hover {
-            background: #005a2c;
-        }
+        /* General Container */
+.calendar-container {
+    width: 80%;
+    margin: auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Header and Buttons */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+button {
+    background: #007a3d;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ce1126;
+}
+
+/* Calendar Grid */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.calendar div {
+    padding: 18px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    border-radius: 5px;
+}
+
+.calendar div:hover {
+    background: #e6e6e6;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 25px;
+    border-radius: 8px;
+    width: 40%;
+    text-align: left;
+}
+
+.close {
+    float: right;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+label {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button#saveActivity {
+    width: 100%;
+    margin-top: 15px;
+}
+
+
+
+
+
+
+
+ .dataTables_wrapper {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    table.dataTable {
+        width: 100% !important;
+        border-collapse: collapse;
+    }
+
+    table.dataTable thead {
+        background-color: #007a3d;
+        color: white;
+    }
+
+    table.dataTable thead th {
+        padding: 12px;
+        font-size: 16px;
+        text-align: left;
+    }
+
+    table.dataTable tbody tr {
+        background: white;
+        transition: background 0.3s;
+    }
+
+    table.dataTable tbody tr:hover {
+        background: #f4f4f4;
+    }
+
+    table.dataTable tbody td {
+        padding: 12px;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .dataTables_filter input {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-left: 10px;
+    }
+
+    .dataTables_length select {
+        padding: 5px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-left: 5px;
+    }
+
+    .dataTables_paginate {
+        margin-top: 10px;
+    }
+
+    .dataTables_paginate .paginate_button {
+        background: #007a3d;
+        color: white !important;
+        border: none !important;
+        padding: 6px 12px;
+        border-radius: 5px;
+        margin: 0 3px;
+        cursor: pointer;
+    }
+
+    .dataTables_paginate .paginate_button:hover {
+        background: #005a2c !important;
+    }
+
+    .dataTables_paginate .paginate_button.current {
+        background: #005a2c !important;
+        font-weight: bold;
+    }
+
+
+
+
+
+    input, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    }
+
+        input:focus, textarea:focus {
+        outline: none;
+        border-color: #ce1126;
+        box-shadow: 0px 4px 10px rgba(206, 17, 38, 0.7); 
+    }
     </style>
 </head>
 <body>
@@ -153,6 +288,41 @@ $startDay = date('w', $firstDayOfMonth);
         <button id="saveActivity">Save Changes</button>
     </div>
 </div>
+
+
+
+<br><br>
+<h3>Activity List</h3>
+<table id="activityTable" class="display" style="width: 100%;">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+            <td>March 13, 2025</td>
+            <td>EXAMPLE</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function() {
+        $('#activityTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "info": true
+        });
+    });
+</script>
+
+
+
+
+
 
 <script>
     $(document).ready(function() {

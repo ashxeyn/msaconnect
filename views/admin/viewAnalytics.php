@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: rgb(255, 255, 255);
         }
-        
+
         .filter-container {
             display: flex;
             justify-content: center;
@@ -62,6 +64,43 @@
             justify-content: space-around;
             flex-wrap: wrap;
         }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-icon {
+            font-size: 30px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .stat-title {
+            font-size: 14px;
+            color: #777;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -69,6 +108,33 @@
 <h2>Dashboard</h2>
 <br>
 <br>
+
+<!-- Stats Cards Container -->
+<div class="stats-container">
+    <div class="stat-card">
+        <i class="bi bi-people-fill stat-icon"></i>
+        <div class="stat-number">100</div>
+        <div class="stat-title">Volunteers</div>
+    </div>
+
+    <div class="stat-card">
+        <i class="bi bi-person-plus-fill stat-icon"></i>
+        <div class="stat-number">56</div>
+        <div class="stat-title">Pending Registrations</div>
+    </div>
+
+    <div class="stat-card">
+        <i class="bi bi-shield-fill stat-icon"></i>
+        <div class="stat-number">30</div>
+        <div class="stat-title">Officers</div>
+    </div>
+
+    <div class="stat-card">
+        <i class="bi bi-cash-stack stat-icon"></i>
+        <div class="stat-number">12,345Php</div>
+        <div class="stat-title">Money Collected</div>
+    </div>
+</div>
 
 <!-- Filter Section -->
 <div class="filter-container">
@@ -179,12 +245,6 @@
                 maintainAspectRatio: false,
                 scales: {
                     y: { beginAtZero: true }
-                },
-                plugins: {
-                    tooltip: {
-                        mode: 'index',
-                        intersect: false
-                    }
                 }
             }
         });
@@ -192,15 +252,10 @@
 
     function applyFilter() {
         const filterType = document.getElementById('filterType').value;
-        const filterDate = document.getElementById('filterDate').value;
-
-        console.log(`Filtering by: ${filterType}, Date: ${filterDate}`);
-
         const newData = getFilteredData(filterType);
         createCharts(newData);
     }
 
-    // Initialize charts on page load with 'month' filter as default
     createCharts(getFilteredData("month"));
 </script>
 
