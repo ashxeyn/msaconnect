@@ -1,121 +1,162 @@
-/* Hero Section */
+/* General Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, 
+    #000000, /* Black */
+    #D72828, /* Red */
+    #009639, /* Green */
+    #FFFFFF  /* White */
+  );
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+  color: #ffffff;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-  background-color: #e6dfdf; /* Dirty white background color */
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Hero Section */
 .hero {
-  width: 80%;
-  max-width: 600px;
+  background-color: #d72f2f;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   margin: 20px auto;
   padding: 20px;
-  background-color: #d72f2f;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
   text-align: center;
 }
 
 .hero h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #000000; /* Ensure text is readable on red background */
+  font-size: 24px; /* Smaller font size for "MSA CALENDAR" */
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 
 .hero p {
   font-size: 16px;
-  line-height: 1.6;
-  color: #000000; /* Ensure text is readable on red background */
+  line-height: 1.8;
+  font-weight: 400;
 }
 
 /* Calendar Container */
 .calendar-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1200px; /* Constrain the maximum width of the calendar */
   margin: 0 auto;
   padding: 20px;
-}
-
-.container {
-  width: 100%;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-/* Calendar Navigation */
-.calendar-navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.nav-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.nav-button:hover {
-  background-color: #0056b3;
-}
-
-.month-year {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent overflow */
 }
 
 /* Calendar Grid */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  gap: 5px; /* Reduced gap for tighter layout */
+  padding: 10px;
+  width: 100%; /* Ensure the grid takes up the full width of its container */
+  box-sizing: border-box; /* Include padding in the width calculation */
+  overflow: hidden; /* Prevent overflow */
 }
 
-.calendar-grid div {
-  padding: 10px;
+.calendar-grid .col {
+  padding: 8px; /* Reduced padding for smaller cells */
   text-align: center;
-  border: 1px solid #ddd;
-  font-size: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  font-size: 14px; /* Smaller font size */
+  font-weight: 500;
+  transition: background-color 0.2s, transform 0.2s;
+  min-height: 80px; /* Smaller height for cells */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content to the top */
+  background-color: rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Include padding in the height calculation */
+  overflow: hidden; /* Prevent content from overflowing */
+}
+
+.calendar-grid .col:empty {
+  visibility: hidden;
+}
+
+.calendar-grid .col:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Date Text */
+.date-text {
+  font-size: 14px; /* Smaller font size */
+  font-weight: bold;
+  margin-bottom: 3px; /* Reduced margin */
+  color: #ffffff;
+  white-space: nowrap; /* Prevent date text from wrapping */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+/* Event Badge */
+.event-badge {
+  margin-top: 3px; /* Reduced margin */
+  font-size: 10px; /* Smaller font size */
+  padding: 2px 4px; /* Reduced padding */
+  border-radius: 4px;
+  color: white;
+  word-wrap: break-word; /* Ensure long event text wraps */
+  white-space: normal; /* Allow text to wrap */
+  text-align: left; /* Align event text to the left */
+  overflow: hidden; /* Prevent text from overflowing */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .hero {
-      width: 90%;
-      padding: 15px;
+  .calendar-grid .col {
+    min-height: 70px; /* Adjusted height for tablets */
+    font-size: 12px; /* Smaller font size */
   }
 
-  .calendar-grid {
-      grid-template-columns: repeat(7, 1fr);
-      gap: 5px;
-      padding: 10px;
+  .date-text {
+    font-size: 12px; /* Smaller font size */
   }
 }
 
 @media (max-width: 480px) {
-  .hero h2 {
-      font-size: 20px;
-  }
-
-  .hero p {
-      font-size: 14px;
-  }
-
   .calendar-grid {
-      grid-template-columns: repeat(7, 1fr);
-      font-size: 14px;
+    gap: 3px; /* Further reduce gap for mobile */
+    padding: 5px; /* Reduce padding for mobile */
+  }
+
+  .calendar-grid .col {
+    min-height: 60px; /* Adjusted height for mobile */
+    font-size: 10px; /* Smaller font size */
+    padding: 5px; /* Reduce padding for mobile */
+  }
+
+  .date-text {
+    font-size: 10px; /* Smaller font size */
+  }
+
+  .event-badge {
+    font-size: 8px; /* Smaller font size for mobile */
+    padding: 1px 2px; /* Reduce padding for mobile */
+  }
+
+  .calendar-navigation {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .calendar-navigation .btn {
+    width: 100%;
   }
 }

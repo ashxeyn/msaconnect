@@ -6,6 +6,7 @@
     <title>FAQs</title>
     <?php include '../../includes/header.php'; ?>
     <link rel="stylesheet" href="<?php echo $base_url; ?>css/faqs.css">
+
 </head>
 <body>
     <!-- Hero Section -->

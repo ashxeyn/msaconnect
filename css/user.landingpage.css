@@ -1,29 +1,32 @@
 /* General Styles */
 html, body {
   background-color: #e6dfdf;
-}
-
-body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 /* Content Wrapper */
 .content {
-  flex: 1; /* Allow the content to grow and push the footer to the bottom */
-  padding: 20px; /* Add some padding for spacing */
+  flex: 1;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px; /* Limit maximum width for larger screens */
+  margin: 0 auto; /* Center the content */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 /* Carousel Styles */
 .carousel {
   position: relative;
   width: 100%;
-  height: 300px; /* Match the height of the hero section */
-  background-color: #e6dfdf; /* Ensure background color is applied */
+  height: 300px; /* Default height for larger screens */
+  background-color: #e6dfdf;
+  overflow: hidden; /* Ensure nothing overflows */
 }
 
 .carousel-slide {
@@ -46,8 +49,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover; /* Ensure the image covers the entire area */
-  background-position: center; /* Center the image */
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   z-index: 1;
 }
@@ -58,7 +61,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #1a9626; /* Updated color */
+  background-color: #1a9626;
   opacity: 0.6;
   z-index: 2;
 }
@@ -72,18 +75,20 @@ body {
   color: #fff;
   z-index: 3;
   max-width: 800px;
+  width: 90%; /* Ensure it doesn't overflow on smaller screens */
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
-.hero-content h1 {
-  font-size: 36px; /* Adjust font size as needed */
+.hero-content h2 {
+  font-size: 36px;
   margin-bottom: 20px;
 }
 
 .hero-content p {
-  font-size: 16px; /* Adjust font size as needed */
+  font-size: 16px;
   margin-bottom: 30px;
 }
 
@@ -113,46 +118,61 @@ body {
   background: rgba(0, 0, 0, 0.8);
 }
 
-/* About, Services, and Contact Sections */
-.about,
-.services,
-.contact {
-  padding: 50px 20px;
+/* Latest Updates Section */
+.latest-updates {
+  padding: 40px 20px;
+  background-color: #e6dfdf;
   text-align: center;
-  background-color: #e6dfdf; /* Ensure background color is applied */
 }
 
-.about h2,
-.services h2,
-.contact h2 {
-  font-size: 36px;
+.latest-updates h2 {
+  font-size: 2rem;
   margin-bottom: 20px;
 }
 
-.service-list {
+.updates-container {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
 }
 
-.service-item {
-  background: #f4f4f4;
-  padding: 20px;
-  border-radius: 5px;
-  width: 30%;
-  margin: 10px;
+.update-item {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: calc(25% - 20px); /* 4 items per row on larger screens */
+  text-align: left;
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
-.service-item h3 {
-  font-size: 24px;
+.update-item img {
+  width: 100%;
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Ensure images cover the area */
+}
+
+.update-details {
+  padding: 15px;
+}
+
+.update-date {
+  font-size: 0.9rem;
+  color: #888;
   margin-bottom: 10px;
+}
+
+.update-title {
+  font-size: 1.2rem;
+  color: #333;
 }
 
 /* Prayer Schedule Section */
 .prayer-schedule {
   text-align: center;
   padding: 20px;
-  background-color: #e6dfdf; /* Ensure background color is applied */
+  background-color: #e6dfdf;
 }
 
 .table-container {
@@ -160,7 +180,7 @@ body {
   margin: 0 auto;
   width: 80%;
   max-width: 1000px;
-  overflow-x: auto;
+  overflow-x: auto; /* Allow horizontal scrolling for small screens */
 }
 
 table {
@@ -171,8 +191,7 @@ table {
   text-align: left;
 }
 
-th,
-td {
+th, td {
   padding: 12px 15px;
   border: 1px solid #ddd;
 }
@@ -194,7 +213,7 @@ tr:hover {
 .volunteer {
   text-align: center;
   padding: 40px 20px;
-  background-color: #e6dfdf; /* Ensure background color is applied */
+  background-color: #e6dfdf;
 }
 
 .volunteer-content {
@@ -228,88 +247,70 @@ tr:hover {
   background-color: #1ea82c;
 }
 
-/* Contact Form */
-.contact form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.contact input,
-.contact textarea {
-  width: 100%;
-  max-width: 500px;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.contact button {
-  background: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-/* Latest Updates Section */
-.latest-updates {
-  padding: 40px 20px;
-  background-color: #e6dfdf; /* Ensure background color is applied */
-  text-align: center;
-}
-
-.latest-updates h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.updates-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.update-item {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  width: 300px;
-  text-align: left;
-}
-
-.update-item img {
-  width: 100%;
-  height: auto;
-  max-width: 1536px;
-  max-height: 1536px;
-  object-fit: cover; /* Ensure the image covers the entire area */
-}
-
-.update-details {
-  padding: 15px;
-}
-
-.update-date {
-  font-size: 0.9rem;
-  color: #888;
-  margin-bottom: 10px;
-}
-
-.update-title {
-  font-size: 1.2rem;
-  color: #333;
-}
-
 /* Footer Styles */
 footer {
   background-color: #333;
   color: #fff;
   text-align: center;
   padding: 20px;
-  margin-top: auto; /* Push footer to the bottom */
+  margin-top: auto;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  .update-item {
+    width: calc(33.33% - 20px); /* 3 items per row on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel {
+    height: 250px; /* Adjust height for tablets */
+  }
+
+  .hero-content h2 {
+    font-size: 28px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .update-item {
+    width: calc(50% - 20px); /* 2 items per row on smaller tablets */
+  }
+
+  .table-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel {
+    height: 200px; /* Adjust height for mobile devices */
+  }
+
+  .hero-content h2 {
+    font-size: 24px;
+  }
+
+  .hero-content p {
+    font-size: 12px;
+  }
+
+  .update-item {
+    width: 100%; /* 1 item per row on mobile */
+  }
+
+  .table-container {
+    width: 100%;
+  }
+
+  .volunteer h2 {
+    font-size: 1.6rem;
+  }
+
+  .volunteer p {
+    font-size: 0.9rem;
+  }
 }

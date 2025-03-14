@@ -5,14 +5,40 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-  background-color: #e6dfdf; /* Dirty white background color */
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #000000, /* Black */
+    #d72828, /* Red */
+    #009639, /* Green */
+    #ffffff /* White */
+  );
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+  color: #333;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Content Wrapper */
 .content {
-  flex: 1; /* Allow the content to grow and push the footer to the bottom */
-  padding: 20px; /* Add some padding for spacing */
+  flex: 1;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* Hero Section */
@@ -25,16 +51,17 @@ body {
   border-radius: 10px; /* Add rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   text-align: center; /* Center the text inside the hero section */
+  color: #fff;
 }
 
 .hero h2 {
-  font-size: 24px; /* Adjust the heading size */
-  margin-bottom: 10px; /* Add space below the heading */
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .hero p {
-  font-size: 16px; /* Adjust the paragraph text size */
-  line-height: 1.6; /* Improve readability with line height */
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 /* Bylaws Content */
@@ -43,18 +70,36 @@ body {
   max-width: 600px; /* Set a maximum width */
   margin: 20px auto; /* Center the sections */
   text-align: center; /* Center the text */
-  background-color: #1a9626; /* Add background color */
+  background: linear-gradient(135deg, #008000, #4D0000);
   color: white; /* Ensure text is readable on the dark background */
   padding: 20px; /* Add padding inside the section */
   border-radius: 10px; /* Add rounded corners */
 }
 
 .bylaws-content h3 {
-  font-size: 20px; /* Adjust heading size */
-  margin-bottom: 10px; /* Add space below the heading */
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
 .bylaws-content p {
-  font-size: 16px; /* Adjust paragraph text size */
-  line-height: 1.6; /* Improve readability with line height */
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .hero, .bylaws-content {
+    width: 90%; /* Increase width for smaller screens */
+  }
 }

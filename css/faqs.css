@@ -1,4 +1,8 @@
 /* General Styles */
+* {
+  box-sizing: border-box; /* Ensure padding and borders are included in element dimensions */
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,12 +10,40 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-  background-color: #e6dfdf;
+  background: linear-gradient(
+    135deg,
+    #000000,
+    /* Black */ #d72828,
+    /* Red */ #009639,
+    /* Green */ #ffffff /* White */
+  );
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  color: #333;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Content Wrapper */
+.content {
+  flex: 1; /* Allow the content to grow and push the footer to the bottom */
+  padding: 20px; /* Add some padding for spacing */
 }
 
 /* Hero Section */
 .hero {
-  width: 80%; /* Match the width of the hero section in other pages */
+  width: 90%; /* Increase width for better responsiveness */
   max-width: 600px; /* Set a maximum width */
   margin: 20px auto; /* Center the hero section and add some margin */
   padding: 20px; /* Add padding inside the hero section */
@@ -19,6 +51,9 @@ body {
   border-radius: 10px; /* Add rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   text-align: center; /* Center the text inside the hero section */
+  color: #fff;
+  min-height: 200px; /* Reduce the minimum height */
+  height: auto; /* Adjust as needed */
 }
 
 .hero h2 {
@@ -42,10 +77,11 @@ body {
 
 /* FAQs Content */
 .faqs-content {
-  width: 80%; /* Match the width of the hero section */
+  width: 90%; /* Increase width for better responsiveness */
   max-width: 800px; /* Slightly wider for FAQs content */
   margin: 20px auto; /* Center the sections */
   text-align: left; /* Align text to the left */
+  padding: 0 10px; /* Add padding to prevent overflow */
 }
 
 .faqs-content h3 {
@@ -74,7 +110,8 @@ body {
 }
 
 .faq-question:hover {
-  background-color: #e0e0e0; /* Change background on hover */
+  background-color: #d72f2f; /* Change background on hover */
+  color: #fff; /* Change text color on hover */
 }
 
 /* Arrow Styling */
@@ -107,4 +144,42 @@ body {
 
 .faq-answer a:hover {
   color: #b02525; /* Darken link color on hover */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .hero {
+    width: 95%; /* Increase width for smaller screens */
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
+
+  .faqs-content {
+    width: 95%; /* Increase width for smaller screens */
+  }
+
+  .faq-question {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  .faq-answer {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h2 {
+    font-size: 20px; /* Adjust heading size for smaller screens */
+  }
+
+  .hero p {
+    font-size: 14px; /* Adjust paragraph text size for smaller screens */
+  }
+
+  .faq-question {
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
+
+  .faq-answer {
+    font-size: 12px; /* Adjust font size for smaller screens */
+  }
 }

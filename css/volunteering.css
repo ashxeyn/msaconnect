@@ -1,47 +1,48 @@
-/* General Styles */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+  min-height: 100vh;
   background-color: #e6dfdf;
 }
 
-/* Content Wrapper */
 .content {
-  flex: 1; /* Allow the content to grow and push the footer to the bottom */
-  padding: 20px; /* Add some padding for spacing */
+  flex: 1;
+  padding: 20px;
 }
 
 .hero {
-  position: relative; /* Ensure the hero section is a positioning context */
-  width: 100%; /* Full width */
-  height: 400px; /* Adjust height as needed */
-  overflow: hidden; /* Ensure the background doesn't overflow */
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  height: auto;
+  overflow: hidden;
   display: flex;
-  align-items: center; /* Center content vertically */
-  justify-content: center; /* Center content horizontally */
-  text-align: center; /* Center text */
-  color: white; /* White text for better contrast */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
 }
 
-/* Hero Background */
 .hero-background {
-  position: absolute; /* Position the background absolutely within the hero section */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../assets/images/file-28065-f13c4b6341cbf0b3faeb63a57bbefe55.jpg'); /* Add your image path here */
-  background-size: cover; /* Ensure the image covers the entire area */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
-  z-index: 1; /* Place the background behind the content */
+  background-image: url('../assets/images/login.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
 }
 
-/* Overlay with Red Color and Lower Opacity */
 .hero-background::after {
   content: '';
   position: absolute;
@@ -49,108 +50,83 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #1a9626; /* Red color */
-  opacity: 0.6; /* Lower opacity (adjust as needed, must be between 0 and 1) */
-  z-index: 2; /* Place the overlay above the background image */
+  background-color: #1a9626;
+  opacity: 0.6;
+  z-index: 2;
 }
 
-/* Hero Content */
 .hero-content {
-  position: relative; /* Ensure content is above the background and overlay */
-  z-index: 3; /* Place content above the overlay */
-  max-width: 800px; /* Adjust width of the content */
-  padding: 20px; /* Add padding for spacing */
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: Slightly darken the content background for better readability */
-  border-radius: 10px; /* Optional: Add rounded corners */
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 
-/* Volunteer Button */
 .volunteer-button-container {
-  text-align: center; /* Center the button container */
-  margin: 20px 0; /* Add some margin for spacing */
+  text-align: center;
+  margin: 20px 0;
 }
 
 .volunteer-button {
-  background-color: #d72f2f; /* Red accent color */
-  color: white; /* White text color */
-  border: none; /* Remove default border */
-  padding: 10px 20px; /* Add padding */
-  font-size: 16px; /* Adjust font size */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s ease; /* Smooth transition for background color */
+  background-color: #d72f2f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .volunteer-button:hover {
-  background-color: #1ea82c; /* Green color on hover */
+  background-color: #1ea82c;
 }
 
-/* Mission and Vision Sections */
-.mission-section,
-.vision-section {
-  width: 80%; /* Match the width of the hero section */
-  max-width: 600px; /* Set a maximum width */
-  margin: 20px auto; /* Center the sections */
-  text-align: center; /* Center the text */
-}
-
-.mission-section h3,
-.vision-section h3 {
-  font-size: 20px; /* Adjust heading size */
-  margin-bottom: 10px; /* Add space below the heading */
-}
-
-.mission-section p,
-.vision-section p {
-  font-size: 16px; /* Adjust paragraph text size */
-  line-height: 1.6; /* Improve readability with line height */
-}
-
-/* Executive Officers Section */
-.officers-section {
+.volunteer-section {
   width: 80%;
-  max-width: 1200px; /* Adjust the max-width as needed */
-  margin: 40px auto; /* Center the section and add spacing */
-  text-align: center; /* Center the heading */
+  max-width: 1200px;
+  margin: 40px auto;
+  text-align: center;
 }
 
-.officers-section h3 {
+.volunteer-section h3 {
   font-size: 24px;
   margin-bottom: 20px;
 }
 
-/* Officers Grid */
-.officers-grid {
+.volunteer-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  gap: 20px; /* Spacing between grid items */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-/* Individual Officer Styling */
-.officer {
-  background-color: #f9f9f9; /* Light background */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  padding: 15px; /* Padding inside the officer card */
+.volunteer {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.officer img {
-  width: 100%; /* Make the image responsive */
-  max-width: 150px; /* Limit the image size */
-  height: auto; /* Maintain aspect ratio */
-  border-radius: 50%; /* Circular image */
-  margin-bottom: 10px; /* Space below the image */
-}
-
-.officer .name {
+.volunteer .name {
   font-size: 18px;
   font-weight: bold;
-  margin: 5px 0;
+  margin: 0;
 }
 
-.officer .position {
-  font-size: 16px;
-  color: #555; /* Slightly muted text color */
+@media (max-width: 768px) {
+  .volunteer-grid {
+      grid-template-columns: 1fr 1fr;
+  }
 }
 
-/* Footer Styles */
+@media (max-width: 480px) {
+  .volunteer-grid {
+      grid-template-columns: 1fr;
+  }
+}
