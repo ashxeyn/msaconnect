@@ -21,6 +21,7 @@ class Admin {
     public $created_at;
     public $program_id;
     public $school_year_id;
+    public $position_id;
     
     protected $db;
 
@@ -28,30 +29,31 @@ class Admin {
         $this->db = new Database();
         $this->db->connect();
     }
-    
-        function addOfficer($data) {
-            $sql = "INSERT INTO executive_officers (last_name, first_name, middle_name, position_id, program_id, school_year_id, image)
-                    VALUES (:last_name, :first_name, :middle_name, :position, :program, :school_year, :image)";
-            
-            $query = $this->db->connect()->prepare($sql);
-    
-            $query->bindParam(':last_name', $data['surname']);
-            $query->bindParam(':first_name', $data['firstName']);
-            $query->bindParam(':middle_name', $data['middleName']);
-            $query->bindParam(':position', $data['position']);
-            $query->bindParam(':program', $data['program']);
-            $query->bindParam(':school_year', $data['schoolYear']);
-            $query->bindParam(':image', $data['image']['name']);
-    
-            if ($query->execute()) {
-                if (!empty($data['image']['tmp_name'])) {
-                    move_uploaded_file($data['image']['tmp_name'], "../../assets/officers/" . $data['image']['name']);
-                }
-                return true;
-            } else {
-                return "Failed to add officer.";
+
+    // Officer functions
+    function addOfficer($data) {
+        $sql = "INSERT INTO executive_officers (last_name, first_name, middle_name, position_id, program_id, school_year_id, image)
+                VALUES (:last_name, :first_name, :middle_name, :position, :program, :school_year, :image)";
+        
+        $query = $this->db->connect()->prepare($sql);
+
+        $query->bindParam(':last_name', $data['surname']);
+        $query->bindParam(':first_name', $data['firstName']);
+        $query->bindParam(':middle_name', $data['middleName']);
+        $query->bindParam(':position', $data['position']);
+        $query->bindParam(':program', $data['program']);
+        $query->bindParam(':school_year', $data['schoolYear']);
+        $query->bindParam(':image', $data['image']['name']);
+
+        if ($query->execute()) {
+            if (!empty($data['image']['tmp_name'])) {
+                move_uploaded_file($data['image']['tmp_name'], "../../assets/officers/" . $data['image']['name']);
             }
+            return true;
+        } else {
+            return "Failed to add officer.";
         }
+    }
     
         function updateOfficer($officerId, $surname, $firstName, $middleName, $positionId, $schoolYearId, $programId, $image = null) {
             $sql = "UPDATE executive_officers 
@@ -94,6 +96,51 @@ class Admin {
         }
     }
 
+    function fetchOfficers() {
+        $sql = "SELECT 
+                    v.officer_id,
+                    CONCAT(v.last_name, ', ', v.first_name, ' ', v.middle_name) AS full_name, 
+                    p.program_name, 
+                    op.position_name, 
+                    sy.school_year, 
+                    v.image AS image 
+                FROM executive_officers v 
+                LEFT JOIN programs p ON v.program_id = p.program_id 
+                LEFT JOIN officer_positions op ON v.position_id = op.position_id 
+                LEFT JOIN school_years sy ON v.school_year_id = sy.school_year_id";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+    
+    function getOfficerById($officerId) {
+    $sql = "SELECT 
+                eo.officer_id,
+                eo.last_name,
+                eo.first_name,
+                eo.middle_name,
+                eo.position_id,
+                eo.image,
+                eo.school_year_id,
+                eo.program_id,
+                p.program_name,
+                op.position_name,
+                sy.school_year
+            FROM executive_officers eo
+            LEFT JOIN programs p ON eo.program_id = p.program_id
+            LEFT JOIN officer_positions op ON eo.position_id = op.position_id
+            LEFT JOIN school_years sy ON eo.school_year_id = sy.school_year_id
+            WHERE eo.officer_id = :officer_id";
+
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':officer_id', $officerId);
+    $query->execute();
+
+        return $query->fetch();
+    }
+
+    // Volunteer functions
     function addVolunteer() {
         $sql = "INSERT INTO volunteers (last_name, first_name, middle_name, year, section, program_id, contact, email, cor_file)
                 VALUES (:last_name, :first_name, :middle_name, :year, :section, :program, :contact, :email, :cor_file)";
@@ -171,64 +218,6 @@ class Admin {
         return $query->fetch();
     }
     
-    function fetchSy(){
-        $sql = "SELECT * FROM school_years ORDER BY school_year_id ASC;";
-        $query = $this->db->connect()->prepare($sql);
-        $query->execute();
-        return $query->fetchAll();
-    }
-
-    function fetchProgram(){
-        $sql = "SELECT * FROM programs ORDER BY program_name ASC;";
-        $query = $this->db->connect()->prepare($sql);
-        $query->execute();
-        return $query->fetchAll();
-    }
-
-    function fetchOfficers() {
-        $sql = "SELECT 
-                    v.officer_id,
-                    CONCAT(v.last_name, ', ', v.first_name, ' ', v.middle_name) AS full_name, 
-                    p.program_name, 
-                    op.position_name, 
-                    sy.school_year, 
-                    v.image AS image 
-                FROM executive_officers v 
-                LEFT JOIN programs p ON v.program_id = p.program_id 
-                LEFT JOIN officer_positions op ON v.position_id = op.position_id 
-                LEFT JOIN school_years sy ON v.school_year_id = sy.school_year_id";
-        
-        $query = $this->db->connect()->prepare($sql);
-        $query->execute();
-        return $query->fetchAll();
-    }
-    
-        function getOfficerById($officerId) {
-        $sql = "SELECT 
-                    eo.officer_id,
-                    eo.last_name,
-                    eo.first_name,
-                    eo.middle_name,
-                    eo.position_id,
-                    eo.image,
-                    eo.school_year_id,
-                    eo.program_id,
-                    p.program_name,
-                    op.position_name,
-                    sy.school_year
-                FROM executive_officers eo
-                LEFT JOIN programs p ON eo.program_id = p.program_id
-                LEFT JOIN officer_positions op ON eo.position_id = op.position_id
-                LEFT JOIN school_years sy ON eo.school_year_id = sy.school_year_id
-                WHERE eo.officer_id = :officer_id";
-
-        $query = $this->db->connect()->prepare($sql);
-        $query->bindParam(':officer_id', $officerId);
-        $query->execute();
-
-        return $query->fetch();
-    }
-
     function fetchPendingVolunteer() { 
         $sql = "SELECT v.volunteer_id, CONCAT(v.last_name, ', ', v.first_name, ' ', v.middle_name) AS full_name, p.program_name, CONCAT(v.year, '-', v.section) AS yr_section, 
                 v.contact, v.email, v.cor_file AS cor, v.status FROM volunteers v
@@ -286,5 +275,92 @@ class Admin {
         $query = $this->db->connect()->prepare($sql);
         $query->bindParam(':volunteer_id', $volunteerId);
         return $query->execute();
+    }
+
+    //Moderator functions
+    function fetchSubAdmins() { 
+        $sql = "SELECT 
+                    u.user_id, 
+                    CONCAT(u.last_name, ', ', u.first_name, ' ', u.middle_name) AS full_name, 
+                    u.username, 
+                    u.email, 
+                    op.position_name, 
+                    u.created_at 
+                FROM users u 
+                LEFT JOIN officer_positions op ON u.position_id = op.position_id 
+                WHERE u.role = 'sub-admin'";
+    
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    function updateModerator($moderatorId, $firstName, $middleName, $lastName, $username, $email, $positionId) {
+        $sql = "UPDATE users 
+                SET first_name = :first_name, 
+                    middle_name = :middle_name, 
+                    last_name = :last_name, 
+                    username = :username, 
+                    email = :email, 
+                    position_id = :position_id
+                WHERE user_id = :user_id";
+        
+        $query = $this->db->connect()->prepare($sql);
+    
+        $query->bindParam(':first_name', $firstName);
+        $query->bindParam(':middle_name', $middleName);
+        $query->bindParam(':last_name', $lastName);
+        $query->bindParam(':username', $username);
+        $query->bindParam(':email', $email);
+        $query->bindParam(':position_id', $positionId);
+        $query->bindParam(':user_id', $moderatorId);
+    
+        if (!$query->execute()) {
+            return "Failed to update moderator.";
+        }
+        return true;
+    }
+
+    function getModeratorById($moderatorId) {
+        $sql = "SELECT 
+                    u.user_id,
+                    u.first_name,
+                    u.middle_name,
+                    u.last_name,
+                    u.username,
+                    u.email,
+                    u.position_id,
+                    op.position_name
+                FROM users u
+                LEFT JOIN officer_positions op ON u.position_id = op.position_id
+                WHERE u.user_id = :user_id";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':user_id', $moderatorId);
+        $query->execute();
+        
+        return $query->fetch();
+    }    
+    
+    function deleteModerator($moderatorId) {
+        $sql = "DELETE FROM users WHERE user_id = :user_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':user_id', $moderatorId);
+        return $query->execute();
+    }
+
+    // Others
+    function fetchSy(){
+        $sql = "SELECT * FROM school_years ORDER BY school_year_id ASC;";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    function fetchProgram(){
+        $sql = "SELECT * FROM programs ORDER BY program_name ASC;";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
     }
 }

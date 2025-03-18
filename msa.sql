@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2025 at 01:45 PM
+-- Generation Time: Mar 17, 2025 at 06:45 AM
 -- Server version: 11.4.5-MariaDB
 -- PHP Version: 8.2.12
 
@@ -130,12 +130,10 @@ CREATE TABLE `executive_officers` (
 --
 
 INSERT INTO `executive_officers` (`officer_id`, `last_name`, `first_name`, `middle_name`, `position_id`, `image`, `school_year_id`, `created_at`, `program_id`) VALUES
-(1, 'sad', 'sA', 'sa', 1, '1740543025_9a5c2190-2ba0-45a3-bd54-52b7e9bb404e.jpg', 1, '2025-02-26 04:10:25', NULL),
-(2, 'Jimenez', 'Shane', 'Duran', 1, '', 1, '2025-02-26 04:11:08', NULL),
-(3, 'asd', 'asd', 'asd', 3, '1740546778_476328821_1861332794634994_9100291471033062968_n.jpg', 1, '2025-02-26 05:12:58', NULL),
-(4, 'asd', 'asd', 'asdasdas', 1, '1740546797_9a5c2190-2ba0-45a3-bd54-52b7e9bb404e.jpg', 1, '2025-02-26 05:13:17', NULL),
-(5, 'asd', 'asd', 'asdasdas', 1, '1740546920_9a5c2190-2ba0-45a3-bd54-52b7e9bb404e.jpg', 1, '2025-02-26 05:15:20', NULL),
-(6, 'Kulong', 'Ron', '', 4, '1740568054_WIN_20250222_21_54_58_Pro.jpg', 2, '2025-02-26 11:07:34', NULL);
+(1, 'sadw', 'sAddsds', 'sasdsadadd', 1, 'f7656dd63795611f2caca47e6d0431c1-removebg-preview.png', 1, '2025-02-26 04:10:25', 2),
+(5, 'asd', 'asd', 'asdasdas', 1, '1740546920_9a5c2190-2ba0-45a3-bd54-52b7e9bb404e.jpg', 1, '2025-02-26 05:15:20', 2),
+(6, 'Kulong', 'Ron', '', 4, '1740568054_WIN_20250222_21_54_58_Pro.jpg', 2, '2025-02-26 11:07:34', NULL),
+(11, 'sdasda', 'dadadasd', 'adww', 12, '', 1, '2025-03-17 05:30:48', 1);
 
 -- --------------------------------------------------------
 
@@ -234,7 +232,8 @@ CREATE TABLE `programs` (
 --
 
 INSERT INTO `programs` (`program_id`, `program_name`, `college_id`) VALUES
-(1, 'BS in Computer Science', 1);
+(1, 'BS in Computer Science', 1),
+(2, 'BS in Information Technology', 1);
 
 -- --------------------------------------------------------
 
@@ -300,17 +299,9 @@ INSERT INTO `users` (`user_id`, `first_name`, `middle_name`, `last_name`, `usern
 (2, 'Shane', 'admin', 'Jimenez', 'ashxeynx', 'HZ202300259@wmsu.edu.ph', '$2y$10$Aow.SzRWGFBga4v5153m8Oe1IDlKWewGIZ5CPrNELpEJnzOVB4OTS', 'admin', '2025-02-23 04:03:09', NULL),
 (3, 'Rone', 'admin', 'Kulong', 'ron', 'admin@gmail.com', '$2y$10$agnEQCmt8ADyI/4a2dtvlOlGkDbbxvo/50I9Av11RQjuwluVKCrOe', 'admin', '2025-02-23 04:04:44', NULL),
 (7, 'sheesh', 'admin', 'bnb', 'rronn', 'ron@wmsu.edu.ph', '$2y$10$o4peCliKj4cIXPooJOYOfu8e.MIuwvkWiuTcdMANEH4QIef1QxFO6', 'admin', '2025-02-24 07:24:44', NULL),
-(8, 'ron paullan', NULL, 'kulong', 'enorr', '12345@wmsu.edu.ph', '$2y$10$D1Oz8C9NfYDfAZ1ejpev.ejvFuvfunGTYkH37hd.SW0awww70GbQ2', 'sub-admin', '2025-02-24 07:29:11', NULL),
 (9, 'sfvf', 'admin', 'dfvf', 'manager12', 'dvd@wmsu.edu.ph', '$2y$10$c4Igsr/pEcBpW742vdBvheznDxPHt0NlHkM3K1L8gzqKBBwtaAnIq', 'admin', '2025-02-24 07:32:26', NULL),
-(10, 'assd', NULL, 'asdasd', 'asdas', 'HZ202210259@wmsu.edu.ph', '$2y$10$.KzO.v0vsmmj3SffHhYY3.VUG83M9el6XAubikvBAipBsdU7m/MQS', 'sub-admin', '2025-02-24 07:46:01', NULL),
-(11, 'asdd', NULL, 'asdqd', 'asdd', 'asdas@wmsu.edu.ph', '$2y$10$Gxjz.Npic42ijRpbSCHqZe7ROSMNHQ7nbBTc7yemzjVEWFTBIcRdm', 'sub-admin', '2025-02-24 07:46:23', NULL),
-(12, 'rertwe', NULL, 'rdthrh', 'dhdrtyer', 'dfhfth@wmsu.edu.ph', '$2y$10$XW9O/0dn0B8Fv0sqVi9hPeQLdgPCtCD/9YMpX1ekVZWOi8nsK2SZq', 'sub-admin', '2025-02-24 07:51:48', NULL),
-(13, 'Rone', NULL, 'Kulong', 'paullan', 'paullan@wmsu.edu.ph', '$2y$10$9vvoQ1.OsPnWsGmNSXUHPeQcM6tyaHB2lP6tB9nIp/hAMWIPgNbpG', 'sub-admin', '2025-02-24 08:26:05', NULL),
-(14, 'asda', NULL, 'asdasd', 'asdasdas', 'johndoe@wmsu.edu.ph', '$2y$10$J5JORVXlS1HuTEDnKN8jAO29hX8Befzz7xpAMWYZXdxO//DFZqgvG', 'sub-admin', '2025-02-24 08:28:23', NULL),
-(15, 'asf', 'adfa', 'dfd', 'sdfsdf', 'sdfsfd@wmsu.edu.ph', '$2y$10$rmHtcnmEM82ck2Krif8grep1SwjNmUQOFSUQ/Othx1rC8hQKGctOK', 'sub-admin', '2025-02-24 08:34:17', NULL),
 (16, 'asdasd', 'asdasfa', 'adfaef', 'asdfefe', 'HZ2234300259@wmsu.edu.ph', '$2y$10$9r626N9kIa2AynwspQ2qJuFF.jGWTI9eYzBuH8w4inKomC0Uizw/O', 'sub-admin', '2025-02-24 08:37:21', 1),
-(17, 'sub', 'sub', 'sub', 'sub', 'sub@wmsu.edu.ph', '$2y$10$5CO4kvwyMDftD4aDxRR3Wu1VNPcQGPIftETFGlOYJDQOcRy8x0uYi', 'sub-admin', '2025-02-24 08:51:33', 2),
-(18, 'sheesh', 'asdasd', 'bnb', 'shhesh', 'Hdd02300259@wmsu.edu.ph', '$2y$10$uUUPK4LYhRzBdVMjK3H40.tiBJLLi3njdnH25eQ8R5u6Lerezw0Nu', 'sub-admin', '2025-02-26 11:04:30', 19);
+(17, 'sub', 'sub', 'sub', 'sub', 'sub@wmsu.edu.ph', '$2y$10$5CO4kvwyMDftD4aDxRR3Wu1VNPcQGPIftETFGlOYJDQOcRy8x0uYi', 'sub-admin', '2025-02-24 08:51:33', 2);
 
 -- --------------------------------------------------------
 
@@ -330,7 +321,7 @@ CREATE TABLE `volunteers` (
   `email` varchar(255) NOT NULL,
   `cor_file` varchar(255) NOT NULL,
   `status` enum('pending','approved','rejected') DEFAULT 'pending',
-  `registered_by` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -338,11 +329,8 @@ CREATE TABLE `volunteers` (
 -- Dumping data for table `volunteers`
 --
 
-INSERT INTO `volunteers` (`volunteer_id`, `first_name`, `middle_name`, `last_name`, `year`, `section`, `program_id`, `contact`, `email`, `cor_file`, `status`, `registered_by`, `created_at`) VALUES
-(1, 'Shane', 'Duran', 'Jimenez', 1, 'C', 1, '09926314071', 'HZ202300259@wmsu.edu.ph', '1740573648_Screenshot 2024-08-28 183144.png', 'pending', NULL, '2025-02-26 12:40:48'),
-(2, 'SASD', 'DASD', 'ASDA', 3, 'C', 1, '09926314071', 'HSSD02300259@wmsu.edu.ph', '', 'pending', NULL, '2025-02-26 12:51:16'),
-(3, 'Shane', 'sdcsd', 'sdfsd', 2, 'sd', 1, '09926314071', 'H2332300259@wmsu.edu.ph', '', 'pending', NULL, '2025-02-26 12:51:48'),
-(4, 'sheesh', '', 'asdasd', 4, 'C', 1, '09926314071', 'HZ209900259@wmsu.edu.ph', '', 'pending', NULL, '2025-02-27 04:40:04');
+INSERT INTO `volunteers` (`volunteer_id`, `first_name`, `middle_name`, `last_name`, `year`, `section`, `program_id`, `contact`, `email`, `cor_file`, `status`, `user_id`, `created_at`) VALUES
+(1, 'Shane', 'Duran', 'Jimenez', 3, 'C', 1, '09926314071', 'HZ202300259@wmsu.edu.ph', '1740573648_Screenshot 2024-08-28 183144.png', 'approved', 1, '2025-02-26 12:40:48');
 
 --
 -- Indexes for dumped tables
@@ -459,7 +447,7 @@ ALTER TABLE `users`
 ALTER TABLE `volunteers`
   ADD PRIMARY KEY (`volunteer_id`),
   ADD KEY `program_id` (`program_id`),
-  ADD KEY `registered_by` (`registered_by`);
+  ADD KEY `fk_adminusers` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -499,7 +487,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `executive_officers`
 --
 ALTER TABLE `executive_officers`
-  MODIFY `officer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `officer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `faqs`
@@ -523,7 +511,7 @@ ALTER TABLE `officer_positions`
 -- AUTO_INCREMENT for table `programs`
 --
 ALTER TABLE `programs`
-  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `school_years`
@@ -541,13 +529,13 @@ ALTER TABLE `transparency_report`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `volunteers`
 --
 ALTER TABLE `volunteers`
-  MODIFY `volunteer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `volunteer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -608,8 +596,8 @@ ALTER TABLE `users`
 -- Constraints for table `volunteers`
 --
 ALTER TABLE `volunteers`
-  ADD CONSTRAINT `volunteers_ibfk_1` FOREIGN KEY (`program_id`) REFERENCES `programs` (`program_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `volunteers_ibfk_2` FOREIGN KEY (`registered_by`) REFERENCES `users` (`user_id`) ON DELETE SET NULL;
+  ADD CONSTRAINT `fk_adminusers` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `volunteers_ibfk_1` FOREIGN KEY (`program_id`) REFERENCES `programs` (`program_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
