@@ -14,6 +14,7 @@
             </div>
 
             <div class="col py-3 content-container">
+                <?php include '../../includes/topNav.php'; ?>
                 <div id="contentArea" class="container mt-4">
                     <?php include 'viewAnalytics.php'; ?>
                 </div>

@@ -94,10 +94,4 @@ require_once 'head.php';
     </ul>
 
     <hr class="text-white">
-
-    <div class="text-center">
-        <a href="../../accounts/logout.php" class="btn btn-outline-danger w-100">
-            <i class="bi bi-box-arrow-right me-2"></i> <span class="sidebar-text">Logout</span>
-        </a>
-    </div>
 </div>
