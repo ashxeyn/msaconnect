@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php include "../../accounts/session.php"; ?>
     <?php include '../../includes/head.php'; ?> 
     <title>Admin Dashboard</title>    
     <link rel="stylesheet" href="../../css/sideBar.css">
