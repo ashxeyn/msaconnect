@@ -1,19 +1,10 @@
-/* General Styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-  background-color: #e6dfdf;
-}
-
 /* Footer Styles (Scoped to Footer Only) */
 footer {
   background: #000000;
   color: #fff;
   padding: 10px; /* Reduced padding */
+  position: relative;
+  bottom: 0;
   width: 100%;
   margin-top: auto; /* Ensure footer stays at the bottom */
 }
@@ -97,41 +88,4 @@ footer .footer-lower-right {
 footer .footer-lower-right p {
   margin: 0;
   font-size: 0.9rem; /* Slightly smaller font size */
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-  footer .footer-content {
-    align-items: center; /* Center align content */
-  }
-
-  footer .footer-upper-left {
-    flex-direction: column; /* Stack logo and text vertically */
-    align-items: center; /* Center align items */
-    text-align: center; /* Center align text */
-  }
-
-  footer .footer-lower-right {
-    position: static; /* Remove absolute positioning */
-    text-align: center; /* Center align text */
-    margin-top: 10px; /* Add margin to separate from other content */
-  }
-}
-
-@media (max-width: 480px) {
-  footer .footer-content {
-    padding: 0 5px; /* Reduce padding for smaller screens */
-  }
-
-  footer .socials a {
-    font-size: 1rem; /* Smaller icons for smaller screens */
-  }
-
-  footer .contact-info p {
-    font-size: 0.8rem; /* Smaller font size for smaller screens */
-  }
-
-  footer .footer-lower-right p {
-    font-size: 0.8rem; /* Smaller font size for smaller screens */
-  }
 }

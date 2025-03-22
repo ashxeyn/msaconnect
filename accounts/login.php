@@ -14,13 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($accountObj->login($username, $password)) {
         $data = $accountObj->fetch($username);
+        $_SESSION['user_id'] = $data['user_id'];
+        $_SESSION['username'] = $data['username'];
         $_SESSION['account'] = $data;
+        $_SESSION['role'] = $data['role']; 
 
-        if ($data['role'] == 'admin') {
+        if ($data['role'] == 'admin' || $data['role'] == 'sub-admin') {
             header('location: ../views/admin/admin_dashboard');
             exit();
-        } elseif ($data['role'] == 'sub-admin') {
-            header('location: ../views/sub-admin/dashboard');
+        } elseif ($data['role'] != 'sub-admin' && $data['role'] != 'admin') {
+            header('location: ../views/user/landing_page');
             exit();
         } else {
             $loginErr = 'Invalid username or password';

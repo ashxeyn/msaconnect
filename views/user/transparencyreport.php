@@ -22,7 +22,6 @@
                         <th>Description</th>
                         <th>Amount</th>
                         <th>Overall Description</th>
-                        <th>Status</th> <!-- New Status Column -->
                     </tr>
                 </thead>
                 <tbody>
@@ -31,21 +30,18 @@
                         <td>Payment for Services</td>
                         <td>$500.00</td>
                         <td>Monthly service fee for October 2023.</td>
-                        <td>Completed</td> <!-- Example Status -->
                     </tr>
                     <tr>
                         <td>2023-10-05</td>
                         <td>Refund</td>
                         <td>-$100.00</td>
                         <td>Refund for overcharged amount.</td>
-                        <td>Completed</td> <!-- Example Status -->
                     </tr>
                     <tr>
                         <td>2023-10-10</td>
                         <td>Donation</td>
                         <td>$200.00</td>
                         <td>Donation to charity organization.</td>
-                        <td>Pending</td> <!-- Example Status -->
                     </tr>
                     <!-- Add more rows as needed -->
                 </tbody>

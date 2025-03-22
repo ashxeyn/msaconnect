@@ -1,28 +1,9 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #000000, #D72828, #009639, #FFFFFF);
-    background-size: 400% 400%;
-    animation: gradientAnimation 10s ease infinite;
-    margin: 0;
-    height: 100vh;
-    color: #ffffff;
-  }
-  
-  @keyframes gradientAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-  
-  /* Hero Section */
-  .hero {
+     font-family: Arial, sans-serif;
+    background-color: #e6dfdf;
+}
+.hero {
     width: 80%; /* Adjust the width of the hero section */
     max-width: 600px; /* Set a maximum width to keep it from getting too wide */
     margin: 20px auto; /* Center the hero section and add some margin */
@@ -31,31 +12,31 @@ body {
     border-radius: 10px; /* Add rounded corners */
     box-shadow: 0 4px 8px rgba(229, 109, 109, 0.1); /* Add a subtle shadow */
     text-align: center; /* Center the text inside the hero section */
-  }
-  
-  .hero h2 {
+}
+
+.hero h2 {
     font-size: 24px; /* Adjust the heading size */
     margin-bottom: 10px; /* Add space below the heading */
-  }
-  
-  .hero p {
+}
+
+.hero p {
     font-size: 16px; /* Adjust the paragraph text size */
     line-height: 1.6; /* Improve readability with line height */
-  }
-  
-  /* Transparency Report Table Section */
-  .transparency-report {
+}
+/* Transparency Report Table Section */
+.transparency-report {
     padding: 50px 20px;
     text-align: center;
-  }
-  
-  .transparency-report h2 {
+    background-color: #e6dfdf;
+}
+
+.transparency-report h2 {
     font-size: 36px;
     margin-bottom: 20px;
-    color: #fff; /* Change color to white */
-  }
-  
-  .table-container {
+    color: #333; /* Add a darker color for better contrast */
+}
+
+.table-container {
     display: flex;
     justify-content: center; /* Center the table horizontally */
     margin: 0 auto;
@@ -66,9 +47,9 @@ body {
     border-radius: 10px; /* Rounded corners for the container */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
     padding: 20px; /* Add padding inside the container */
-  }
-  
-  table {
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
@@ -78,107 +59,53 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px; /* Rounded corners for the table */
     overflow: hidden; /* Ensure rounded corners are visible */
-  }
-  
-  th,
-  td {
+}
+
+th,
+td {
     padding: 15px 20px; /* Increase padding for better spacing */
     border: 1px solid #ddd;
-    color: #d72f2f; /* Red text color for table cells */
-  }
-  
-  th {
+}
+
+th {
     background-color: #d72f2f; /* Red background for headers */
     color: #fff; /* White text for headers */
     font-weight: bold;
     text-transform: uppercase; /* Uppercase header text */
-  }
-  
-  tr:nth-child(even) {
+}
+
+tr:nth-child(even) {
     background-color: #f9f9f9;
-  }
-  
-  tr:hover {
+}
+
+tr:hover {
     background-color: #f1f1f1;
-  }
-  
-  /* Add a subtle animation on hover for better interactivity */
-  tr {
+}
+
+/* Add a subtle animation on hover for better interactivity */
+tr {
     transition: background-color 0.3s ease;
-  }
-  
-  /* Style the first column to stand out */
-  td:first-child {
+}
+
+/* Style the first column to stand out */
+td:first-child {
     font-weight: bold;
     color: #d72f2f; /* Red color for the first column */
-  }
-  
-  /* Add a border radius to the first and last rows */
-  tr:first-child th:first-child {
+}
+
+/* Add a border radius to the first and last rows */
+tr:first-child th:first-child {
     border-top-left-radius: 10px;
-  }
-  
-  tr:first-child th:last-child {
+}
+
+tr:first-child th:last-child {
     border-top-right-radius: 10px;
-  }
-  
-  tr:last-child td:first-child {
+}
+
+tr:last-child td:first-child {
     border-bottom-left-radius: 10px;
-  }
-  
-  tr:last-child td:last-child {
+}
+
+tr:last-child td:last-child {
     border-bottom-right-radius: 10px;
-  }
-  
-  /* Media Queries for Responsiveness */
-  @media (max-width: 768px) {
-    .hero {
-      width: 90%; /* Increase width for smaller screens */
-      padding: 15px; /* Adjust padding for smaller screens */
-    }
-  
-    .transparency-report {
-      padding: 30px 10px; /* Adjust padding for smaller screens */
-    }
-  
-    .transparency-report h2 {
-      font-size: 28px; /* Adjust heading size for smaller screens */
-    }
-  
-    .table-container {
-      width: 100%; /* Full width for smaller screens */
-      padding: 10px; /* Adjust padding for smaller screens */
-    }
-  
-    table {
-      font-size: 14px; /* Adjust font size for smaller screens */
-    }
-  
-    th,
-    td {
-      padding: 10px 15px; /* Adjust padding for smaller screens */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .hero h2 {
-      font-size: 20px; /* Adjust heading size for smaller screens */
-    }
-  
-    .hero p {
-      font-size: 14px; /* Adjust paragraph text size for smaller screens */
-    }
-  
-    .transparency-report h2 {
-      font-size: 24px; /* Adjust heading size for smaller screens */
-    }
-  
-    table {
-      font-size: 12px; /* Adjust font size for smaller screens */
-    }
-  
-    th,
-    td {
-      padding: 8px 10px; /* Adjust padding for smaller screens */
-    }
-  }
+}

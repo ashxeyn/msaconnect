@@ -6,30 +6,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-  background: linear-gradient(135deg, 
-  #000000, /* Black */
-  #D72828, /* Red */
-  #009639, /* Green */
-  #FFFFFF  /* White */
-);
-background-size: 400% 400%;
-animation: gradientAnimation 10s ease infinite;
-margin: 0;
-height: 100vh;
-font-family: Arial, sans-serif;
-color: #333;
-}
-
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background-color: #e6dfdf;
 }
 
 /* Hero Section */
@@ -42,7 +19,6 @@ color: #333;
   border-radius: 10px; /* Add rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   text-align: center; /* Center the text inside the hero section */
-  color: #fff;
 }
 
 .hero h2 {
@@ -75,7 +51,7 @@ color: #333;
 .faqs-content h3 {
   font-size: 20px; /* Adjust heading size */
   margin-bottom: 10px; /* Add space below the heading */
-  color: #000000; /* Match the hero section color */
+  color: #d72f2f; /* Match the hero section color */
 }
 
 /* FAQ Item Styling */
@@ -98,7 +74,7 @@ color: #333;
 }
 
 .faq-question:hover {
-  background-color: #d72f2f; /* Change background on hover */
+  background-color: #e0e0e0; /* Change background on hover */
 }
 
 /* Arrow Styling */
@@ -117,7 +93,6 @@ color: #333;
   overflow: hidden;
   padding: 0 10px;
   transition: max-height 0.5s ease, padding 0.5s ease;
-  color: #d72f2f; /* Red color for answers */
 }
 
 .faq-answer.open {
@@ -132,42 +107,4 @@ color: #333;
 
 .faq-answer a:hover {
   color: #b02525; /* Darken link color on hover */
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-  .hero {
-    width: 90%; /* Increase width for smaller screens */
-    padding: 15px; /* Adjust padding for smaller screens */
-  }
-
-  .faqs-content {
-    width: 90%; /* Increase width for smaller screens */
-  }
-
-  .faq-question {
-    font-size: 14px; /* Adjust font size for smaller screens */
-  }
-
-  .faq-answer {
-    font-size: 14px; /* Adjust font size for smaller screens */
-  }
-}
-
-@media (max-width: 480px) {
-  .hero h2 {
-    font-size: 20px; /* Adjust heading size for smaller screens */
-  }
-
-  .hero p {
-    font-size: 14px; /* Adjust paragraph text size for smaller screens */
-  }
-
-  .faq-question {
-    font-size: 12px; /* Adjust font size for smaller screens */
-  }
-
-  .faq-answer {
-    font-size: 12px; /* Adjust font size for smaller screens */
-  }
 }

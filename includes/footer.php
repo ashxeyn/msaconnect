@@ -26,11 +26,13 @@
             <!-- Middle: Socials and Contact -->
             <div class="footer-middle">
                 <div class="socials">
-                    <a href="https://www.facebook.com/msawmsuofficial" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
                 <div class="contact-info">
                     <p>Contact Us: +123 456 7890</p>
-                    <p>Email: msa.wmsuzc@gmail.com</p>
+                    <p>Email: info@msaconnect.com</p>
                 </div>
             </div>
 

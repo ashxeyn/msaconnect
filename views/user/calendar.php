@@ -6,9 +6,6 @@
     <title>Calendar</title>
     <?php $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/msaconnect/'; ?>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="<?php echo $base_url; ?>css/calendar.css">
 </head>
 <body>
@@ -31,9 +28,9 @@
         <div class="container">
             <!-- Navigation Controls -->
             <div class="calendar-navigation">
-                <button id="prev-month" class="nav-button">← Previous Month</button>
+                <button id="prev-month" class="nav-button">Previous Month</button>
                 <h2 id="current-month-year" class="month-year"></h2>
-                <button id="next-month" class="nav-button">Next Month →</button>
+                <button id="next-month" class="nav-button">Next Month</button>
             </div>
 
             <!-- Calendar Grid -->
