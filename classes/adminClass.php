@@ -349,6 +349,74 @@ class Admin {
         return $query->execute();
     }
 
+    // Analytics Functions
+    function getApprovedVolunteers() {
+        $sql = "SELECT COUNT(*) AS total FROM volunteers WHERE status = 'approved'";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        
+        $result = $query->fetch();
+        return $result['total'] ?? 0;
+    }
+
+    function getPedingVolunteers() {
+        $sql = "SELECT COUNT(*) AS total FROM volunteers WHERE status = 'pending'";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        
+        $result = $query->fetch();
+        return $result['total'] ?? 0;
+    }
+
+    function getModerators() {
+        $sql = "SELECT COUNT(*) AS total FROM users WHERE role = 'sub-admin'";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        
+        $result = $query->fetch();
+        return $result['total'] ?? 0;
+    }
+
+    function getVolunteersByDay() {
+        $sql = "SELECT DATE(created_at) AS day, COUNT(*) AS count FROM volunteers GROUP BY day";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        
+        $data = [];
+        while ($row = $query->fetch()) {
+            $data['labels'][] = $row['day'];
+            $data['volunteers'][] = $row['count'];
+        }
+        return $data;
+    }
+
+    function getVolunteersByMonth() {
+        $sql = "SELECT MONTH(created_at) AS month, COUNT(*) AS count FROM volunteers GROUP BY month";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        
+        $data = [];
+        while ($row = $query->fetch()) {
+            $data['labels'][] = date("F", mktime(0, 0, 0, $row['month'], 10)); 
+            $data['volunteers'][] = $row['count'];
+        }
+        return $data;
+    }
+
+    function getVolunteersByYear() {
+        $sql = "SELECT YEAR(created_at) AS year, COUNT(*) AS count FROM volunteers GROUP BY year";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        
+        $data = [];
+        while ($row = $query->fetch()) {
+            $data['labels'][] = $row['year'];
+            $data['volunteers'][] = $row['count'];
+        }
+        return $data;
+    }
+
+
     // Others
     function fetchSy(){
         $sql = "SELECT * FROM school_years ORDER BY school_year_id ASC;";

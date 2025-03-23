@@ -1,107 +1,34 @@
+<?php
+require_once '../../classes/adminClass.php';
+require_once '../../tools/function.php'; 
+
+$adminObj = new Admin();
+$totalVolunteers = $adminObj->getApprovedVolunteers();
+$pendingRegistrations = $adminObj->getPedingVolunteers();
+$moderators = $adminObj->getModerators();
+
+function getChartData($filterType) {
+    global $adminObj;
+
+    if ($filterType === "day") {
+        return $adminObj->getVolunteersByDay();
+    } elseif ($filterType === "month") {
+        return $adminObj->getVolunteersByMonth();
+    } else { // Year
+        return $adminObj->getVolunteersByYear();
+    }
+}
+
+$chartData = getChartData("month");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: rgb(255, 255, 255);
-        }
-
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .filter-container label {
-            margin-right: 10px;
-            font-weight: bold;
-        }
-
-        .filter-container select,
-        .filter-container input {
-            padding: 5px;
-            margin-right: 10px;
-        }
-
-        .filter-container button {
-            background-color: green;
-            color: white;
-            border: none;
-            padding: 7px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .chart-box {
-            width: 45%;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        canvas {
-            max-width: 100%;
-            height: 250px !important;
-        }
-
-        .chart-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-        }
-
-        .stats-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            flex: 1;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .stat-icon {
-            font-size: 30px;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        .stat-number {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .stat-title {
-            font-size: 14px;
-            color: #777;
-            margin-top: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="../../css/analytics.css">
 </head>
 <body>
 
@@ -109,34 +36,6 @@
 <br>
 <br>
 
-<!-- Stats Cards Container -->
-<div class="stats-container">
-    <div class="stat-card">
-        <i class="bi bi-people-fill stat-icon"></i>
-        <div class="stat-number">100</div>
-        <div class="stat-title">Volunteers</div>
-    </div>
-
-    <div class="stat-card">
-        <i class="bi bi-person-plus-fill stat-icon"></i>
-        <div class="stat-number">56</div>
-        <div class="stat-title">Pending Registrations</div>
-    </div>
-
-    <div class="stat-card">
-        <i class="bi bi-shield-fill stat-icon"></i>
-        <div class="stat-number">30</div>
-        <div class="stat-title">Officers</div>
-    </div>
-
-    <div class="stat-card">
-        <i class="bi bi-cash-stack stat-icon"></i>
-        <div class="stat-number">12,345Php</div>
-        <div class="stat-title">Money Collected</div>
-    </div>
-</div>
-
-<!-- Filter Section -->
 <div class="filter-container">
     <label for="filterType">Filter By:</label>
     <select id="filterType">
@@ -148,7 +47,27 @@
     <button onclick="applyFilter()">Apply</button>
 </div>
 
-<!-- Chart Section -->
+<div class="stats-container">
+    <div class="stat-card">
+        <i class="bi bi-people-fill stat-icon"></i>
+        <div class="stat-number"><?php echo $totalVolunteers; ?></div>
+        <div class="stat-title">Volunteers</div>
+    </div>
+
+    <div class="stat-card">
+        <i class="bi bi-person-plus-fill stat-icon"></i>
+        <div class="stat-number"><?php echo $pendingRegistrations; ?></div>
+        <div class="stat-title">Pending Registrations</div>
+    </div>
+
+    <div class="stat-card">
+        <i class="bi bi-shield-fill stat-icon"></i>
+        <div class="stat-number"><?php echo $moderators; ?></div>
+        <div class="stat-title">Moderators</div>
+    </div>
+
+</div>
+
 <div class="chart-container">
     <div class="chart-box">
         <h3>Registered Volunteers</h3>
