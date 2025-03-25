@@ -65,6 +65,22 @@
     transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
+.bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.bottom-right {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+}
+
+
 @media (max-width: 768px) {
     :root {
         --sidebar-width: 80px;

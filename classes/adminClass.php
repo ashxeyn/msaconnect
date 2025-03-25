@@ -416,7 +416,90 @@ class Admin {
         return $data;
     }
 
+    // School Config Functions
+    function getProgramById($programId) {
+        $sql = "SELECT * FROM programs WHERE program_id = :program_id";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':program_id', $programId);
+        $query->execute();
+    
+        return $query->fetch();
+    }
 
+    function getCollegeById($collegeId) {
+        $sql = "SELECT * FROM colleges WHERE college_id = :college_id";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':college_id', $collegeId);
+        $query->execute();
+    
+        return $query->fetch();
+    }
+
+    function addProgram($programName, $collegeId) {
+        $sql = "INSERT INTO programs (program_name, college_id) VALUES (:program_name, :college_id)";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':program_name', $programName);
+        $query->bindParam(':college_id', $collegeId);
+        
+        return $query->execute();
+    }
+
+    function updateProgram($programId, $programName, $collegeId) {
+        $sql = "UPDATE programs 
+                SET program_name = :program_name, 
+                    college_id = :college_id
+                WHERE program_id = :program_id";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':program_name', $programName);
+        $query->bindParam(':college_id', $collegeId);
+        $query->bindParam(':program_id', $programId);
+        
+        return $query->execute();
+    }
+
+    function deleteProgram($programId) {
+        $sql = "DELETE FROM programs WHERE program_id = :program_id";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':program_id', $programId);
+        
+        return $query->execute();
+    }
+
+    function addCollege($collegeName) {
+        $sql = "INSERT INTO colleges (college_name) VALUES (:college_name)";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':college_name', $collegeName);
+        
+        return $query->execute();
+    }
+
+    function updateCollege($collegeId, $collegeName) {
+        $sql = "UPDATE colleges 
+                SET college_name = :college_name
+                WHERE college_id = :college_id";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':college_name', $collegeName);
+        $query->bindParam(':college_id', $collegeId);
+        
+        return $query->execute();
+    }
+
+    function deleteCollege($collegeId) {
+        $sql = "DELETE FROM colleges WHERE college_id = :college_id";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':college_id', $collegeId);
+        
+        return $query->execute();
+    }
+    
     // Others
     function fetchSy(){
         $sql = "SELECT * FROM school_years ORDER BY school_year_id ASC;";
@@ -425,8 +508,19 @@ class Admin {
         return $query->fetchAll();
     }
 
-    function fetchProgram(){
-        $sql = "SELECT * FROM programs ORDER BY program_name ASC;";
+    function fetchProgram() {
+        $sql = "SELECT programs.program_id, programs.program_name, colleges.college_name 
+                FROM programs 
+                INNER JOIN colleges ON programs.college_id = colleges.college_id 
+                ORDER BY programs.program_name ASC;";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+    
+    function fetchColleges(){
+        $sql = "SELECT * FROM colleges ORDER BY college_name ASC;";
         $query = $this->db->connect()->prepare($sql);
         $query->execute();
         return $query->fetchAll();

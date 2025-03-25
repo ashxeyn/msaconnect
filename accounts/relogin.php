@@ -11,7 +11,7 @@
     <div class="container">
         <h2>Session Expired</h2>
         <p>Your session has expired. Please log in again to continue.</p>
-        <a href="login.php" class="btn">Login</a>
+        <a href="login" class="btn">Login</a>
     </div>
 </body>
 </html>
