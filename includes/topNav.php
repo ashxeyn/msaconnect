@@ -17,8 +17,6 @@ function generateColor($username) {
 $profileColor = generateColor($username);
 ?>
 
-<link rel="stylesheet" href="../../css/topNav.css">
-
 <nav class="admin-navbar">
     <div class="nav-items">
         <button class="icon-btn">
@@ -32,11 +30,11 @@ $profileColor = generateColor($username);
                     <?= $firstLetter ?>
                 </div>
                 <span class="username"><?= clean_input($username) ?></span>
-                <i class="bi bi-chevron-down"></i>
+                <!-- <i class="bi bi-chevron-down"></i> -->
             </button>
-            <ul class="dropdown-menu">
+            <!-- <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="../../accounts/logout"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
-            </ul>
+            </ul> -->
         </div>
     </div>
 </nav>

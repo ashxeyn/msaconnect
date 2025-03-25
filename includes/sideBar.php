@@ -92,6 +92,11 @@ require_once 'head.php';
         </li>
         <?php endif; ?>
     </ul>
+    <div class="text-center">
+        <a href="../../accounts/logout" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center">
+            <i class="bi bi-box-arrow-right me-2"></i> <span class="sidebar-text">Logout</span>
+        </a>
+    </div>
 
     <hr class="text-white">
 </div>
