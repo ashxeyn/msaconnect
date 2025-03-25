@@ -231,19 +231,19 @@ function processRegistration(volunteerId, action) {
         type: "POST",
         data: { volunteer_id: volunteerId, action: action },
         success: function(response) {
-            console.log("Server response:", response); // Log the server response
+            console.log("Server response:", response); 
             if (response.trim() === "success") {
                 $(".modal").modal("hide");
                 $("body").removeClass("modal-open");
                 $(".modal-backdrop").remove();
                 loadRegistrationsSection(); 
             } else {
-                console.log("Failed to process request:", response); // Log the failure message
+                console.log("Failed to process request:", response); 
                 alert("Failed to process request.");
             }
         },
         error: function(xhr, status, error) {
-            console.log("AJAX error:", status, error); // Log the AJAX error
+            console.log("AJAX error:", status, error); 
             alert("An error occurred while processing the request.");
         }
     });
@@ -369,10 +369,10 @@ function setVolunteerId(volunteerId, action) {
                     $('#section').val(volunteer.section);
                     $('#contact').val(volunteer.contact);
                     $('#email').val(volunteer.email);
-                    $('#existing_image').val(volunteer.image);
-                    if (volunteer.image) {
+                    $('#existing_image').val(volunteer.cor_file);
+                    if (volunteer.cor_file) {
                         $('#image-preview').show();
-                        $('#preview-img').attr('src', `../../assets/volunteers/${volunteer.image}`);
+                        $('#preview-img').attr('src', `../../assets/cors/${volunteer.cor_file}`);
                     } else {
                         $('#image-preview').hide();
                     }

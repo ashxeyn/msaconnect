@@ -20,7 +20,7 @@ $result = $adminObj->fetchApprovedVolunteer();
 <body>
 
 <div>
-    <h2 class="mb-4">Volunteers</h2>
+    <h1 class="mb-4">Volunteers</h1>
 
     <table id="table" class="table table-bordered table-striped">
         <thead>
