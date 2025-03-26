@@ -1,5 +1,5 @@
 /* General Styles */
-body {
+html, body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -52,6 +52,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   text-align: center; /* Center the text inside the hero section */
   color: #fff;
+  box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
 .hero h2 {
@@ -74,6 +75,7 @@ body {
   color: white; /* Ensure text is readable on the dark background */
   padding: 20px; /* Add padding inside the section */
   border-radius: 10px; /* Add rounded corners */
+  box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
 .bylaws-content h3 {
@@ -101,5 +103,25 @@ footer {
 @media (max-width: 768px) {
   .hero, .bylaws-content {
     width: 90%; /* Increase width for smaller screens */
+  }
+
+  .header {
+    font-size: 20px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h2 {
+    font-size: 20px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .header {
+    font-size: 16px;
+    padding: 10px;
   }
 }
