@@ -349,25 +349,6 @@ class Admin {
         return $query->execute();
     }
 
-    // Analytics Functions
-    function getApprovedVolunteers() {
-        $sql = "SELECT COUNT(*) AS total FROM volunteers WHERE status = 'approved'";
-        $query = $this->db->connect()->prepare($sql);
-        $query->execute();
-        
-        $result = $query->fetch();
-        return $result['total'] ?? 0;
-    }
-
-    function getPedingVolunteers() {
-        $sql = "SELECT COUNT(*) AS total FROM volunteers WHERE status = 'pending'";
-        $query = $this->db->connect()->prepare($sql);
-        $query->execute();
-        
-        $result = $query->fetch();
-        return $result['total'] ?? 0;
-    }
-
     function getModerators() {
         $sql = "SELECT COUNT(*) AS total FROM users WHERE role = 'sub-admin'";
         $query = $this->db->connect()->prepare($sql);
@@ -375,32 +356,6 @@ class Admin {
         
         $result = $query->fetch();
         return $result['total'] ?? 0;
-    }
-
-    function getVolunteersByDay() {
-        $sql = "SELECT DATE(created_at) AS day, COUNT(*) AS count FROM volunteers GROUP BY day";
-        $query = $this->db->connect()->prepare($sql);
-        $query->execute();
-        
-        $data = [];
-        while ($row = $query->fetch()) {
-            $data['labels'][] = $row['day'];
-            $data['volunteers'][] = $row['count'];
-        }
-        return $data;
-    }
-
-    function getVolunteersByMonth() {
-        $sql = "SELECT MONTH(created_at) AS month, COUNT(*) AS count FROM volunteers GROUP BY month";
-        $query = $this->db->connect()->prepare($sql);
-        $query->execute();
-        
-        $data = [];
-        while ($row = $query->fetch()) {
-            $data['labels'][] = date("F", mktime(0, 0, 0, $row['month'], 10)); 
-            $data['volunteers'][] = $row['count'];
-        }
-        return $data;
     }
 
     function getVolunteersByYear() {
@@ -497,6 +452,115 @@ class Admin {
         $query = $this->db->connect()->prepare($sql);
         $query->bindParam(':college_id', $collegeId);
         
+        return $query->execute();
+    }
+
+    // Analytics Functions
+    function getVolunteersPerMonth() {
+        $sql = "SELECT DATE_FORMAT(created_at, '%Y-%m') AS month, COUNT(*) AS total 
+                  FROM volunteers 
+                  WHERE status = 'approved'
+                  GROUP BY month 
+                  ORDER BY month ASC";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+    
+    function getCashFlowPerMonth() {
+        $sql = "SELECT 
+                    DATE_FORMAT(report_date, '%Y-%m') AS month,
+                    SUM(CASE WHEN transaction_type = 'Cash In' THEN amount ELSE 0 END) AS total_cashin,
+                    SUM(CASE WHEN transaction_type = 'Cash Out' THEN amount ELSE 0 END) AS total_cashout,
+                    (SELECT SUM(CASE WHEN transaction_type = 'Cash In' THEN amount ELSE 0 END) - 
+                            SUM(CASE WHEN transaction_type = 'Cash Out' THEN amount ELSE 0 END)
+                     FROM transparency_report AS sub
+                     WHERE DATE_FORMAT(sub.report_date, '%Y-%m') <= DATE_FORMAT(main.report_date, '%Y-%m')
+                    ) AS net_money
+                FROM transparency_report AS main
+                GROUP BY month
+                ORDER BY month ASC";
+    
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    function getApprovedVolunteers() {
+        $sql = "SELECT COUNT(*) AS total FROM volunteers WHERE status = 'approved'";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        
+        $result = $query->fetch();
+        return $result['total'] ?? 0;
+    }
+
+    function getPedingVolunteers() {
+        $sql = "SELECT COUNT(*) AS total FROM volunteers WHERE status = 'pending'";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        
+        $result = $query->fetch();
+        return $result['total'] ?? 0;
+    }
+
+    // FAQs Functions
+    function fetchFaqs() {
+        $sql = "SELECT * FROM faqs ORDER BY category ASC";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+    
+    function getFaqById($faqId) {
+        $sql = "SELECT 
+                    faq_id,
+                    question,
+                    answer,
+                    category
+                FROM faqs
+                WHERE faq_id = :faq_id";
+    
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':faq_id', $faqId);
+        $query->execute();
+    
+        return $query->fetch();
+    }
+
+    function updateFaq($faqId, $question, $answer, $category) {
+        $sql = "UPDATE faqs 
+                SET question = :question, answer = :answer, category = :category
+                WHERE faq_id = :faq_id";
+    
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':question', $question);
+        $query->bindParam(':answer', $answer);
+        $query->bindParam(':category', $category);
+        $query->bindParam(':faq_id', $faqId);
+    
+        return $query->execute();
+    }
+    
+    function addFaq($question, $answer, $category) {
+        $sql = "INSERT INTO faqs (question, answer, category) 
+                    VALUES (:question, :answer, :category)";
+    
+        $query = $this->db->connect()->prepare($sql);
+         $query->bindParam(':question', $question);
+        $query->bindParam(':answer', $answer);
+        $query->bindParam(':category', $category);
+    
+        return $query->execute();
+    }
+    
+    function deleteFaq($faqId) {
+        $sql = "DELETE FROM faqs WHERE faq_id = :faq_id";
+    
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':faq_id', $faqId);
+    
         return $query->execute();
     }
     

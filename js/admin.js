@@ -702,9 +702,104 @@ function processProgram(programId, action) {
     });
 }
 
+// FAQS FUNCTIONS
+function openFaqModal(modalId, faqId, action) {
+    $('.modal').modal('hide');
+    $('.modal-backdrop').remove();
+    setTimeout(() => {
+        const modal = $('#' + modalId);
+        modal.attr('aria-hidden', 'false');
+        modal.modal('show');
+        setFaqId(faqId, action);
+    }, 300);
+}
+
+function setFaqId(faqId, action) {
+    if (action === 'edit') {
+        $.ajax({
+            url: "../../handler/admin/getFaq.php",
+            type: "GET",
+            data: { faq_id: faqId },
+            success: function(response) {
+                try {
+                    const faq = JSON.parse(response);
+                    $('#faqId').val(faq.faq_id);
+                    $('#question').val(faq.question);
+                    $('#answer').val(faq.answer);
+                    $('#category').val(faq.category);
+                    $('#modalTitle').text('Edit FAQ');
+                    $('#confirmSaveFaq').text('Update FAQ');
+                } catch (e) {
+                    console.error("Invalid JSON response:", response);
+                    alert("An error occurred while fetching the FAQ data.");
+                }
+            },
+            error: function() {
+                alert("An error occurred while fetching the FAQ data.");
+            }
+        });
+
+        $('#confirmSaveFaq').off('click').on('click', function (e) {
+            e.preventDefault();
+            processFaq(faqId, 'edit');
+        });
+    } else if (action === 'delete') {
+        $('#faqIdToDelete').val(faqId);
+        $('#deleteFaqModal').modal('show');
+        $('#confirmDeleteFaq').off('click').on('click', function () {
+            processFaq(faqId, 'delete');
+        });
+    } else if (action === 'add') {
+        $('#faqForm')[0].reset();
+        $('#modalTitle').text('Add FAQ');
+        $('#confirmSaveFaq').text('Add FAQ');
+        $('#confirmSaveFaq').off('click').on('click', function (e) {
+            e.preventDefault();
+            processFaq(null, 'add');
+        });
+    }
+}
+
+function processFaq(faqId, action) {
+    const form = document.getElementById('faqForm');
+    const formData = new FormData(form);
+    
+    if (faqId) {
+        formData.append('faq_id', faqId);
+    }
+    formData.append('action', action);
+
+    // for (let [key, value] of formData.entries()) {
+    //     console.log(key, value);
+    // }
+
+    $.ajax({
+        url: "../../handler/admin/faqsAction.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            console.log("Server response:", response);
+            if (response.trim() === "success") {
+                $("#addEditFaqModal").modal("hide");
+                $("#deleteFaqModal").modal("hide");
+                loadFaqsSection();
+            } else {
+                alert("Error: " + response);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error("AJAX Error:", status, error);
+            alert("Failed to save. Check console for details.");
+        }
+    });
+}
+
 $(document).on('hidden.bs.modal', function () {
     if ($('.modal.show').length === 0) { 
         $('body').removeClass('modal-open'); 
         $('.modal-backdrop').remove();
     }
 });
+
