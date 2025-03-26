@@ -5,6 +5,7 @@
     <?php include '../../includes/head.php'; ?> 
     <title>Admin Dashboard</title>    
     <link rel="stylesheet" href="../../css/sideBar.css">
+    <link rel="stylesheet" href="../../css/topNav.css">
     <script src="../../js/admin.js"></script>
 </head>
 <body>

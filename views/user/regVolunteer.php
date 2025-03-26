@@ -49,33 +49,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!empty($_FILES['image']['name'])) {
         $target_dir = "../../assets/cors/";
-    
+        
         if (!is_dir($target_dir) && !mkdir($target_dir, 0777, true)) {
             $imageErr = "Failed to create upload directory.";
         } else {
             $image_name = time() . "_" . basename($_FILES['image']['name']);
             $target_file = $target_dir . $image_name;
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-            $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
-            $maxFileSize = 2 * 1024 * 1024; // 2MB
+            $allowed_types = ['jpg', 'jpeg', 'png'];
+            $maxFileSize = 2 * 1024 * 1024; 
     
             if (!in_array($imageFileType, $allowed_types)) {
-                $imageErr = "Only JPG, JPEG, PNG & GIF files are allowed.";
+                $imageErr = "Only JPG, JPEG, & PNG files are allowed.";
             } elseif ($_FILES['image']['size'] > $maxFileSize) {
                 $imageErr = "File size should not exceed 2MB.";
             } else {
                 if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
-                    $image = $image_name; 
+                    $cor_file = $image_name; 
                 } else {
                     $imageErr = "There was an error uploading your file.";
                 }
             }
         }
     } elseif (isset($_POST['existing_image']) && !empty($_POST['existing_image'])) {
-        $image = $_POST['existing_image']; 
+        $cor_file = $_POST['existing_image']; 
     } else {
         $imageErr = "Please upload your COR screenshot!";
-    }    
+    }
+    
+    $adminObj->cor_file = $cor_file; 
 
     if (empty($first_nameErr) && empty($last_nameErr) && empty($contactErr) && empty($emailErr) && empty($sectionErr) && empty($programErr) && empty($yearErr) && empty($imageErr)) {
         $adminObj->first_name = $first_name;
@@ -164,7 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="upload-placeholder" id="upload-placeholder">
                 <img src="../../assets/icons/upload-icon.png" alt="Upload Icon" class="upload-icon">
                 <p>Click to upload your COR screenshot</p>
-                <p class="upload-hint">(Only JPG, JPEG, PNG, or GIF files, max 2MB)</p>
+                <p class="upload-hint">(Only JPG, JPEG, or PNG, max 2MB)</p>
             </div>
             <div class="image-preview" id="image-preview" style="display: none;">
                 <img id="preview-img" src="#" alt="Image Preview">

@@ -16,7 +16,6 @@ $result = $adminObj->fetchOfficers();
     <link rel="stylesheet" href="../../css/adminofficers.css?v=<?php echo time(); ?>">
     <script src="../../js/admin.js"></script>
     <?php include '../../includes/head.php'; ?> 
-    
 
 </head>
 <body>

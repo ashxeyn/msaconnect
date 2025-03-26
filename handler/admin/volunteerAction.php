@@ -54,7 +54,7 @@ if ($action === 'edit') {
         'image' => !empty($_FILES['image']['name']) ? $_FILES['image']['name'] : null
     ];
 
-    if (!empty($_FILES['image']['name'])) {
+    if (!empty($_FILES['image']['name   '])) {
         $targetDir = "../../assets/cors/";
         $targetFile = $targetDir . basename($_FILES['image']['name']);
         move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
