@@ -27,6 +27,7 @@ $eventPhotos = $adminObj->fetchEventPhotos();
     <table id="table" class="table table-bordered table-striped">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Description</th>
                 <th>Photo</th>
                 <th>Uploaded By</th>
@@ -35,8 +36,10 @@ $eventPhotos = $adminObj->fetchEventPhotos();
         </thead>
         <tbody>
             <?php if ($eventPhotos): ?>
+                <?php $counter = 1; ?>
                 <?php foreach ($eventPhotos as $event): ?>
                     <tr>
+                        <td><?= $counter++ ?></td>
                         <td><?= clean_input($event['description']) ?></td>
                         <td>
                             <?php if (!empty($event['image'])): ?>

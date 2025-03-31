@@ -75,10 +75,13 @@ if ($officerId) {
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
                         <input type="file" class="form-control" id="image" name="image" accept="image/*">
-                        <?php if ($officer && !empty($officer['image'])): ?>
-                            <small class="text-muted">Current Image: <?= $officer['image'] ?></small>
-                        <?php endif; ?>
+                        <input type="hidden" id="existing_image" name="existing_image" value="<?= $officer ? $officer['image'] : '' ?>">
+
+                            <div id="image-preview" class="mt-2" <?= ($officer && !empty($officer['image'])) ? '' : 'style="display:none;"' ?>>
+                                <img id="preview-img" src="<?= $officer && !empty($officer['image']) ? '../../assets/officers/' . $officer['image'] : '' ?>" alt="Officer Image" class="img-thumbnail" width="150">
+                            </div>
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary" id="confirmSaveOfficer">

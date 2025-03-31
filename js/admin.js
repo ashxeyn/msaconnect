@@ -251,12 +251,12 @@ function processRegistration(volunteerId, action) {
 
 // OFFICER FUNCTIONS
 function openOfficerModal(modalId, officerId, action) {
-    $('.modal').modal('hide'); 
-    $('.modal-backdrop').remove(); 
+    $('.modal').modal('hide');
+    $('.modal-backdrop').remove();
     setTimeout(() => {
         const modal = $('#' + modalId);
         modal.attr('aria-hidden', 'false');
-        modal.modal('show'); 
+        modal.modal('show');
         setOfficerId(officerId, action);
     }, 300);
 }
@@ -276,6 +276,7 @@ function setOfficerId(officerId, action) {
                 $('#program').val(officer.program_id);
                 $('#position').val(officer.position_id);
                 $('#schoolYear').val(officer.school_year_id);
+                $('#existing_image').val(officer.image);
                 $('#modalTitle').text('Edit Officer');
                 $('#confirmSaveOfficer').text('Update Officer');
 
@@ -285,6 +286,17 @@ function setOfficerId(officerId, action) {
                 } else {
                     $('#image-preview').hide();
                 }
+
+                $('#image').off('change').on('change', function () {
+                    if (this.files.length > 0) {
+                        $('#image-preview').show();
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('#preview-img').attr('src', e.target.result);
+                        };
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
             },
             error: function() {
                 alert("An error occurred while fetching the officer data.");
@@ -292,7 +304,7 @@ function setOfficerId(officerId, action) {
         });
 
         $('#confirmSaveOfficer').off('click').on('click', function (e) {
-            e.preventDefault(); 
+            e.preventDefault();
             processOfficer(officerId, 'edit');
         });
     } else if (action === 'delete') {
@@ -301,8 +313,10 @@ function setOfficerId(officerId, action) {
         });
     } else if (action === 'add') {
         $('#officerForm')[0].reset();
+        $('#image-preview').hide();
         $('#modalTitle').text('Add Officer');
         $('#confirmSaveOfficer').text('Add Officer');
+
         $('#confirmSaveOfficer').off('click').on('click', function (e) {
             e.preventDefault();
             processOfficer(null, 'add');
@@ -328,9 +342,9 @@ function processOfficer(officerId, action) {
                 $(".modal").modal("hide");
                 $("body").removeClass("modal-open");
                 $(".modal-backdrop").remove();
-                loadOfficersSection()
+                loadOfficersSection();
             } else {
-                alert("Failed to process request: " + response);
+                console.log(response);
             }
         },
         error: function() {
@@ -339,14 +353,15 @@ function processOfficer(officerId, action) {
     });
 }
 
+
 // VOLUNTEER FUNCTIONS
 function openVolunteerModal(modalId, volunteerId, action) {
-    $('.modal').modal('hide'); 
+    $('.modal').modal('hide');
     $('.modal-backdrop').remove();
     setTimeout(() => {
         const modal = $('#' + modalId);
         modal.attr('aria-hidden', 'false');
-        modal.modal('show'); 
+        modal.modal('show');
         setVolunteerId(volunteerId, action);
     }, 300);
 }
@@ -358,29 +373,34 @@ function setVolunteerId(volunteerId, action) {
             type: "GET",
             data: { volunteer_id: volunteerId },
             success: function(response) {
-                try {
-                    const volunteer = JSON.parse(response);
-                    $('#volunteerId').val(volunteer.volunteer_id);
-                    $('#firstName').val(volunteer.first_name);
-                    $('#middleName').val(volunteer.middle_name);
-                    $('#surname').val(volunteer.last_name);
-                    $('#program').val(volunteer.program_id);
-                    $('#year').val(volunteer.year);
-                    $('#section').val(volunteer.section);
-                    $('#contact').val(volunteer.contact);
-                    $('#email').val(volunteer.email);
-                    $('#existing_image').val(volunteer.cor_file);
-                    if (volunteer.cor_file) {
-                        $('#image-preview').show();
-                        $('#preview-img').attr('src', `../../assets/cors/${volunteer.cor_file}`);
-                    } else {
-                        $('#image-preview').hide();
-                    }
-                    $('#addEditVolunteerModal').modal('show');
-                } catch (e) {
-                    console.error("Invalid JSON response:", response);
-                    alert("An error occurred while fetching the volunteer data.");
+                const volunteer = JSON.parse(response);
+                $('#volunteerId').val(volunteer.volunteer_id);
+                $('#firstName').val(volunteer.first_name);
+                $('#surname').val(volunteer.last_name);
+                $('#program').val(volunteer.program_id);
+                $('#contact').val(volunteer.contact);
+                $('#email').val(volunteer.email);
+                $('#existing_image').val(volunteer.cor_file);
+                $('#modalTitle').text('Edit Volunteer');
+                $('#confirmSaveVolunteer').text('Update Volunteer');
+
+                if (volunteer.cor_file) {
+                    $('#image-preview').show();
+                    $('#preview-img').attr('src', `../../assets/cors/${volunteer.cor_file}`);
+                } else {
+                    $('#image-preview').hide();
                 }
+
+                $('#image').off('change').on('change', function () {
+                    if (this.files.length > 0) {
+                        $('#image-preview').show();
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('#preview-img').attr('src', e.target.result);
+                        };
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
             },
             error: function() {
                 alert("An error occurred while fetching the volunteer data.");
@@ -388,19 +408,19 @@ function setVolunteerId(volunteerId, action) {
         });
 
         $('#confirmSaveVolunteer').off('click').on('click', function (e) {
-            e.preventDefault(); 
+            e.preventDefault();
             processVolunteer(volunteerId, 'edit');
         });
     } else if (action === 'delete') {
-        $('#volunteerIdToDelete').val(volunteerId);
-        $('#deleteVolunteerModal').modal('show');
         $('#confirmDeleteVolunteer').off('click').on('click', function () {
             processVolunteer(volunteerId, 'delete');
         });
     } else if (action === 'add') {
         $('#volunteerForm')[0].reset();
+        $('#image-preview').hide();
         $('#modalTitle').text('Add Volunteer');
         $('#confirmSaveVolunteer').text('Add Volunteer');
+
         $('#confirmSaveVolunteer').off('click').on('click', function (e) {
             e.preventDefault();
             processVolunteer(null, 'add');
@@ -428,7 +448,7 @@ function processVolunteer(volunteerId, action) {
                 $(".modal-backdrop").remove();
                 loadVolunteersSection();
             } else {
-                alert("Failed to process request: " + response);
+                console.log(response);
             }
         },
         error: function() {
