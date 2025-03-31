@@ -55,33 +55,40 @@ class Admin {
         }
     }
     
-        function updateOfficer($officerId, $surname, $firstName, $middleName, $positionId, $schoolYearId, $programId, $image = null) {
-            $sql = "UPDATE executive_officers 
-                    SET last_name = :last_name, 
-                        first_name = :first_name, 
-                        middle_name = :middle_name, 
-                        position_id = :position_id, 
-                        school_year_id = :school_year_id, 
-                        program_id = :program_id, 
-                        image = IF(:image IS NOT NULL AND :image != '', :image, image) 
-                    WHERE officer_id = :officer_id";
-        
-            $query = $this->db->connect()->prepare($sql);
-        
-            $query->bindParam(':last_name', $surname);
-            $query->bindParam(':first_name', $firstName);
-            $query->bindParam(':middle_name', $middleName);
-            $query->bindParam(':position_id', $positionId);
-            $query->bindParam(':school_year_id', $schoolYearId);
-            $query->bindParam(':program_id', $programId);
-            $query->bindParam(':image', $image);
-            $query->bindParam(':officer_id', $officerId);
-        
-            if (!$query->execute()) {
-                return "Failed to update officer.";
-            }
-            return true;
+    function updateOfficer($data) {
+        $existingImage = $data['existingImage'];
+        $newImage = $data['image']['name'] ?? null;
+    
+        if (!empty($newImage)) {
+            $imageToSave = $newImage;
+            move_uploaded_file($data['image']['tmp_name'], "../../assets/officers/" . $newImage);
+        } else {
+            $imageToSave = $existingImage;
         }
+    
+        $sql = "UPDATE executive_officers 
+                SET last_name = :last_name, 
+                    first_name = :first_name, 
+                    middle_name = :middle_name, 
+                    position_id = :position_id, 
+                    school_year_id = :school_year_id, 
+                    program_id = :program_id, 
+                    image = :image 
+                WHERE officer_id = :officer_id";
+    
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':last_name', $data['surname']);
+        $query->bindParam(':first_name', $data['firstName']);
+        $query->bindParam(':middle_name', $data['middleName']);
+        $query->bindParam(':position_id', $data['position']);
+        $query->bindParam(':school_year_id', $data['schoolYear']);
+        $query->bindParam(':program_id', $data['program']);
+        $query->bindParam(':image', $imageToSave);
+        $query->bindParam(':officer_id', $data['officerId']);
+    
+        return $query->execute();
+    }
+    
         
 
     function deleteOfficer($officerId) {
@@ -563,7 +570,64 @@ class Admin {
     
         return $query->execute();
     }
-    
+
+    // Events Functions
+    function fetchEventPhotos() {
+        $sql = "SELECT e.event_id, e.image, e.description, e.created_at, 
+                    u.username AS uploaded_by 
+                FROM events e
+                LEFT JOIN users u ON e.uploaded_by = u.user_id
+                ORDER BY e.event_id DESC";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    function getEventById($eventId) {
+        $sql = "SELECT e.event_id, e.image, e.description, e.created_at, 
+                    u.username AS uploaded_by 
+                FROM events e
+                LEFT JOIN users u ON e.uploaded_by = u.user_id
+                WHERE e.event_id = :event_id";
+
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':event_id', $eventId);
+        $query->execute();
+        return $query->fetch();
+    }
+
+    function addEvent($description, $image, $userId) {
+        $sql = "INSERT INTO events (description, image, uploaded_by) 
+                VALUES (:description, :image, :uploaded_by)";
+
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':description', $description);
+        $query->bindParam(':image', $image);
+        $query->bindParam(':uploaded_by', $userId);
+        return $query->execute();
+    }
+
+    function updateEvent($eventId, $description, $image) {
+        $sql = "UPDATE events 
+                SET description = :description, image = :image 
+                WHERE event_id = :event_id";
+
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':description', $description);
+        $query->bindParam(':image', $image);
+        $query->bindParam(':event_id', $eventId);
+        return $query->execute();
+    }
+
+    function deleteEvent($eventId) {
+        $sql = "DELETE FROM events WHERE event_id = :event_id";
+
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':event_id', $eventId);
+        return $query->execute();
+    }
+
     // Others
     function fetchSy(){
         $sql = "SELECT * FROM school_years ORDER BY school_year_id ASC;";

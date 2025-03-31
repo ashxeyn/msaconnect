@@ -22,7 +22,7 @@ $faqs = $adminObj->fetchFaqs();
 <div class="container mt-4">    
     <h2 class="mb-4">FAQs Management</h2>
 
-    <button class="btn btn-success mb-3 onclick=" onclick="openFaqModal('addEditFaqModal', null, 'add')">Add Faq</button>
+    <button class="btn btn-success mb-3 onclick=" onclick="openFaqModal('addEditFaqModal', null, 'add')">Add FAQ</button>
     
     <div class="table-responsive">
         <table id="table" class="table table-bordered table-striped">

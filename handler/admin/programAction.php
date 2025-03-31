@@ -9,7 +9,7 @@ $programId = $_POST['program_id'] ?? null;
 
 if ($action === 'edit') {
     $programName = clean_input($_POST['programName']);
-    $collegeId = clean_input($_POST['collegeSelect']); // Get college ID from form
+    $collegeId = clean_input($_POST['collegeSelect']); 
 
     $result = $adminObj->updateProgram($programId, $programName, $collegeId);
     echo $result ? "success" : "error";
@@ -18,7 +18,7 @@ if ($action === 'edit') {
     echo $result ? "success" : "error";
 } elseif ($action === 'add') {
     $programName = clean_input($_POST['programName']);
-    $collegeId = clean_input($_POST['collegeSelect']); // Get college ID from form
+    $collegeId = clean_input($_POST['collegeSelect']); 
 
     $result = $adminObj->addProgram($programName, $collegeId);
     echo $result ? "success" : "error";

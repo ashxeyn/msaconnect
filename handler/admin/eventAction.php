@@ -5,24 +5,33 @@ require_once '../../tools/function.php';
 
 $adminObj = new Admin();
 
-$action = $_POST['action'] ?? '';
-$eventId = $_POST['event_id'] ?? null;
-
 if (!isset($_SESSION['user_id'])) {
-    echo 'error: unauthorized';
+    echo "error: unauthorized";
     exit;
 }
 
 $userId = $_SESSION['user_id'];
+$action = $_POST['action'] ?? '';
+$eventId = $_POST['event_id'] ?? null;
 
 if ($action === 'edit') {
     $description = clean_input($_POST['description']);
-    $image = !empty($_FILES['image']['name']) ? $_FILES['image']['name'] : null;
+    $image = null;
+
+    $existingEvent = $adminObj->getEventById($eventId);
+    if (!$existingEvent) {
+        echo "error: event_not_found";
+        exit;
+    }
 
     if (!empty($_FILES['image']['name'])) {
         $targetDir = "../../assets/events/";
-        $targetFile = $targetDir . basename($_FILES['image']['name']);
+        $image = basename($_FILES['image']['name']);
+        $targetFile = $targetDir . $image;
+
         move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
+    } else {
+        $image = $existingEvent['image']; // Retain old image if none uploaded
     }
 
     $result = $adminObj->updateEvent($eventId, $description, $image);
@@ -34,11 +43,12 @@ if ($action === 'edit') {
 
 } elseif ($action === 'add') {
     $description = clean_input($_POST['description']);
-    $image = !empty($_FILES['image']['name']) ? $_FILES['image']['name'] : null;
+    $image = null;
 
     if (!empty($_FILES['image']['name'])) {
         $targetDir = "../../assets/events/";
-        $targetFile = $targetDir . basename($_FILES['image']['name']);
+        $image = basename($_FILES['image']['name']);
+        $targetFile = $targetDir . $image;
         move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
     }
 

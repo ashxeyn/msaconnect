@@ -796,6 +796,93 @@ function processFaq(faqId, action) {
     });
 }
 
+// EVENT FUNCTIONS    
+function openEventModal(modalId, eventId, action) {
+    $('.modal').modal('hide'); 
+    $('.modal-backdrop').remove(); 
+    setTimeout(() => {
+        const modal = $('#' + modalId);
+        modal.attr('aria-hidden', 'false');
+        modal.modal('show'); 
+        setEventData(eventId, action);
+    }, 300);
+}
+
+function setEventData(eventId, action) {
+    if (action === 'edit') {
+        $.ajax({
+            url: "../../handler/admin/getEvent.php",
+            type: "GET",
+            data: { event_id: eventId },
+            success: function(response) {
+                const event = JSON.parse(response);
+                $('#eventId').val(event.event_id);
+                $('#description').val(event.description);
+                $('#eventModalTitle').text('Edit Event');
+                $('#confirmSaveEvent').text('Update Event');
+
+                if (event.image) {
+                    $('#image-preview').show();
+                    $('#preview-img').attr('src', `../../assets/events/${event.image}`);
+                } else {
+                    $('#image-preview').hide();
+                }
+            },
+            error: function() {
+                alert("An error occurred while fetching event data.");
+            }
+        });
+
+        $('#confirmSaveEvent').off('click').on('click', function (e) {
+            e.preventDefault(); 
+            processEvent(eventId, 'edit');
+        });
+
+    } else if (action === 'delete') {
+        $('#confirmDeleteEvent').off('click').on('click', function () {
+            processEvent(eventId, 'delete');
+        });
+
+    } else if (action === 'add') {
+        $('#eventForm')[0].reset();
+        $('#eventModalTitle').text('Add Event');
+        $('#confirmSaveEvent').text('Add Event');
+        $('#confirmSaveEvent').off('click').on('click', function (e) {
+            e.preventDefault();
+            processEvent(null, 'add');
+        });
+    }
+}
+
+function processEvent(eventId, action) {
+    let formData = new FormData(document.getElementById('eventForm'));
+    if (eventId) {
+        formData.append('event_id', eventId);
+    }
+    formData.append('action', action);
+
+    $.ajax({
+        url: "../../handler/admin/eventAction.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            if (response.trim() === "success") {
+                $(".modal").modal("hide");
+                $("body").removeClass("modal-open");
+                $(".modal-backdrop").remove();
+                loadEventsSection(); 
+            } else {
+                console.log(response);
+            }
+        },
+        error: function() {
+            alert("An error occurred while processing the request.");
+        }
+    });
+}
+
 $(document).on('hidden.bs.modal', function () {
     if ($('.modal.show').length === 0) { 
         $('body').removeClass('modal-open'); 
