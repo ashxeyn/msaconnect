@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 
 body {
   font-family: Arial, sans-serif;
@@ -6,29 +9,9 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    #000000,
-    /* Black */ #d72828,
-    /* Red */ #009639,
-    /* Green */ #ffffff /* White */
-  );
-  background-size: 400% 400%;
-  animation: gradientAnimation 10s ease infinite;
-  color: #333;
+  background-color: #ffffff; /* 60% WHITE (Dominant) */
+  color: #000000; /* 30% BLACK (Text) */
   overflow-x: hidden;
-}
-
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 /* Wrapper for Content and Footer */
@@ -37,7 +20,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow-x: hidden; /* Prevent horizontal overflow */
+  overflow-x: hidden;
 }
 
 /* Content Wrapper */
@@ -53,10 +36,10 @@ body {
 /* Footer */
 footer {
   margin-top: auto;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  background-color: #000000; /* 30% BLACK */
+  color: #ffffff;
   text-align: center;
-  padding: 10px 0;
+  padding: 15px 0;
   width: 100%;
   box-sizing: border-box;
 }
@@ -66,18 +49,18 @@ footer {
   width: 90%;
   max-width: 800px;
   margin: 20px auto;
-  padding: 20px;
-  background-color: rgba(215, 47, 47, 0.8);
+  padding: 30px;
+  background-color: #1a541c; /* 10% DARK GREEN */
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  color: #fff;
+  color: #ffffff;
   box-sizing: border-box;
 }
 
 .hero h2 {
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .hero p {
@@ -90,24 +73,28 @@ footer {
 .vision-section {
   width: 90%;
   max-width: 800px;
-  margin: 20px auto;
+  margin: 30px auto;
+  padding: 25px;
   text-align: center;
-  color: #fff;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #000000;
   box-sizing: border-box;
+  border: 1px solid #e0e0e0;
 }
 
 .mission-section h3,
 .vision-section h3 {
   font-size: 20px;
-  margin-bottom: 10px;
-  font-weight: bold;
+  margin-bottom: 15px;
+  color: #1a541c; /* 10% DARK GREEN */
 }
 
 .mission-section p,
 .vision-section p {
   font-size: 16px;
   line-height: 1.6;
-  font-weight: bold;
 }
 
 /* Executive Officers Section */
@@ -116,33 +103,34 @@ footer {
   max-width: 1000px;
   margin: 40px auto;
   text-align: center;
-  color: #fff;
   box-sizing: border-box;
 }
 
 .officers-section h3 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  color: #1a541c; /* 10% DARK GREEN */
 }
 
 /* Officers Grid */
 .officers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  gap: 25px;
   padding: 0 10px;
   box-sizing: border-box;
 }
 
 /* Individual Officer Styling */
 .officer {
-  background-color: rgba(249, 249, 249, 0.9);
+  background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 15px;
+  padding: 20px;
   text-align: center;
-  color: #000;
+  color: #000000;
   box-sizing: border-box;
+  border: 1px solid #e0e0e0;
 }
 
 .officer img {
@@ -150,18 +138,20 @@ footer {
   height: 100px;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  border: 3px solid #1a541c; /* 10% DARK GREEN */
 }
 
 .officer .name {
   font-size: 16px;
   font-weight: bold;
-  margin: 5px 0;
+  margin: 10px 0 5px;
+  color: #1a541c; /* 10% DARK GREEN */
 }
 
 .officer .position {
   font-size: 14px;
-  color: #555;
+  color: #666666;
 }
 
 /* Media Queries for Responsiveness */
@@ -171,7 +161,7 @@ footer {
   .vision-section,
   .officers-section {
     width: 95%;
-    padding: 15px;
+    padding: 20px;
   }
 
   .hero h2 {
@@ -185,21 +175,13 @@ footer {
   }
 
   .officers-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
   }
 
   .officer img {
     width: 80px;
     height: 80px;
-  }
-
-  .officer .name {
-    font-size: 14px;
-  }
-
-  .officer .position {
-    font-size: 12px;
   }
 }
 
@@ -208,35 +190,16 @@ footer {
   .mission-section,
   .vision-section,
   .officers-section {
-    width: 100%; /* Full width on very small screens */
-    padding: 10px; /* Reduce padding further */
+    width: 100%;
+    padding: 15px;
   }
 
-  .hero h2 {
-    font-size: 18px;
-  }
-
-  .hero p,
-  .mission-section p,
-  .vision-section p {
-    font-size: 12px;
+  .hero {
+    margin: 10px auto;
   }
 
   .officers-grid {
-    grid-template-columns: 1fr; /* Stack officer cards vertically */
-    gap: 10px;
-  }
-
-  .officer img {
-    width: 70px;
-    height: 70px;
-  }
-
-  .officer .name {
-    font-size: 12px;
-  }
-
-  .officer .position {
-    font-size: 10px;
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
 }
