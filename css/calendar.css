@@ -1,8 +1,8 @@
 /* General Styles */
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #ffffff; /* 60% WHITE (Dominant) */
-  color: #000000; /* 30% BLACK (Text) */
+  background-color: #ffffff; /* Background remains white */
+  color: #000000; /* Text remains black */
   margin: 0;
   padding: 0;
   display: flex;
@@ -18,7 +18,8 @@ body {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   margin: 20px auto;
   padding: 30px;
-  max-width: 800px;
+  width: 90%;
+  max-width: 3000px;
   text-align: center;
   color: #ffffff;
 }
@@ -38,7 +39,7 @@ body {
 /* Calendar Container */
 .calendar-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px; /* Increase max width */
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
@@ -48,30 +49,31 @@ body {
 /* Calendar Grid */
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
-  padding: 10px;
+  grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
+  gap: 10px; /* Increase gap for better spacing */
+  padding: 20px; /* Add more padding */
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
-  background-color: #000000;
+  background-color: #ffffff; /* Change to white */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .calendar-grid .col {
-  padding: 8px;
+  padding: 16px; /* Increase padding for larger cells */
   text-align: center;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 16px; /* Increase font size */
   font-weight: 500;
   transition: all 0.2s ease;
-  min-height: 80px;
+  min-height: 100px; /* Increase height for larger cells */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: #000000;
+  background-color: #ffffff; /* Change to white */
+  color: #000000; /* Text color black */
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -79,16 +81,16 @@ body {
   visibility: hidden;
 }
 .calendar-grid .col:hover {
-
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 /* Date Text */
 .date-text {
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 3px;
-  color: #ffffff;
+  color: #000000; /* Text color black */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -100,7 +102,7 @@ body {
   font-size: 10px;
   padding: 2px 4px;
   border-radius: 4px;
-  background-color: #1a541c; /* 10% DARK GREEN */
+  background-color: #1a541c; /* Keep dark green for badges */
   color: white;
   word-wrap: break-word;
   white-space: normal;
@@ -123,24 +125,32 @@ body {
   font-weight: 600;
 }
 
+/* Calendar Navigation */
 .calendar-navigation {
   display: flex;
-  gap: 10px;
+  justify-content: space-between; /* Ensure buttons stay on opposite sides */
+  align-items: center;
+  gap: 10px; /* Add spacing between elements */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 .calendar-navigation .btn {
-  padding: 8px 16px;
-  background-color: #1a541c; /* 10% DARK GREEN */
+  padding: 8px 16px; /* Maintain consistent padding */
+  background-color: #1a541c; /* Dark green */
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s;
+  min-width: 120px; /* Set a minimum width for consistency */
+  text-align: center;
+  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .calendar-navigation .btn:hover {
-  background-color: #134015; /* Darker green */
+  background-color: #134015; /* Darker green on hover */
 }
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .calendar-grid .col {
@@ -154,6 +164,21 @@ body {
 
   .calendar-title {
     font-size: 20px;
+  }
+
+  .calendar-navigation {
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    gap: 10px; /* Add spacing between buttons */
+  }
+
+  .calendar-navigation .btn {
+    width: 100%; /* Make buttons take full width */
+    max-width: 200px; /* Optional: Limit button width */
+  }
+
+  .calendar-navigation .btn {
+    width: auto; /* Allow buttons to adjust slightly on smaller screens */
+    min-width: 100px; /* Ensure a smaller minimum width for mobile */
   }
 }
 

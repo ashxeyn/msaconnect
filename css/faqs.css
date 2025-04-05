@@ -24,7 +24,7 @@ body {
 /* Hero Section */
 .hero {
   width: 90%;
-  max-width: 600px;
+  max-width: 3000px;
   margin: 20px auto;
   padding: 20px;
   background-color: #1a541c; /* Changed to dark green (10% accent) */
@@ -55,11 +55,12 @@ body {
 
 /* FAQs Content */
 .faqs-content {
-  width: 90%;
-  max-width: 800px;
-  margin: 20px auto;
-  text-align: left;
-  padding: 0 10px;
+  width: 100%; /* Stretch FAQs content to full width */
+  max-width: 100%; /* Remove max-width restriction */
+  margin: 0; /* Remove margin to eliminate white spaces */
+  padding: 20px; /* Add padding for spacing */
+  background-color: #ffffff; /* Set background to white */
+  box-sizing: border-box;
 }
 
 .faqs-content h3 {

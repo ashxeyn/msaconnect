@@ -117,6 +117,7 @@
                     <td>Balancing Work and Worship</td>
                     <td>Main Prayer Hall</td>
                 </tr>
+                
             </tbody>
         </table>
     </div>

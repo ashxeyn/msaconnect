@@ -32,7 +32,7 @@
 
     <!-- Calendar Section -->
     <div class="calendar-container container my-5">
-        <div class="bg-dark text-white p-4 rounded shadow">
+        <div class="bg-white text-white p-4 rounded shadow">
             <!-- Navigation Controls -->
             <div class="calendar-navigation d-flex justify-content-between align-items-center mb-4">
                 <button id="prev-month" class="btn btn-light">← Previous Month</button>

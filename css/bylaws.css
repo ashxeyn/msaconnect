@@ -13,8 +13,8 @@ body {
 
 /* Hero Section */
 .hero {
-  width: 100%;
-  max-width: 600px;
+  width: 90%;
+  max-width: 3000px;
   margin: 20px auto;
   padding: 30px;
   background-color: #1a541c; /* 10% DARK GREEN (Accent) */
@@ -36,8 +36,8 @@ body {
 
 /* Bylaws Content */
 .bylaws-content {
-  width: 100%;
-  max-width: 600px;
+  width: 90%;
+  max-width: 3000px;
   margin: 20px auto;
   text-align: center;
   background-color: #ffffff; /* 60% WHITE */

@@ -22,8 +22,7 @@
   <div class="mission-section">
     <h3>Our Mission</h3>
     <p>
-      Our mission is to empower individuals to contribute their time and skills to meaningful causes, 
-      fostering a sense of community and making a lasting impact.
+    Our mission is to empower individuals to contribute their time, skills, and passion to meaningful causes that promote positive change. By fostering a strong sense of community and connection, we aim to create lasting impact. Our goal is to inspire people to get involved, make a difference, and build stronger, more resilient communities that can thrive for generations to come.
     </p>
   </div>
 
@@ -31,8 +30,7 @@
   <div class="vision-section">
     <h3>Our Vision</h3>
     <p>
-      We envision a world where everyone is inspired to volunteer, creating a ripple effect of kindness and 
-      support that transforms communities and improves lives.
+    We envision a world where everyone is inspired to volunteer, sparking a ripple effect of kindness, empathy, and support that reaches far beyond individual actions. By encouraging people to give their time and talents, we aim to create a collective movement that strengthens communities, fosters meaningful relationships, and transforms lives. Volunteers can be the catalysts for positive change, uplifting those in need and making a lasting impact on society. Through collaboration and dedication, we believe that together we can create a world where compassion and generosity are at the heart of everything we do, building a brighter future for all.
     </p>
   </div>
 

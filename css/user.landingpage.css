@@ -171,124 +171,42 @@ html, body {
 /* Prayer Schedule Section */
 .prayer-schedule {
   text-align: center;
-  padding: 20px;
-  background-color: #e6dfdf;
+  padding: 40px 0; /* Adjust padding for better spacing */
+    width: 100%; /* Stretch background to full width */
+  box-sizing: border-box;
 }
 
 .table-container {
-  display: inline-block;
-  margin: 0 auto;
-  width: 80%;
-  max-width: 1000px;
-  overflow-x: auto; /* Allow horizontal scrolling for small screens */
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 16px;
-  text-align: left;
-}
-
-th, td {
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-}
-
-th {
-  background-color: #f4f4f4;
-  font-weight: bold;
-}
-
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* Volunteer Section */
-.volunteer {
-  text-align: center;
-  padding: 40px 20px;
-  background-color: #e6dfdf;
-}
-
-.volunteer-content {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.volunteer h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.volunteer p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.volunteer .cta-button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 1rem;
-  color: #fff;
-  background-color: #d72f2f;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.volunteer .cta-button:hover {
-  background-color: #1ea82c;
-}
-.prayer-schedule {
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.prayer-schedule h2 {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: #1a541c;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-.table-container {
-  width: 90%;
-  max-width: 1000px;
-  margin: 0 auto;
-  overflow-x: auto;
+  width: 100%; /* Stretch table container to full width */
+  max-width: 1400px; /* Increase max width for larger screens */
+  margin: 0 auto; /* Center the table container */
+  overflow-x: auto; /* Allow horizontal scrolling on small screens */
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
 }
 
 .prayer-schedule table {
-  width: 100%;
+  width: 100%; /* Stretch table to fill the container */
   border-collapse: collapse;
-  font-size: 0.95rem;
+  font-size: 1rem; /* Slightly increase font size for better readability */
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
 }
 
+.prayer-schedule th, .prayer-schedule td {
+  padding: 15px 20px; /* Increase padding for better spacing */
+  text-align: center; /* Center-align text */
+}
+
 .prayer-schedule th {
-  padding: 15px 12px;
-  background-color: #1a541c;
+  background-color: #1a541c; /* Dark green for header */
   color: #ffffff;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border: none;
 }
 
 .prayer-schedule td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #e0e0e0;
   color: #333333;
 }
 
@@ -300,7 +218,47 @@ tr:hover {
   background-color: #f1f1f1;
 }
 
+/* Volunteer Section */
+.volunteer {
+  text-align: center;
+  padding: 40px 0; /* Adjust padding for better spacing */
+  background-color: #ffffff; /* Set background to white */
+  width: 100%; /* Stretch background to full width */
+  box-sizing: border-box;
+}
 
+.volunteer-content {
+  max-width: 1200px; /* Limit content width */
+  margin: 0 auto; /* Center the content */
+}
+
+.volunteer h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #1a541c; /* Dark green for the heading */
+}
+
+.volunteer p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #333333; /* Slightly darker text for readability */
+}
+
+.volunteer .cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #1a541c; /* Dark green for the button */
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.volunteer .cta-button:hover {
+  background-color: #134015; /* Darker green on hover */
+}
 
 /* Media Queries for Responsiveness */
 @media (max-width: 1024px) {

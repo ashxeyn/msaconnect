@@ -33,21 +33,12 @@ body {
   box-sizing: border-box;
 }
 
-/* Footer */
-footer {
-  margin-top: auto;
-  background-color: #000000; /* 30% BLACK */
-  color: #ffffff;
-  text-align: center;
-  padding: 15px 0;
-  width: 100%;
-  box-sizing: border-box;
-}
+
 
 /* Hero Section */
 .hero {
   width: 90%;
-  max-width: 800px;
+  max-width: 3000px;
   margin: 20px auto;
   padding: 30px;
   background-color: #1a541c; /* 10% DARK GREEN */
@@ -72,7 +63,7 @@ footer {
 .mission-section,
 .vision-section {
   width: 90%;
-  max-width: 800px;
+  max-width: 3000px;
   margin: 30px auto;
   padding: 25px;
   text-align: center;
