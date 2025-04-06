@@ -16,7 +16,6 @@ $result = $adminObj->fetchOfficers();
     <link rel="stylesheet" href="../../css/adminofficers.css?v=<?php echo time(); ?>">
     <script src="../../js/admin.js"></script>
     <?php include '../../includes/head.php'; ?> 
-
 </head>
 <body>
     <div>
@@ -24,7 +23,7 @@ $result = $adminObj->fetchOfficers();
         <button class="btn btn-success mb-3" onclick="openOfficerModal('addEditOfficerModal', null, 'add')">Add Officer</button>
 
         <table id="table" class="table table-bordered table-striped">
-        <thead>
+            <thead>
                 <tr>
                     <th>ID</th>
                     <th>Full Name</th>
@@ -71,9 +70,6 @@ $result = $adminObj->fetchOfficers();
 
     <?php include '../adminModals/deleteOfficer.html'; 
         include '../adminModals/addEditOfficer.php'; ?>
-
-
-
 
 </body>
 </html>
