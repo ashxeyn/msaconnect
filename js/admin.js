@@ -189,6 +189,20 @@ function loadRegistrationsSection() {
     });
 }
 
+function loadPrayerSchedSection() {
+    $.ajax({
+        url: "../admin/prayer.php",
+        method: 'GET',
+        success: function (response) {
+            $('#contentArea').html(response);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error loading prayer schedule section:', error);
+            $('#contentArea').html('<p class="text-danger">Failed to load Prayer Schedule section. Please try again.</p>');
+        }
+    });
+}
+
 // REGISTRATION FUNCTIONS
 function viewPhoto(photoName, folder) {
     $('.modal').modal('hide'); 
@@ -898,6 +912,178 @@ function processEvent(eventId, action) {
             }
         },
         error: function() {
+            alert("An error occurred while processing the request.");
+        }
+    });
+}
+
+// CALENDAR FUNCTIONS
+function openCalendarModal(modalId, activityId, action) {
+    $('.modal').modal('hide');
+    $('.modal-backdrop').remove();
+
+    setTimeout(() => {
+        const modal = $('#' + modalId);
+        modal.attr('aria-hidden', 'false');
+        modal.modal('show');
+        setCalendarId(modalId, activityId, action);
+    }, 300);
+}
+
+function setCalendarId(modalId, activityId, action) {
+    if (action === 'edit' && activityId) {
+        $.ajax({
+            url: "../../handler/admin/getCalendarEvents.php",
+            type: "GET",
+            data: { activity_id: activityId },
+            success: function(response) {
+                try {
+                    const activity = JSON.parse(response);
+                    $('#activityId').val(activity.activity_id);
+                    $('#activityDate').val(activity.activity_date);
+                    $('#title').val(activity.title);
+                    $('#description').val(activity.description);
+                    $('#calendarModalTitle').text('Edit Activity');
+                    $('#confirmSaveActivity').text('Update Activity');
+
+                    $('#confirmSaveActivity').off('click').on('click', function(e) {
+                        e.preventDefault();
+                        processCalendar(activity.activity_id, 'edit');
+                    });
+                } catch (e) {
+                    console.error("JSON Parse Error:", response);
+                    alert("Failed to fetch event data.");
+                }
+            },
+            error: function() {
+                alert("An error occurred while fetching event.");
+            }
+        });
+
+    } else if (action === 'delete' && activityId) {
+        $('#activityIdToDelete').val(activityId);
+        $('#confirmDeleteActivity').off('click').on('click', function () {
+            processCalendar(activityId, 'delete');
+        });
+
+    } else if (action === 'add') {
+        $('#calendarForm')[0].reset();
+        $('#activityId').val('');
+        $('#calendarModalTitle').text('Add Activity');
+        $('#confirmSaveActivity').text('Add Activity');
+
+        $('#confirmSaveActivity').off('click').on('click', function(e) {
+            e.preventDefault();
+            processCalendar(null, 'add');
+        });
+    }
+}
+
+function processCalendar(activityId, action) {
+    let formData = new FormData(document.getElementById('calendarForm'));
+    formData.append('action', action);
+    if (activityId) {
+        formData.append('activity_id', activityId);
+    }
+
+    $.ajax({
+        url: "../../handler/admin/calendarAction.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            if (response.trim() === "success") {
+                $(".modal").modal("hide");
+                $("body").removeClass("modal-open");
+                $(".modal-backdrop").remove();
+                loadCalendarSection();
+            } else {
+                alert("Request failed: " + response);
+            }
+        },
+        error: function() {
+            alert("An error occurred.");
+        }
+    });
+}
+
+// PRAYER FUNCTIONS
+function openPrayerModal(modalId, prayerId, action) {
+    $('.modal').modal('hide');
+    $('.modal-backdrop').remove();
+    setTimeout(() => {
+        const modal = $('#' + modalId);
+        modal.attr('aria-hidden', 'false');
+        modal.modal('show');
+        setPrayerId(prayerId, action);
+    }, 300);
+}
+
+function setPrayerId(prayerId, action) {
+    if (action === 'edit' && prayerId) {
+        $.ajax({
+            url: "../../handler/admin/getprayerSched.php",
+            type: "GET",
+            data: { prayer_id: prayerId },
+            success: function(response) {
+                const data = JSON.parse(response);
+                $('#prayerId').val(data.prayer_id);
+                $('#khutbahDate').val(data.khutbah_date);
+                $('#speaker').val(data.speaker);
+                $('#topic').val(data.topic);
+                $('#location').val(data.location);
+                $('#prayerModalTitle').text('Edit Schedule');
+                $('#confirmSavePrayer').text('Update Schedule');
+            }
+        });
+
+        $('#confirmSavePrayer').off('click').on('click', function (e) {
+            e.preventDefault();
+            processPrayer(prayerId, 'edit');
+        });
+
+    } else if (action === 'add') {
+        $('#prayerForm')[0].reset();
+        $('#prayerId').val('');
+        $('#prayerModalTitle').text('Add Schedule');
+        $('#confirmSavePrayer').text('Add Schedule');
+        $('#confirmSavePrayer').off('click').on('click', function (e) {
+            e.preventDefault();
+            processPrayer(null, 'add');
+        });
+    } else if (action === 'delete') {
+        $('#prayerIdToDelete').val(prayerId);
+        $('#confirmDeletePrayer').off('click').on('click', function () {
+            processPrayer(prayerId, 'delete');
+        });
+    }
+}
+
+function processPrayer(prayerId, action) {
+    let formData = new FormData(document.getElementById('prayerForm'));
+    if (prayerId) {
+        formData.append('prayer_id', prayerId);
+    }
+    formData.append('action', action);
+
+    $.ajax({
+        url: "../../handler/admin/prayerAction.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response.trim() === "success") {
+                $(".modal").modal("hide");
+                $("body").removeClass("modal-open");
+                $(".modal-backdrop").remove();
+                loadPrayerSchedSection();
+            } else {
+                alert("Failed: " + response);
+            }
+        },
+        error: function () {
             alert("An error occurred while processing the request.");
         }
     });

@@ -31,7 +31,7 @@ if ($action === 'edit') {
 
         move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
     } else {
-        $image = $existingEvent['image']; // Retain old image if none uploaded
+        $image = $existingEvent['image']; 
     }
 
     $result = $adminObj->updateEvent($eventId, $description, $image);

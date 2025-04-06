@@ -628,6 +628,105 @@ class Admin {
         return $query->execute();
     }
 
+    // Calendar Functions
+    function fetchCalendarEvents() {
+        $sql = "SELECT ca.*, u.username FROM calendar_activities ca 
+                LEFT JOIN users u ON ca.created_by = u.user_id 
+                ORDER BY ca.activity_date DESC";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+    
+    function getCalendarEventById($eventId) {
+        $sql = "SELECT * FROM calendar_activities WHERE activity_id = :activity_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':activity_id', $eventId);
+        $query->execute();
+        return $query->fetch();
+    }
+    
+    function addCalendarEvent($eventDate, $title, $description, $userId) {
+        $sql = "INSERT INTO calendar_activities (activity_date, title, description, created_by) 
+                VALUES (:activity_date, :title, :description, :created_by)";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':activity_date', $eventDate);
+        $query->bindParam(':title', $title);
+        $query->bindParam(':description', $description);
+        $query->bindParam(':created_by', $userId);
+        return $query->execute();
+    }
+    
+    function updateCalendarEvent($eventId, $eventDate, $title, $description) {
+        $sql = "UPDATE calendar_activities 
+                SET activity_date = :activity_date, 
+                    title = :title, 
+                    description = :description 
+                WHERE activity_id = :activity_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':activity_date', $eventDate);
+        $query->bindParam(':title', $title);
+        $query->bindParam(':description', $description);
+        $query->bindParam(':activity_id', $eventId);
+        return $query->execute();
+    }
+    
+    function deleteCalendarEvent($eventId) {
+        $sql = "DELETE FROM calendar_activities WHERE activity_id = :activity_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':activity_id', $eventId);
+        return $query->execute();
+    }
+    
+    // Prayer Schedule Functions
+    function fetchFridayPrayers() {
+        $sql = "SELECT fp.*, u.username 
+                FROM friday_prayers fp 
+                LEFT JOIN users u ON u.user_id = fp.created_by 
+                ORDER BY fp.khutbah_date DESC";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+    
+    function getPrayerScheduleById($prayerId) {
+        $sql = "SELECT * FROM friday_prayers WHERE prayer_id = :prayer_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':prayer_id', $prayerId);
+        $query->execute();
+        return $query->fetch();
+    }
+    
+    function addPrayerSchedule($date, $speaker, $topic, $location, $created_by) {
+        $sql = "INSERT INTO friday_prayers (khutbah_date, speaker, topic, location, created_by) 
+                VALUES (:khutbah_date, :speaker, :topic, :location, :created_by)";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':khutbah_date', $date);
+        $query->bindParam(':speaker', $speaker);
+        $query->bindParam(':topic', $topic);
+        $query->bindParam(':location', $location);
+        $query->bindParam(':created_by', $created_by);
+        return $query->execute();
+    }
+    
+    function updatePrayerSchedule($prayerId, $date, $speaker, $topic, $location) {
+        $sql = "UPDATE friday_prayers SET khutbah_date = :khutbah_date, speaker = :speaker, topic = :topic, location = :location WHERE prayer_id = :prayer_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':khutbah_date', $date);
+        $query->bindParam(':speaker', $speaker);
+        $query->bindParam(':topic', $topic);
+        $query->bindParam(':location', $location);
+        $query->bindParam(':prayer_id', $prayerId);
+        return $query->execute();
+    }
+    
+    function deletePrayerSchedule($prayerId) {
+        $sql = "DELETE FROM friday_prayers WHERE prayer_id = :prayer_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':prayer_id', $prayerId);
+        return $query->execute();
+    }
+    
     // Others
     function fetchSy(){
         $sql = "SELECT * FROM school_years ORDER BY school_year_id ASC;";
