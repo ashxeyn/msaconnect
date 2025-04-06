@@ -9,12 +9,14 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #e6dfdf;
+  background-color: #ffffff; /* 60% WHITE (Dominant) */
+  color: #000000; /* 30% BLACK (Text) */
 }
 
 .content {
   flex: 1;
   padding: 20px;
+  background-color: #ffffff; /* 60% WHITE */
 }
 
 .hero {
@@ -50,7 +52,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #1a9626;
+  background-color: #1a541c; /* 10% DARK GREEN (Accent) */
   opacity: 0.6;
   z-index: 2;
 }
@@ -60,7 +62,7 @@ body {
   z-index: 3;
   max-width: 800px;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7); /* 30% BLACK (Contrast) */
   border-radius: 10px;
 }
 
@@ -70,7 +72,7 @@ body {
 }
 
 .volunteer-button {
-  background-color: #d72f2f;
+  background-color: #1a541c; /* 10% DARK GREEN (Accent) */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -81,7 +83,7 @@ body {
 }
 
 .volunteer-button:hover {
-  background-color: #1ea82c;
+  background-color: #134015; /* Darker green */
 }
 
 .volunteer-section {
@@ -89,11 +91,13 @@ body {
   max-width: 1200px;
   margin: 40px auto;
   text-align: center;
+  padding: 10px; /* Reduced from default (e.g., 20px) to minimize white space */
 }
 
 .volunteer-section h3 {
   font-size: 24px;
   margin-bottom: 20px;
+  color: #000000; /* 30% BLACK */
 }
 
 .volunteer-grid {
@@ -103,20 +107,22 @@ body {
 }
 
 .volunteer {
-  background-color: #f9f9f9;
+  background-color: #ffffff; /* 60% WHITE */
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 30% BLACK (Subtle shadow) */
   padding: 15px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #e0e0e0; /* Light gray border */
 }
 
 .volunteer .name {
   font-size: 18px;
   font-weight: bold;
   margin: 0;
+  color: #000000; /* 30% BLACK */
 }
 
 @media (max-width: 768px) {

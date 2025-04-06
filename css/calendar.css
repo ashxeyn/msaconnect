@@ -1,42 +1,31 @@
 /* General Styles */
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, 
-    #000000, /* Black */
-    #D72828, /* Red */
-    #009639, /* Green */
-    #FFFFFF  /* White */
-  );
-  background-size: 400% 400%;
-  animation: gradientAnimation 10s ease infinite;
-  color: #ffffff;
+  background-color: #ffffff; /* Background remains white */
+  color: #000000; /* Text remains black */
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-  overflow-x: hidden; /* Prevent horizontal overflow */
-}
-
-@keyframes gradientAnimation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Hero Section */
 .hero {
-  background-color: #d72f2f;
+  background-color: #1a541c; /* 10% DARK GREEN */
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   margin: 20px auto;
-  padding: 20px;
-  max-width: 800px;
+  padding: 30px;
+  width: 90%;
+  max-width: 3000px;
   text-align: center;
+  color: #ffffff;
 }
 
 .hero h2 {
-  font-size: 24px; /* Smaller font size for "MSA CALENDAR" */
+  font-size: 24px;
   margin-bottom: 15px;
   font-weight: 600;
 }
@@ -50,113 +39,182 @@ body {
 /* Calendar Container */
 .calendar-container {
   width: 100%;
-  max-width: 1200px; /* Constrain the maximum width of the calendar */
+  max-width: 1400px; /* Increase max width */
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
-  overflow: hidden; /* Prevent overflow */
+  overflow: hidden;
 }
 
 /* Calendar Grid */
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px; /* Reduced gap for tighter layout */
-  padding: 10px;
-  width: 100%; /* Ensure the grid takes up the full width of its container */
-  box-sizing: border-box; /* Include padding in the width calculation */
-  overflow: hidden; /* Prevent overflow */
+  grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
+  gap: 10px; /* Increase gap for better spacing */
+  padding: 20px; /* Add more padding */
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #ffffff; /* Change to white */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .calendar-grid .col {
-  padding: 8px; /* Reduced padding for smaller cells */
+  padding: 16px; /* Increase padding for larger cells */
   text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid #e0e0e0;
   border-radius: 8px;
-  font-size: 14px; /* Smaller font size */
+  font-size: 16px; /* Increase font size */
   font-weight: 500;
-  transition: background-color 0.2s, transform 0.2s;
-  min-height: 80px; /* Smaller height for cells */
+  transition: all 0.2s ease;
+  min-height: 100px; /* Increase height for larger cells */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align content to the top */
-  background-color: rgba(0, 0, 0, 0.1);
-  box-sizing: border-box; /* Include padding in the height calculation */
-  overflow: hidden; /* Prevent content from overflowing */
+  justify-content: flex-start;
+  background-color: #ffffff; /* Change to white */
+  color: #000000; /* Text color black */
+  box-sizing: border-box;
+  overflow: hidden;
 }
-
 .calendar-grid .col:empty {
   visibility: hidden;
 }
-
 .calendar-grid .col:hover {
-  background-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Date Text */
 .date-text {
-  font-size: 14px; /* Smaller font size */
+  font-size: 14px;
   font-weight: bold;
-  margin-bottom: 3px; /* Reduced margin */
-  color: #ffffff;
-  white-space: nowrap; /* Prevent date text from wrapping */
-  overflow: hidden; /* Hide overflow */
-  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  margin-bottom: 3px;
+  color: #000000; /* Text color black */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Event Badge */
 .event-badge {
-  margin-top: 3px; /* Reduced margin */
-  font-size: 10px; /* Smaller font size */
-  padding: 2px 4px; /* Reduced padding */
+  margin-top: 3px;
+  font-size: 10px;
+  padding: 2px 4px;
   border-radius: 4px;
+  background-color: #1a541c; /* Keep dark green for badges */
   color: white;
-  word-wrap: break-word; /* Ensure long event text wraps */
-  white-space: normal; /* Allow text to wrap */
-  text-align: left; /* Align event text to the left */
-  overflow: hidden; /* Prevent text from overflowing */
+  word-wrap: break-word;
+  white-space: normal;
+  text-align: left;
+  overflow: hidden;
+}
+
+/* Calendar Header */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.calendar-title {
+  font-size: 24px;
+  color: #1a541c; /* 10% DARK GREEN */
+  font-weight: 600;
+}
+
+/* Calendar Navigation */
+.calendar-navigation {
+  display: flex;
+  justify-content: space-between; /* Ensure buttons stay on opposite sides */
+  align-items: center;
+  gap: 10px; /* Add spacing between elements */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.calendar-navigation .btn {
+  padding: 8px 16px; /* Maintain consistent padding */
+  background-color: #1a541c; /* Dark green */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 120px; /* Set a minimum width for consistency */
+  text-align: center;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.calendar-navigation .btn:hover {
+  background-color: #134015; /* Darker green on hover */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .calendar-grid .col {
-    min-height: 70px; /* Adjusted height for tablets */
-    font-size: 12px; /* Smaller font size */
+    min-height: 70px;
+    font-size: 12px;
   }
 
   .date-text {
-    font-size: 12px; /* Smaller font size */
+    font-size: 12px;
+  }
+
+  .calendar-title {
+    font-size: 20px;
+  }
+
+  .calendar-navigation {
+    flex-direction: column; /* Stack buttons vertically on smaller screens */
+    gap: 10px; /* Add spacing between buttons */
+  }
+
+  .calendar-navigation .btn {
+    width: 100%; /* Make buttons take full width */
+    max-width: 200px; /* Optional: Limit button width */
+  }
+
+  .calendar-navigation .btn {
+    width: auto; /* Allow buttons to adjust slightly on smaller screens */
+    min-width: 100px; /* Ensure a smaller minimum width for mobile */
   }
 }
 
 @media (max-width: 480px) {
   .calendar-grid {
-    gap: 3px; /* Further reduce gap for mobile */
-    padding: 5px; /* Reduce padding for mobile */
+    gap: 3px;
+    padding: 5px;
   }
 
   .calendar-grid .col {
-    min-height: 60px; /* Adjusted height for mobile */
-    font-size: 10px; /* Smaller font size */
-    padding: 5px; /* Reduce padding for mobile */
+    min-height: 60px;
+    font-size: 10px;
+    padding: 5px;
   }
 
   .date-text {
-    font-size: 10px; /* Smaller font size */
+    font-size: 10px;
   }
 
   .event-badge {
-    font-size: 8px; /* Smaller font size for mobile */
-    padding: 1px 2px; /* Reduce padding for mobile */
+    font-size: 8px;
+    padding: 1px 2px;
+  }
+
+  .calendar-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
   }
 
   .calendar-navigation {
-    flex-direction: column;
-    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
   }
 
   .calendar-navigation .btn {
-    width: 100%;
+    width: 48%;
   }
 }

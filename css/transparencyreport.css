@@ -6,23 +6,9 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(135deg, #000000, #D72828, #009639, #FFFFFF);
-  background-size: 400% 400%;
-  animation: gradientAnimation 10s ease infinite;
-  color: #ffffff;
-  overflow-x: hidden; /* Prevent horizontal overflow */
-}
-
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background-color: #ffffff; /* 60% WHITE (Dominant) */
+  color: #000000; /* 30% BLACK (Text) */
+  overflow-x: hidden;
 }
 
 /* Wrapper for Content and Footer */
@@ -31,7 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow-x: hidden; /* Prevent horizontal overflow */
+  overflow-x: hidden;
 }
 
 /* Content Wrapper */
@@ -47,25 +33,26 @@ body {
 header h1 {
   font-size: 32px;
   margin: 0;
+  color: #1a541c; /* 10% DARK GREEN */
 }
 
 /* Hero Section */
 .hero {
-  width: 90%; /* Adjust width for smaller screens */
-  max-width: 800px; /* Limit width on larger screens */
+  width: 90%;
+  max-width: 3000px;
   margin: 20px auto;
-  padding: 20px;
-  background-color: rgba(215, 47, 47, 0.8); /* Semi-transparent red */
+  padding: 30px;
+  background-color: #1a541c; /* 10% DARK GREEN */
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
-  color: #fff;
+  color: #ffffff;
   box-sizing: border-box;
 }
 
 .hero h2 {
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .hero p {
@@ -75,18 +62,18 @@ header h1 {
 
 /* Transparency Report Table Section */
 .transparency-report {
-  width: 90%; /* Adjust width for smaller screens */
-  max-width: 1000px; /* Limit width on larger screens */
+  width: 90%;
+  max-width: 3000px;
   margin: 40px auto;
   padding: 20px;
   text-align: center;
-  color: #fff;
   box-sizing: border-box;
 }
 
 .transparency-report h2 {
   font-size: 36px;
   margin-bottom: 20px;
+  color: #1a541c; /* 10% DARK GREEN */
 }
 
 .table-container {
@@ -94,8 +81,8 @@ header h1 {
   justify-content: center;
   margin: 0 auto;
   width: 100%;
-  overflow-x: auto; /* Allow horizontal scrolling */
-  background-color: #fff;
+  overflow-x: auto;
+  background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -108,23 +95,22 @@ table {
   margin: 20px 0;
   font-size: 16px;
   text-align: left;
-  background-color: #fff;
+  background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   overflow: hidden;
-  min-width: 600px; /* Ensure table has a minimum width */
+  min-width: 600px;
 }
 
 th,
 td {
   padding: 15px 20px;
-  border: 1px solid #ddd;
-  color: #d72f2f;
+  border: 1px solid #e0e0e0;
 }
 
 th {
-  background-color: #d72f2f;
-  color: #fff;
+  background-color: #1a541c; /* 10% DARK GREEN */
+  color: #ffffff;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -143,10 +129,10 @@ tr {
 
 td:first-child {
   font-weight: bold;
-  color: #d72f2f;
+  color: #1a541c; /* 10% DARK GREEN */
 }
 
-/* Rounded corners for the first and last rows */
+/* Rounded corners for the table */
 tr:first-child th:first-child {
   border-top-left-radius: 10px;
 }
@@ -166,10 +152,10 @@ tr:last-child td:last-child {
 /* Footer */
 footer {
   margin-top: auto;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  background-color: #000000; /* 30% BLACK */
+  color: #ffffff;
   text-align: center;
-  padding: 10px 0;
+  padding: 20px 0;
   width: 100%;
   box-sizing: border-box;
 }
@@ -177,78 +163,72 @@ footer {
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   header h1 {
-    font-size: 28px; /* Reduce font size */
+    font-size: 28px;
   }
 
   .hero,
-  .bylaws,
   .transparency-report {
-    width: 95%; /* Slightly narrower on tablets */
-    padding: 15px;
+    width: 95%;
+    padding: 20px;
   }
 
-  .hero h2,
-  .bylaws h2 {
-    font-size: 20px; /* Reduce font size */
+  .hero h2 {
+    font-size: 20px;
   }
 
-  .hero p,
-  .bylaws p {
-    font-size: 14px; /* Reduce font size */
+  .hero p {
+    font-size: 14px;
   }
 
   .transparency-report h2 {
-    font-size: 28px; /* Reduce font size */
+    font-size: 28px;
   }
 
   .table-container {
-    padding: 10px; /* Reduce padding */
+    padding: 15px;
   }
 
   table {
-    font-size: 14px; /* Reduce font size */
-    min-width: 500px; /* Adjust minimum width for smaller screens */
+    font-size: 14px;
+    min-width: 500px;
   }
 
   th,
   td {
-    padding: 10px 15px; /* Reduce padding */
+    padding: 12px 15px;
   }
 }
 
 @media (max-width: 480px) {
   header h1 {
-    font-size: 24px; /* Further reduce font size */
+    font-size: 24px;
   }
 
   .hero,
-  .bylaws,
   .transparency-report {
-    width: 100%; /* Full width on very small screens */
-    padding: 10px; /* Reduce padding further */
+    width: 100%;
+    padding: 15px;
   }
 
-  .hero h2,
-  .bylaws h2 {
-    font-size: 18px; /* Further reduce font size */
+  .hero h2 {
+    font-size: 18px;
   }
 
-  .hero p,
-  .bylaws p {
-    font-size: 12px; /* Further reduce font size */
+  .hero p {
+    font-size: 12px;
   }
 
   .transparency-report h2 {
-    font-size: 24px; /* Further reduce font size */
+    font-size: 24px;
   }
 
   table {
-    font-size: 12px; /* Further reduce font size */
-    min-width: 300px; /* Adjust minimum width for very small screens */
+    font-size: 12px;
+    min-width: 300px;
   }
 
   th,
   td {
-    padding: 8px 10px; /* Further reduce padding */
+    padding: 10px 12px;
   }
 }

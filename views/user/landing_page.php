@@ -82,31 +82,42 @@
             <thead>
                 <tr>
                     <th>Date</th>
+                    <th>Day</th>
                     <th>Khateeb</th>
                     <th>Topic</th>
+                    <th>Location</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>October 15, 2023</td>
-                    <td>Dr. Ahmed Ali (Professor of Islamic Studies)</td>
+                    <td>Sunday</td>
+                    <td>Dr. Ahmed Ali</td>
                     <td>The Importance of Patience in Islam</td>
+                    <td>Main Prayer Hall</td>
                 </tr>
                 <tr>
                     <td>October 22, 2023</td>
-                    <td>Sheikh Mohammed Hassan (Imam and Community Leader)</td>
+                    <td>Sunday</td>
+                    <td>Sheikh Mohammed Hassan</td>
                     <td>Building Strong Family Ties in Islam</td>
+                    <td>Community Center</td>
                 </tr>
                 <tr>
                     <td>October 29, 2023</td>
-                    <td>Ustadha Fatima Khan (Educator and Public Speaker)</td>
+                    <td>Sunday</td>
+                    <td>Ustadha Fatima Khan</td>
                     <td>Women's Rights in Islam</td>
+                    <td>Prayer Room B</td>
                 </tr>
                 <tr>
                     <td>November 5, 2023</td>
-                    <td>Brother Yusuf Ahmed (Businessman and Volunteer)</td>
+                    <td>Sunday</td>
+                    <td>Brother Yusuf Ahmed</td>
                     <td>Balancing Work and Worship</td>
+                    <td>Main Prayer Hall</td>
                 </tr>
+                
             </tbody>
         </table>
     </div>

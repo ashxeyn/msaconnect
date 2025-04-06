@@ -1,63 +1,32 @@
 /* General Styles */
-html, body {
+body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    #000000, /* Black */
-    #d72828, /* Red */
-    #009639, /* Green */
-    #ffffff /* White */
-  );
-  background-size: 400% 400%;
-  animation: gradientAnimation 10s ease infinite;
-  color: #333;
-  overflow-x: hidden; /* Prevent horizontal overflow */
-}
-
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Content Wrapper */
-.content {
-  flex: 1;
-  padding: 20px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  box-sizing: border-box;
+  background-color: #ffffff; /* 60% WHITE (Dominant) */
+  overflow-x: hidden;
+  color: #000000; /* 30% BLACK (Text) */
 }
 
 /* Hero Section */
 .hero {
-  width: 80%; /* Adjust the width of the hero section */
-  max-width: 600px; /* Set a maximum width to keep it from getting too wide */
-  margin: 20px auto; /* Center the hero section and add some margin */
-  padding: 20px; /* Add padding inside the hero section */
-  background-color: #d72f2f; /* Add a light background color */
-  border-radius: 10px; /* Add rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  text-align: center; /* Center the text inside the hero section */
-  color: #fff;
-  box-sizing: border-box; /* Ensure padding is included in the width */
+  width: 90%;
+  max-width: 3000px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: #1a541c; /* 10% DARK GREEN (Accent) */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 30% BLACK shadow */
+  text-align: center;
+  color: #ffffff;
 }
 
 .hero h2 {
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .hero p {
@@ -67,20 +36,23 @@ html, body {
 
 /* Bylaws Content */
 .bylaws-content {
-  width: 80%; /* Match the width of the hero section */
-  max-width: 600px; /* Set a maximum width */
-  margin: 20px auto; /* Center the sections */
-  text-align: center; /* Center the text */
-  background: linear-gradient(135deg, #008000, #4D0000);
-  color: white; /* Ensure text is readable on the dark background */
-  padding: 20px; /* Add padding inside the section */
-  border-radius: 10px; /* Add rounded corners */
-  box-sizing: border-box; /* Ensure padding is included in the width */
+  width: 90%;
+  max-width: 3000px;
+  margin: 20px auto;
+  text-align: center;
+  background-color: #ffffff; /* 60% WHITE */
+  color: #000000; /* 30% BLACK */
+  padding: 25px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  border: 1px solid #e0e0e0; /* Light border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .bylaws-content h3 {
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  color: #1a541c; /* 10% DARK GREEN for headings */
 }
 
 .bylaws-content p {
@@ -90,38 +62,32 @@ html, body {
 
 /* Footer */
 footer {
-  margin-top: auto;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  background-color: #000000; /* 30% BLACK */
+  color: #ffffff;
   text-align: center;
-  padding: 10px 0;
+  padding: 20px;
+  margin-top: auto;
   width: 100%;
-  box-sizing: border-box;
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .hero, .bylaws-content {
-    width: 90%; /* Increase width for smaller screens */
+    width: 95%;
+    padding: 20px;
   }
-
-  .header {
-    font-size: 20px;
-    padding: 15px;
-  }
-}
-
-@media (max-width: 480px) {
+  
   .hero h2 {
     font-size: 20px;
   }
-
-  .hero p {
-    font-size: 14px;
+  
+  .bylaws-content h3 {
+    font-size: 18px;
   }
+}
 
-  .header {
-    font-size: 16px;
-    padding: 10px;
-  }
+/* Universal Box Sizing */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
 }

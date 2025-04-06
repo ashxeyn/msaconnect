@@ -1,6 +1,6 @@
 /* General Styles */
 * {
-  box-sizing: border-box; /* Ensure padding and borders are included in element dimensions */
+  box-sizing: border-box;
 }
 
 body {
@@ -9,94 +9,73 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
-  background: linear-gradient(
-    135deg,
-    #000000,
-    /* Black */ #d72828,
-    /* Red */ #009639,
-    /* Green */ #ffffff /* White */
-  );
-  background-size: 400% 400%;
-  animation: gradientAnimation 10s ease infinite;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  min-height: 100vh;
+  background-color: #ffffff; /* Solid white background instead of gradient */
+  overflow-x: hidden;
   color: #333;
-}
-
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 /* Content Wrapper */
 .content {
-  flex: 1; /* Allow the content to grow and push the footer to the bottom */
-  padding: 20px; /* Add some padding for spacing */
+  flex: 1;
+  padding: 20px;
 }
 
 /* Hero Section */
 .hero {
-  width: 90%; /* Increase width for better responsiveness */
-  max-width: 600px; /* Set a maximum width */
-  margin: 20px auto; /* Center the hero section and add some margin */
-  padding: 20px; /* Add padding inside the hero section */
-  background-color: #d72f2f; /* Red background color */
-  border-radius: 10px; /* Add rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  text-align: center; /* Center the text inside the hero section */
+  width: 90%;
+  max-width: 3000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #1a541c; /* Changed to dark green (10% accent) */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
   color: #fff;
-  min-height: 200px; /* Reduce the minimum height */
-  height: auto; /* Adjust as needed */
 }
 
 .hero h2 {
-  font-size: 24px; /* Adjust the heading size */
-  margin-bottom: 10px; /* Add space below the heading */
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .hero p {
-  font-size: 16px; /* Adjust the paragraph text size */
-  line-height: 1.6; /* Improve readability with line height */
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .hero a {
-  color: #fff; /* White color for links */
-  text-decoration: underline; /* Underline links for clarity */
+  color: #fff;
+  text-decoration: underline;
 }
 
 .hero a:hover {
-  color: #f0f0f0; /* Lighten link color on hover */
+  color: #f0f0f0;
 }
 
 /* FAQs Content */
 .faqs-content {
-  width: 90%; /* Increase width for better responsiveness */
-  max-width: 800px; /* Slightly wider for FAQs content */
-  margin: 20px auto; /* Center the sections */
-  text-align: left; /* Align text to the left */
-  padding: 0 10px; /* Add padding to prevent overflow */
+  width: 100%; /* Stretch FAQs content to full width */
+  max-width: 100%; /* Remove max-width restriction */
+  margin: 0; /* Remove margin to eliminate white spaces */
+  padding: 20px; /* Add padding for spacing */
+  background-color: #ffffff; /* Set background to white */
+  box-sizing: border-box;
 }
 
 .faqs-content h3 {
-  font-size: 20px; /* Adjust heading size */
-  margin-bottom: 10px; /* Add space below the heading */
-  color: #d72f2f; /* Match the hero section color */
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #1a541c; /* Dark green accent (10%) */
 }
 
-/* FAQ Item Styling */
+/* FAQ Item Styling - KEEPING THESE ANIMATIONS */
 .faq-item {
-  margin-bottom: 20px; /* Space between FAQ items */
+  margin-bottom: 20px;
   padding: 10px;
-  background-color: #f9f9f9; /* Light background for questions */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .faq-question {
@@ -104,82 +83,64 @@ body {
   cursor: pointer;
   padding: 10px;
   display: flex;
-  justify-content: space-between; /* Space between text and arrow */
+  justify-content: space-between;
   align-items: center;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease; /* Keeping this transition */
 }
 
 .faq-question:hover {
-  background-color: #d72f2f; /* Change background on hover */
-  color: #fff; /* Change text color on hover */
+  background-color: #1a541c; /* Dark green accent (10%) */
+  color: #fff;
 }
 
-/* Arrow Styling */
 .faq-question .arrow {
   font-size: 14px;
-  transition: transform 0.3s ease; /* Smooth rotation */
+  transition: transform 0.3s ease; /* Keeping this animation */
 }
 
-/* Rotate arrow when question is open */
 .faq-question.open .arrow {
-  transform: rotate(180deg); /* Rotate arrow downward */
+  transform: rotate(180deg); /* Keeping this transform */
 }
 
 .faq-answer {
   max-height: 0;
   overflow: hidden;
   padding: 0 10px;
-  transition: max-height 0.5s ease, padding 0.5s ease;
+  transition: max-height 0.5s ease, padding 0.5s ease; /* Keeping this transition */
 }
 
 .faq-answer.open {
-  max-height: 200px; /* Adjust based on content */
+  max-height: 200px;
   padding: 10px;
 }
 
 .faq-answer a {
-  color: #d72f2f; /* Match the hero section color */
-  text-decoration: underline; /* Underline links for clarity */
+  color: #1a541c; /* Dark green accent (10%) */
+  text-decoration: underline;
 }
 
 .faq-answer a:hover {
-  color: #b02525; /* Darken link color on hover */
+  color: #134015; /* Darker green */
 }
 
-/* Media Queries for Responsiveness */
+/* Media Queries */
 @media (max-width: 768px) {
   .hero {
-    width: 95%; /* Increase width for smaller screens */
-    padding: 15px; /* Adjust padding for smaller screens */
+    width: 95%;
+    padding: 15px;
   }
 
   .faqs-content {
-    width: 95%; /* Increase width for smaller screens */
-  }
-
-  .faq-question {
-    font-size: 14px; /* Adjust font size for smaller screens */
-  }
-
-  .faq-answer {
-    font-size: 14px; /* Adjust font size for smaller screens */
+    width: 95%;
   }
 }
 
 @media (max-width: 480px) {
   .hero h2 {
-    font-size: 20px; /* Adjust heading size for smaller screens */
+    font-size: 20px;
   }
 
   .hero p {
-    font-size: 14px; /* Adjust paragraph text size for smaller screens */
-  }
-
-  .faq-question {
-    font-size: 12px; /* Adjust font size for smaller screens */
-  }
-
-  .faq-answer {
-    font-size: 12px; /* Adjust font size for smaller screens */
+    font-size: 14px;
   }
 }
