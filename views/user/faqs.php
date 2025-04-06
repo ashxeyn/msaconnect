@@ -11,10 +11,13 @@
 <body>
     <!-- Hero Section -->
     <div class="hero">
-        <h2>Frequently Asked Questions</h2>
-        <p>
-            Here are some common questions and answers about our organization and its activities. 
-        </p>
+        <div class="hero-background"></div> <!-- Background image container -->
+        <div class="hero-content">
+            <h2>Frequently Asked Questions</h2>
+            <p>
+                Find answers to common questions about our organization, activities, and how you can get involved.
+            </p>
+        </div>
     </div>
 
     <!-- FAQs Content -->

@@ -22,12 +22,15 @@
     </div>
 
     <!-- Hero Section -->
-    <div class="hero text-center py-5">
-        <h2 class="display-4 fw-bold">MSA Calendar</h2>
-        <p class="lead">
-            Stay up-to-date with MSA events and activities by checking our calendar regularly. 
-            From community service projects to social gatherings, there's something for everyone to enjoy and participate in.
-        </p>
+    <div class="hero">
+        <div class="hero-background"></div> <!-- Background image container -->
+        <div class="hero-content">
+            <h2>MSA Calendar</h2>
+            <p>
+                Stay up-to-date with MSA events and activities by checking our calendar regularly. 
+                From community service projects to social gatherings, there's something for everyone to enjoy and participate in.
+            </p>
+        </div>
     </div>
 
     <!-- Calendar Section -->

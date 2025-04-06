@@ -128,6 +128,8 @@ html, body {
 .latest-updates h2 {
   font-size: 2rem;
   margin-bottom: 20px;
+  color: #1a541c; /* Dark green */
+  font-weight: bold;
 }
 
 .updates-container {
@@ -174,6 +176,13 @@ html, body {
   padding: 40px 0; /* Adjust padding for better spacing */
     width: 100%; /* Stretch background to full width */
   box-sizing: border-box;
+}
+
+.prayer-schedule h2 {
+  color: #1a541c; /* Dark green */
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .table-container {

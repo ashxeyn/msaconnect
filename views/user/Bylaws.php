@@ -11,12 +11,15 @@
     
     <!-- Hero Section -->
     <div class="hero">
-        <h2>MSA-Bylaws</h2>
-        <p>
-            The bylaws of the MSA are the rules and regulations that govern the organization. 
-            They outline the structure, roles, and responsibilities of the members and officers, 
-            as well as the procedures for meetings, elections, and other organizational activities.
-        </p>
+        <div class="hero-background"></div> <!-- Background image container -->
+        <div class="hero-content">
+            <h2>MSA-Bylaws</h2>
+            <p>
+                The bylaws of the MSA are the rules and regulations that govern the organization. 
+                They outline the structure, roles, and responsibilities of the members and officers, 
+                as well as the procedures for meetings, elections, and other organizational activities.
+            </p>
+        </div>
     </div>
 
     <!-- Bylaws Content -->

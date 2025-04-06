@@ -11,11 +11,14 @@
 
   <!-- Hero Section -->
   <div class="hero">
-    <h2>About Us</h2>
-    <p>
-      Our website is dedicated to connecting volunteers with opportunities to make a difference in their communities. 
-      We believe in the power of volunteering to bring people together and create positive change.
-    </p>
+    <div class="hero-background"></div> <!-- Background image container -->
+    <div class="hero-content">
+      <h2>About Us</h2>
+      <p>
+        Our website is dedicated to connecting volunteers with opportunities to make a difference in their communities. 
+        We believe in the power of volunteering to bring people together and create positive change.
+      </p>
+    </div>
   </div>
 
   <!-- Mission Section -->
@@ -30,9 +33,17 @@
   <div class="vision-section">
     <h3>Our Vision</h3>
     <p>
-    We envision a world where everyone is inspired to volunteer, sparking a ripple effect of kindness, empathy, and support that reaches far beyond individual actions. By encouraging people to give their time and talents, we aim to create a collective movement that strengthens communities, fosters meaningful relationships, and transforms lives. Volunteers can be the catalysts for positive change, uplifting those in need and making a lasting impact on society. Through collaboration and dedication, we believe that together we can create a world where compassion and generosity are at the heart of everything we do, building a brighter future for all.
+    We envision a world where everyone is inspired to volunteer, sparking a ripple effect of kindness,
+     empathy, and support that reaches far beyond individual actions. By encouraging people to give their time and
+     talents, we aim to create a collective movement that strengthens communities, fosters meaningful relationships, and transforms lives.
+     Volunteers can be the catalysts for positive change, uplifting those in need and making a lasting impact on society.
+    Through collaboration and dedication, 
+    we believe that together we can create a world where compassion and generosity are at
+    the heart of everything we do,
+    building a brighter future for all.
     </p>
   </div>
+  
 
   <!-- Executive Officers Section -->
   <div class="officers-section">

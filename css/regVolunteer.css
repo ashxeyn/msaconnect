@@ -5,8 +5,12 @@ body {
     padding: 0;
     box-sizing: border-box;
     overflow-x: hidden; /* Prevent horizontal scrolling */
-    background-color: #f4f4f4; /* Light background color */
+    background-image: url('../assets/images/login.jpg');
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating the image */
     color: #333; /* Default text color */
+    overflow-x: hidden;
 }
 
 /* Form Container */
