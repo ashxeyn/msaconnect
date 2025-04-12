@@ -52,7 +52,6 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #1a541c; /* 10% DARK GREEN (Accent) */
   opacity: 0.6;
   z-index: 2;
 }
@@ -72,7 +71,7 @@ body {
 }
 
 .volunteer-button {
-  background-color: #1a541c; /* 10% DARK GREEN (Accent) */
+  background-color: #9f2626; 
   color: white;
   border: none;
   padding: 10px 20px;
@@ -80,10 +79,6 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.volunteer-button:hover {
-  background-color: #134015; /* Darker green */
 }
 
 .volunteer-section {

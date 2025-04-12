@@ -54,7 +54,6 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #1a541c; /* 10% DARK GREEN (Accent) */
   opacity: 0.6;
   z-index: 2;
 }
@@ -130,10 +129,12 @@ body {
 .faq-question .arrow {
   font-size: 14px;
   transition: transform 0.3s ease; /* Keeping this animation */
-}
+  color: #9f2626;
 
+}
 .faq-question.open .arrow {
   transform: rotate(180deg); /* Keeping this transform */
+  color: #9f2626;
 }
 
 .faq-answer {
