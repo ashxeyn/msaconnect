@@ -463,51 +463,120 @@ class Admin {
     }
 
     // Analytics Functions
-    function getVolunteersPerMonth() {
-        $sql = "SELECT DATE_FORMAT(created_at, '%Y-%m') AS month, COUNT(*) AS total 
-                  FROM volunteers 
-                  WHERE status = 'approved'
-                  GROUP BY month 
-                  ORDER BY month ASC";
-        
+    function getVolunteersPerMonth($startDate = null, $endDate = null) {
+        $sql = "SELECT DATE_FORMAT(created_at, '%Y-%m') AS month, COUNT(*) AS total
+                FROM volunteers
+                WHERE status = 'approved'";
+
+        if ($startDate && $endDate) {
+            $sql .= " AND created_at BETWEEN :start_date AND :end_date";
+        } else if ($startDate) {
+            $sql .= " AND created_at >= :start_date";
+        } else if ($endDate) {
+            $sql .= " AND created_at <= :end_date";
+        }
+
+        $sql .= " GROUP BY month
+                 ORDER BY month ASC";
+
         $query = $this->db->connect()->prepare($sql);
-        $query->execute();
-        return $query->fetchAll();
-    }
-    
-    function getCashFlowPerMonth() {
-        $sql = "SELECT 
-                    DATE_FORMAT(report_date, '%Y-%m') AS month,
-                    SUM(CASE WHEN transaction_type = 'Cash In' THEN amount ELSE 0 END) AS total_cashin,
-                    SUM(CASE WHEN transaction_type = 'Cash Out' THEN amount ELSE 0 END) AS total_cashout,
-                    (SELECT SUM(CASE WHEN transaction_type = 'Cash In' THEN amount ELSE 0 END) - 
-                            SUM(CASE WHEN transaction_type = 'Cash Out' THEN amount ELSE 0 END)
-                     FROM transparency_report AS sub
-                     WHERE DATE_FORMAT(sub.report_date, '%Y-%m') <= DATE_FORMAT(main.report_date, '%Y-%m')
-                    ) AS net_money
-                FROM transparency_report AS main
-                GROUP BY month
-                ORDER BY month ASC";
-    
-        $query = $this->db->connect()->prepare($sql);
+        if ($startDate && $endDate) {
+            $query->bindParam(':start_date', $startDate);
+            $query->bindParam(':end_date', $endDate);
+        } else if ($startDate) {
+            $query->bindParam(':start_date', $startDate);
+        } else if ($endDate) {
+            $query->bindParam(':end_date', $endDate);
+        }
         $query->execute();
         return $query->fetchAll();
     }
 
-    function getApprovedVolunteers() {
-        $sql = "SELECT COUNT(*) AS total FROM volunteers WHERE status = 'approved'";
+    function getCashFlowPerMonth($startDate = null, $endDate = null) {
+        $sql = "SELECT
+                    DATE_FORMAT(report_date, '%Y-%m') AS month,
+                    SUM(CASE WHEN transaction_type = 'Cash In' THEN amount ELSE 0 END) AS total_cashin,
+                    SUM(CASE WHEN transaction_type = 'Cash Out' THEN amount ELSE 0 END) AS total_cashout,
+                    (SELECT SUM(CASE WHEN transaction_type = 'Cash In' THEN amount ELSE 0 END) -
+                            SUM(CASE WHEN transaction_type = 'Cash Out' THEN amount ELSE 0 END)
+                     FROM transparency_report AS sub
+                     WHERE DATE_FORMAT(sub.report_date, '%Y-%m') <= DATE_FORMAT(main.report_date, '%Y-%m')";
+        if ($startDate && $endDate) {
+            $sql .= " AND sub.report_date BETWEEN :start_date AND :end_date";
+        } else if ($startDate) {
+            $sql .= " AND sub.report_date >= :start_date";
+        } else if ($endDate) {
+            $sql .= " AND sub.report_date <= :end_date";
+        }
+        $sql .= ") AS net_money
+                FROM transparency_report AS main";
+        if ($startDate && $endDate) {
+            $sql .= " WHERE main.report_date BETWEEN :start_date AND :end_date";
+        } else if ($startDate) {
+            $sql .= " WHERE main.report_date >= :start_date";
+        } else if ($endDate) {
+            $sql .= " WHERE main.report_date <= :end_date";
+        }
+        $sql .= " GROUP BY month
+                 ORDER BY month ASC";
+
         $query = $this->db->connect()->prepare($sql);
+        if ($startDate && $endDate) {
+            $query->bindParam(':start_date', $startDate);
+            $query->bindParam(':end_date', $endDate);
+        } else if ($startDate) {
+            $query->bindParam(':start_date', $startDate);
+        } else if ($endDate) {
+            $query->bindParam(':end_date', $endDate);
+        }
         $query->execute();
-        
+        return $query->fetchAll();
+    }
+
+    function getApprovedVolunteers($startDate = null, $endDate = null) {
+        $sql = "SELECT COUNT(*) AS total FROM volunteers WHERE status = 'approved'";
+        if ($startDate && $endDate) {
+            $sql .= " AND created_at BETWEEN :start_date AND :end_date";
+        } else if ($startDate) {
+            $sql .= " AND created_at >= :start_date";
+        } else if ($endDate) {
+            $sql .= " AND created_at <= :end_date";
+        }
+        $query = $this->db->connect()->prepare($sql);
+        if ($startDate && $endDate) {
+            $query->bindParam(':start_date', $startDate);
+            $query->bindParam(':end_date', $endDate);
+        } else if ($startDate) {
+            $query->bindParam(':start_date', $startDate);
+        } else if ($endDate) {
+            $query->bindParam(':end_date', $endDate);
+        }
+        $query->execute();
+
         $result = $query->fetch();
         return $result['total'] ?? 0;
     }
 
-    function getPedingVolunteers() {
+    function getPedingVolunteers($startDate = null, $endDate = null) {
         $sql = "SELECT COUNT(*) AS total FROM volunteers WHERE status = 'pending'";
+        if ($startDate && $endDate) {
+            $sql .= " AND created_at BETWEEN :start_date AND :end_date";
+        } else if ($startDate) {
+            $sql .= " AND created_at >= :start_date";
+        } else if ($endDate) {
+            $sql .= " AND created_at <= :end_date";
+        }
         $query = $this->db->connect()->prepare($sql);
+        if ($startDate && $endDate) {
+            $query->bindParam(':start_date', $startDate);
+            $query->bindParam(':end_date', $endDate);
+        } else if ($startDate) {
+            $query->bindParam(':start_date', $startDate);
+        } else if ($endDate) {
+            $query->bindParam(':end_date', $endDate);
+        }
         $query->execute();
-        
+
         $result = $query->fetch();
         return $result['total'] ?? 0;
     }
@@ -726,6 +795,228 @@ class Admin {
         $query->bindParam(':prayer_id', $prayerId);
         return $query->execute();
     }
+
+// Transparency Report Functions
+function getCashInTransactions($schoolYearId, $semester = null, $month = null, $startDate = null, $endDate = null) {
+    $sql = "SELECT * FROM transparency_report 
+            WHERE transaction_type = 'Cash In' 
+            AND school_year_id = :school_year_id";
+    
+    if ($semester) {
+        $sql .= " AND semester = :semester";
+    }
+    
+    if ($startDate && $endDate) {
+        $sql .= " AND report_date BETWEEN :start_date AND :end_date";
+    } else if ($startDate) {
+        $sql .= " AND report_date >= :start_date";
+    } else if ($endDate) {
+        $sql .= " AND report_date <= :end_date";
+    } else if ($month) {
+        $sql .= " AND MONTH(report_date) = :month";
+    }
+    
+    $sql .= " ORDER BY report_date DESC";
+    
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':school_year_id', $schoolYearId);
+    
+    if ($semester) {
+        $query->bindParam(':semester', $semester);
+    }
+    
+    if ($startDate && $endDate) {
+        $query->bindParam(':start_date', $startDate);
+        $query->bindParam(':end_date', $endDate);
+    } else if ($startDate) {
+        $query->bindParam(':start_date', $startDate);
+    } else if ($endDate) {
+        $query->bindParam(':end_date', $endDate);
+    } else if ($month) {
+        $query->bindParam(':month', $month);
+    }
+    
+    $query->execute();
+    return $query->fetchAll();
+}
+
+function getCashOutTransactions($schoolYearId, $semester = null, $month = null, $startDate = null, $endDate = null) {
+    $sql = "SELECT * FROM transparency_report 
+            WHERE transaction_type = 'Cash Out' 
+            AND school_year_id = :school_year_id";
+    
+    if ($semester) {
+        $sql .= " AND semester = :semester";
+    }
+    
+    if ($startDate && $endDate) {
+        $sql .= " AND report_date BETWEEN :start_date AND :end_date";
+    } else if ($startDate) {
+        $sql .= " AND report_date >= :start_date";
+    } else if ($endDate) {
+        $sql .= " AND report_date <= :end_date";
+    } else if ($month) {
+        $sql .= " AND MONTH(report_date) = :month";
+    }
+    
+    $sql .= " ORDER BY report_date DESC";
+    
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':school_year_id', $schoolYearId);
+    
+    if ($semester) {
+        $query->bindParam(':semester', $semester);
+    }
+    
+    if ($startDate && $endDate) {
+        $query->bindParam(':start_date', $startDate);
+        $query->bindParam(':end_date', $endDate);
+    } else if ($startDate) {
+        $query->bindParam(':start_date', $startDate);
+    } else if ($endDate) {
+        $query->bindParam(':end_date', $endDate);
+    } else if ($month) {
+        $query->bindParam(':month', $month);
+    }
+    
+    $query->execute();
+    return $query->fetchAll();
+}
+
+    function getTransactionById($reportId) {
+        $sql = "SELECT * FROM transparency_report WHERE report_id = :report_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':report_id', $reportId);
+        $query->execute();
+        return $query->fetch();
+    }
+
+    function addTransparencyTransaction($reportDate, $expenseDetail, $expenseCategory, $amount, $transactionType, $semester, $schoolYearId) {
+        $sql = "INSERT INTO transparency_report 
+                (report_date, expense_detail, expense_category, amount, transaction_type, semester, school_year_id) 
+                VALUES (:report_date, :expense_detail, :expense_category, :amount, :transaction_type, :semester, :school_year_id)";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':report_date', $reportDate);
+        $query->bindParam(':expense_detail', $expenseDetail);
+        $query->bindParam(':expense_category', $expenseCategory);
+        $query->bindParam(':amount', $amount);
+        $query->bindParam(':transaction_type', $transactionType);
+        $query->bindParam(':semester', $semester);
+        $query->bindParam(':school_year_id', $schoolYearId);
+        return $query->execute();
+    }
+
+    function updateTransparencyTransaction($reportId, $reportDate, $expenseDetail, $expenseCategory, $amount, $transactionType, $semester, $schoolYearId) {
+        $sql = "UPDATE transparency_report 
+                SET report_date = :report_date, 
+                    expense_detail = :expense_detail, 
+                    expense_category = :expense_category,
+                    amount = :amount, 
+                    transaction_type = :transaction_type, 
+                    semester = :semester, 
+                    school_year_id = :school_year_id 
+                WHERE report_id = :report_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':report_date', $reportDate);
+        $query->bindParam(':expense_detail', $expenseDetail);
+        $query->bindParam(':expense_category', $expenseCategory);
+        $query->bindParam(':amount', $amount);
+        $query->bindParam(':transaction_type', $transactionType);
+        $query->bindParam(':semester', $semester);
+        $query->bindParam(':school_year_id', $schoolYearId);
+        $query->bindParam(':report_id', $reportId);
+        return $query->execute();
+    }
+
+    function deleteTransparencyTransaction($reportId) {
+        $sql = "DELETE FROM transparency_report WHERE report_id = :report_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':report_id', $reportId);
+        return $query->execute();
+    }
+
+    function getTotalStudentsPaid($schoolYearId, $semester = null) {
+        $sql = "SELECT SUM(no_students) as total FROM student_paid 
+                WHERE school_year_id = :school_year_id";
+        
+        if ($semester) {
+            $sql .= " AND semester = :semester";
+        }
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':school_year_id', $schoolYearId);
+        
+        if ($semester) {
+            $query->bindParam(':semester', $semester);
+        }
+        
+        $query->execute();
+        $result = $query->fetch();
+        return $result['total'] ?? 0;
+    }
+
+    function getStudentPaidRecord($schoolYearId, $semester) {
+        $sql = "SELECT * FROM student_paid 
+                WHERE school_year_id = :school_year_id 
+                AND semester = :semester";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':school_year_id', $schoolYearId);
+        $query->bindParam(':semester', $semester);
+        $query->execute();
+        return $query->fetch();
+    }
+
+    function updateStudentsPaid($noStudents, $schoolYearId, $semester, $paidId = null) {
+        if ($paidId) {
+            $sql = "UPDATE student_paid 
+                    SET no_students = :no_students 
+                    WHERE paid_id = :paid_id";
+            $query = $this->db->connect()->prepare($sql);
+            $query->bindParam(':no_students', $noStudents);
+            $query->bindParam(':paid_id', $paidId);
+        } else {
+            $checkSql = "SELECT paid_id FROM student_paid 
+                        WHERE school_year_id = :school_year_id 
+                        AND semester = :semester";
+            $checkQuery = $this->db->connect()->prepare($checkSql);
+            $checkQuery->bindParam(':school_year_id', $schoolYearId);
+            $checkQuery->bindParam(':semester', $semester);
+            $checkQuery->execute();
+            $existingRecord = $checkQuery->fetch();
+            
+            if ($existingRecord) {
+                $sql = "UPDATE student_paid 
+                        SET no_students = :no_students 
+                        WHERE paid_id = :paid_id";
+                $query = $this->db->connect()->prepare($sql);
+                $query->bindParam(':no_students', $noStudents);
+                $query->bindParam(':paid_id', $existingRecord['paid_id']);
+            } else {
+                $sql = "INSERT INTO student_paid 
+                        (no_students, school_year_id, semester) 
+                        VALUES (:no_students, :school_year_id, :semester)";
+                $query = $this->db->connect()->prepare($sql);
+                $query->bindParam(':no_students', $noStudents);
+                $query->bindParam(':school_year_id', $schoolYearId);
+                $query->bindParam(':semester', $semester);
+            }
+        }
+        return $query->execute();
+    }
+
+    function getAllSchoolYears() {
+        $sql = "SELECT * FROM school_years ORDER BY school_year DESC";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    function getCurrentSchoolYear() {
+        $sql = "SELECT * FROM school_years ORDER BY school_year DESC LIMIT 1";
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetch();
+}
     
     // Others
     function fetchSy(){

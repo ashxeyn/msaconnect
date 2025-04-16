@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../css/sideBar.css">
     <link rel="stylesheet" href="../../css/topNav.css">
     <link rel="stylesheet" href="../../css/generalAdmin.css">
-   <script src="../../js/admin.js"></script>
+   <script src="../../js/sideBar.js"></script>
 </head>
 <body>
     <div class="container-fluid">
