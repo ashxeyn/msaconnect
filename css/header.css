@@ -27,6 +27,7 @@ header {
   align-items: flex-start;
   width: 100%;
   box-sizing: border-box;
+ 
 }
 
 /* Top Section: Logo and MSA CONNECT */
@@ -95,7 +96,7 @@ header {
 
 /* Bottom Section: Navigation Bar */
 .navbar {
-  background: #fffffff1;
+  background: #fffefe;
   width: 100%;
   padding: 15px 5%;
   display: flex;

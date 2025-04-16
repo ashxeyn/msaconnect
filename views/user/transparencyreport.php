@@ -3,11 +3,14 @@
 
 <!-- Hero Section -->
 <div class="hero">
-    <h2>Transparency Report</h2> <!-- Changed to h2 to match About Us -->
+  <div class="hero-background"></div> <!-- Background image container -->
+  <div class="hero-content">
+    <h2>Transparency Report</h2>
     <p>
-        We are committed to maintaining transparency in all our transactions. 
-        Below is a detailed breakdown of our financial activities.
+      We are committed to maintaining transparency in all our transactions. 
+      Below is a detailed breakdown of our financial activities.
     </p>
+  </div>
 </div>
 
 <!-- Transparency Report Table Section -->
