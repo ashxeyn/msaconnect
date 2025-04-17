@@ -1,0 +1,184 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-image: url('../assets/images/login.jpg');
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    color: #333; /* Default text color */
+    overflow-x: hidden;
+}
+
+/* Form Container */
+form {
+    max-width: 600px; /* Limit the form width */
+    width: 90%; /* Ensure responsiveness */
+    margin: 20px auto; /* Center the form */
+    padding: 20px; /* Add padding for spacing */
+    background-color: #ffffff; /* White background for contrast */
+    border-radius: 12px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow: hidden; /* Prevent overflow */
+}
+
+/* Form Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Input Fields */
+input[type="text"],
+select,
+input[type="file"] {
+    width: 100%;
+    padding: 12px 15px; /* Add padding to create space from the border */
+    margin-bottom: 25px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    box-sizing: border-box; /* Ensure padding doesn't affect the width */
+}
+
+input[type="text"]:focus,
+select:focus,
+input[type="file"]:focus {
+    border-color: #1a541c; /* Dark green border on focus */
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(26, 84, 28, 0.2);
+    outline: none;
+}
+
+span p {
+    color: red;
+    font-size: 14px;
+    margin: -20px 0 15px 0;
+    font-weight: 500;
+}
+
+/* Upload Container Styles */
+.upload-container {
+    margin-bottom: 20px;
+}
+
+.upload-area {
+    border: 2px dashed #1a9626;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+}
+
+.upload-area:hover {
+    background-color: #e9f5e9;
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.upload-icon {
+    width: 50px;
+    height: 50px;
+    opacity: 0.7;
+}
+
+.upload-placeholder p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.upload-hint {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Image Preview Styles */
+.image-preview {
+    position: relative;
+    margin-top: 10px;
+    display: none;
+}
+
+#preview-img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.remove-image {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-image:hover {
+    background-color: #ff1a1a;
+}
+
+/* Button Container Styles */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.back-button,
+.submit-button {
+    flex: 1;
+    margin: 0 10px;
+    padding: 15px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: none;
+}
+
+.back-button {
+    background-color: #1a541c;
+    color: white;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button {
+    background-color: #d72f2f;
+    color: white;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}

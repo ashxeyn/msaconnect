@@ -34,8 +34,10 @@
                 <a href="<?php echo $base_url; ?>views/user/aboutus" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'aboutus.php') ? 'active' : ''; ?>">About MSA <span class="arrow"></span></a>
                 <ul class="dropdown-content">
                     <li><a href="<?php echo $base_url; ?>views/user/aboutus" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'aboutus.php') ? 'active' : ''; ?>">About Us</a></li>
-                    <li><a href="<?php echo $base_url; ?>views/user/Bylaws" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'Bylaws.php') ? 'active' : ''; ?>">Bylaws</a></li>
+                    <li><a href="<?php echo $base_url; ?>views/user/Registrationmadrasa" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'Bylaws.php') ? 'active' : ''; ?>">Registration</a></li>
                     <li><a href="<?php echo $base_url; ?>views/user/transparencyreport" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'transparencyreport.php') ? 'active' : ''; ?>">Transparency</a></li>
+                    <li><a href="<?php echo $base_url; ?>views/user/Downloadables" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'Downloadables.php') ? 'active' : ''; ?>">Downloadables</a></li>
+
                 </ul>
             </li>
             <li><a href="<?php echo $base_url; ?>views/user/calendar" class="<?php echo (basename($_SERVER['PHP_SELF']) == 'calendar.php') ? 'active' : ''; ?>">Calendar</a></li>
