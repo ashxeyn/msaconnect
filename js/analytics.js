@@ -1,5 +1,36 @@
 // ANAYLTICS FUNCTIONS  
 $(document).ready(function() {
+    $('.input-group.date').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        todayHighlight: true
+    });
+    
+    loadCashFlowData();
+    loadVolunteerStats();
+    loadDashboardStats();
+    
+    $('.filter-date').change(function() {
+        applyFilters();
+    });
+    
+    $('#clearDate').click(function() {
+        $('#sDate').val('');
+        $('#eDate').val('');
+        applyFilters();
+    });
+    
+    function applyFilters() {
+        const startDate = $('#sDate').val();
+        const endDate = $('#eDate').val();
+        
+        loadCashFlowData(startDate, endDate);
+        loadVolunteerStats(startDate, endDate);
+        loadDashboardStats(startDate, endDate);
+    }
+});
+
+$(document).ready(function() {
     $.ajax({
         url: "../../handler/admin/getCashFlow.php",
         type: "GET",

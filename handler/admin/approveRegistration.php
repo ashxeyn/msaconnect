@@ -1,51 +1,36 @@
 <?php
-session_start();
-require_once '../../classes/adminClass.php';
-require_once '../../tools/function.php';
-
-$adminObj = new Admin();
-
-$action = $_POST['action'] ?? '';
-$eventId = $_POST['event_id'] ?? null;
-
-if (!isset($_SESSION['user_id'])) {
-    echo 'error: unauthorized';
-    exit;
-}
-
-$userId = $_SESSION['user_id'];
-
-if ($action === 'edit') {
-    $description = clean_input($_POST['description']);
-    $image = !empty($_FILES['image']['name']) ? $_FILES['image']['name'] : null;
-
-    if (!empty($_FILES['image']['name'])) {
-        $targetDir = "../../assets/events/";
-        $targetFile = $targetDir . basename($_FILES['image']['name']);
-        move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
-    }
-
-    $result = $adminObj->updateEvent($eventId, $description, $image);
-    echo $result ? "success" : "error";
-
-} elseif ($action === 'delete') {
-    $result = $adminObj->deleteEvent($eventId);
-    echo $result ? "success" : "error";
-
-} elseif ($action === 'add') {
-    $description = clean_input($_POST['description']);
-    $image = !empty($_FILES['image']['name']) ? $_FILES['image']['name'] : null;
-
-    if (!empty($_FILES['image']['name'])) {
-        $targetDir = "../../assets/events/";
-        $targetFile = $targetDir . basename($_FILES['image']['name']);
-        move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
-    }
-
-    $result = $adminObj->addEvent($description, $image, $userId);
-    echo $result ? "success" : "error";
-
-} else {
-    echo "invalid_action";
-}
-?>
+ session_start();
+ require_once '../../classes/adminClass.php';
+ 
+ $adminObj = new Admin();
+ $response = '';
+ 
+ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+     if (!isset($_SESSION['user_id'])) {
+         echo 'error: unauthorized';
+         exit;
+     }
+ 
+     $adminUserId = $_SESSION['user_id'];
+     $volunteerId = $_POST['volunteer_id'] ?? null;
+     $action = $_POST['action'] ?? null;
+ 
+     if (!$volunteerId || !$action) {
+         echo 'error: missing_data';
+         exit;
+     }
+ 
+     if ($action === 'approve') {
+         $isApproved = $adminObj->approveVolunteer($volunteerId, $adminUserId);
+         $response = $isApproved ? 'success' : 'error: db_approve_fail';
+     } elseif ($action === 'reject') {
+         $isRejected = $adminObj->rejectVolunteer($volunteerId, $adminUserId);
+         $response = $isRejected ? 'success' : 'error: db_reject_fail';
+     } else {
+         $response = 'error: invalid_action';
+     }
+ 
+     echo $response;
+     exit;
+ }
+ ?>

@@ -38,6 +38,7 @@ $faq = null;
                             <option value="Events and Activities" <?= ($faq && $faq['category'] == 'Events and Activities') ? 'selected' : '' ?>>Events and Activities</option>
                             <option value="Donation and Support" <?= ($faq && $faq['category'] == 'Donation and Support') ? 'selected' : '' ?>>Donation and Support</option>
                             <option value="Contact and Support" <?= ($faq && $faq['category'] == 'Contact and Support') ? 'selected' : '' ?>>Contact and Support</option>
+                            <option value="Other" <?= ($faq && $faq['category'] == 'Other') ? 'selected' : '' ?>>Other</option>
                         </select>
                     </div>
 

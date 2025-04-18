@@ -11,25 +11,28 @@ if ($action === 'edit') {
     $lastName = clean_input($_POST['surname']);
     $program = clean_input($_POST['program']);
     $contact = clean_input($_POST['contact']);
+    $year = clean_input($_POST['year_level'] ?? '');
+    $section = clean_input($_POST['section']);
     $email = clean_input($_POST['email']);
     $existingImage = $_POST['existing_image'] ?? null;
 
+    $image = $existingImage;
     if (!empty($_FILES['image']['name'])) {
         $targetDir = "../../assets/cors/";
-        $targetFile = $targetDir . basename($_FILES['image']['name']);
-        move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
-        $image = $_FILES['image']['name'];
-    } else {
-        $image = $existingImage;
+        $fileName = time() . '_' . basename($_FILES['image']['name']);
+        $targetFile = $targetDir . $fileName;
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+            $image = $fileName;
+        }
     }
 
     $result = $adminObj->updateVolunteer(
         $volunteerId,
         $lastName,
         $firstName,
-        null,
-        null,
-        null,
+        $year,
+        $section,
+        $program,
         $contact,
         $email,
         $image
@@ -49,13 +52,16 @@ if ($action === 'edit') {
         'section' => clean_input($_POST['section']),
         'contact' => clean_input($_POST['contact']),
         'email' => clean_input($_POST['email']),
-        'image' => !empty($_FILES['image']['name']) ? $_FILES['image']['name'] : null
+        'image' => null
     ];
 
     if (!empty($_FILES['image']['name'])) {
         $targetDir = "../../assets/cors/";
-        $targetFile = $targetDir . basename($_FILES['image']['name']);
-        move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
+        $fileName = time() . '_' . basename($_FILES['image']['name']);
+        $targetFile = $targetDir . $fileName;
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+            $data['image'] = $fileName;
+        }
     }
 
     $result = $adminObj->addVolunteer($data);

@@ -16,6 +16,16 @@ $result = $adminObj->fetchOfficers();
     <link rel="stylesheet" href="../../css/adminofficers.css?v=<?php echo time(); ?>">
     <script src="../../js/admin.js"></script>
     <?php include '../../includes/head.php'; ?> 
+
+    <style>
+        .officer-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
     <div>
@@ -47,7 +57,7 @@ $result = $adminObj->fetchOfficers();
                             <td>
                                 <?php if (!empty($row['image'])): ?>
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#photoModal" onclick="viewPhoto('<?= clean_input($row['image']) ?>', 'officers')">
-                                        <img src="../../assets/officers/<?= clean_input($row['image']) ?>" alt="Officer Photo" width="80" height="80" class="img-thumbnail">
+                                        <img src="../../assets/officers/<?= clean_input($row['image']) ?>" alt="Officer Photo" class="officer-photo">
                                     </a>
                                 <?php else: ?>
                                     No photo
@@ -69,7 +79,7 @@ $result = $adminObj->fetchOfficers();
     </div>
 
     <?php include '../adminModals/deleteOfficer.html'; 
-        include '../adminModals/addEditOfficer.php'; ?>
+          include '../adminModals/addEditOfficer.php'; ?>
 
 </body>
 </html>

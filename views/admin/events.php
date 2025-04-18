@@ -16,6 +16,17 @@ $eventPhotos = $adminObj->fetchEventPhotos();
     <link rel="stylesheet" href="../../css/adminRegistration.css?v=<?php echo time(); ?>">
     <script src="../../js/admin.js"></script>
     <?php include '../../includes/head.php'; ?> 
+
+    <style>
+        .event-photo {
+            width: 120px;
+            height: 80px;
+            border-radius: 6px;
+            object-fit: cover;
+            background-color: #f0f0f0;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -44,7 +55,7 @@ $eventPhotos = $adminObj->fetchEventPhotos();
                         <td>
                             <?php if (!empty($event['image'])): ?>
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#photoModal" onclick="viewPhoto('<?= clean_input($event['image']) ?>', 'events')">
-                                    <img src="../../assets/events/<?= clean_input($event['image']) ?>" alt="Event Photo" width="80" height="80" class="img-thumbnail">
+                                    <img src="../../assets/events/<?= clean_input($event['image']) ?>" alt="Event Photo" class="event-photo">
                                 </a>
                             <?php else: ?>
                                 No photo
