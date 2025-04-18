@@ -15,12 +15,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?php echo $base_url; ?>css/calendar.css">
 </head>
-<body class="d-flex flex-column min-vh-100">
-    <!-- Wrap Header in a Specific Class -->
-    <div id="main-header">
-        <?php include '../../includes/header.php'; ?>
-    </div>
-
+<body>
+<?php include '../../includes/header.php'; ?>
     <!-- Hero Section -->
     <div class="hero">
         <div class="hero-background"></div> <!-- Background image container -->
