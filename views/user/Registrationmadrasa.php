@@ -23,8 +23,7 @@
             </p>
             <!-- Volunteer Now Button -->
             <div class="volunteer-button-container">
-            <button class="volunteer-button" onclick="window.location.href='Registermadrasaoniste'">On-site Lesson Register</button>            
-            <button class="volunteer-button" onclick="window.location.href='Registermadrasaonline'">Online Lesson Register</button>
+            <button class="volunteer-button" onclick="window.location.href='Registermadrasaform'">Registration Form</button>            
             </div>
         </div>
     </div>

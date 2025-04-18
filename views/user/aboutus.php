@@ -105,6 +105,39 @@
       </div>
     </div>
   </div>
+  <section class="downloads-section">
+    <div class="content-wrapper">
+        <h2 class="section-title">Downloadable Files</h2>
+        
+        <div class="downloads-list">
+            <!-- File 1 -->
+            <div class="file-item">
+                <div class="file-info">
+                    <span class="file-icon">📄</span>
+                    <div class="file-details">
+                        <h3>User Guide.pdf</h3>
+                        <p>2.4 MB • Updated 12/05/2023</p>
+                    </div>
+                </div>
+                <a href="#" class="download-link">Download</a>
+            </div>
+            
+            <!-- File 2 -->
+            <div class="file-item">
+                <div class="file-info">
+                    <span class="file-icon">🗂️</span>
+                    <div class="file-details">
+                        <h3>Resources.zip</h3>
+                        <p>156 MB • Updated 04/02/2024</p>
+                    </div>
+                </div>
+                <a href="#" class="download-link">Download</a>
+            </div>
+            
+            <!-- Add more files as needed -->
+        </div>
+    </div>
+</section>
 
 </body>
 </html>

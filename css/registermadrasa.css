@@ -1,0 +1,312 @@
+/* Combined Madrasa Registration CSS */
+/* Based on your provided styles with additions for the combined form */
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    background-image: url('../assets/images/login.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Main Container */
+.registration-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Type Selection Screen */
+.registration-type-container {
+    max-width: 800px;
+    width: 90%;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.registration-type-container h2 {
+    color: #1a541c;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.type-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.type-option {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+}
+
+.type-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.type-option label {
+    display: block;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.type-option input[type="radio"]:checked + label {
+    border-color: #1a9626;
+    background-color: #e9f5e9;
+    box-shadow: 0 0 10px rgba(26, 150, 38, 0.2);
+}
+
+.type-option label h3 {
+    color: #1a541c;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.type-option label p {
+    color: #666;
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Form Styles (shared by both types) */
+form {
+    max-width: 700px;
+    width: 90%;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.form-section {
+    margin-bottom: 25px;
+}
+
+/* Form Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 15px;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+input[type="file"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 5px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+select:focus,
+input[type="file"]:focus {
+    border-color: #1a541c;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(26, 84, 28, 0.2);
+    outline: none;
+}
+
+.error {
+    color: #d72f2f;
+    font-size: 14px;
+    margin: -5px 0 15px 0;
+    font-weight: 500;
+    display: block;
+}
+
+/* Optional Section Styling */
+.optional-section {
+    background-color: #f5f9f5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+    border-left: 4px solid #1a9626;
+}
+
+.optional-section h3 {
+    color: #1a541c;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* Upload Container Styles */
+.upload-container {
+    margin-bottom: 20px;
+}
+
+.upload-area {
+    border: 2px dashed #1a9626;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+    background-color: #e9f5e9;
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.upload-icon {
+    width: 50px;
+    height: 50px;
+    opacity: 0.7;
+}
+
+.upload-placeholder p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.upload-hint {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Image Preview Styles */
+.image-preview {
+    position: relative;
+    margin-top: 10px;
+    display: none;
+}
+
+#preview-img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.remove-image {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-image:hover {
+    background-color: #ff1a1a;
+}
+
+/* Button Container Styles */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    gap: 20px;
+}
+
+.back-button,
+.submit-button {
+    flex: 1;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: none;
+}
+
+.back-button {
+    background-color: #1a541c;
+    color: white;
+}
+
+.back-button:hover {
+    background-color: #134015;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button {
+    background-color: #d72f2f;
+    color: white;
+}
+
+.submit-button:hover {
+    background-color: #b82626;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .type-options {
+        flex-direction: column;
+    }
+    
+    .type-option {
+        min-width: 100%;
+    }
+    
+    .button-container {
+        flex-direction: column;
+    }
+    
+    .back-button,
+    .submit-button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
