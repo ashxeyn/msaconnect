@@ -1,0 +1,155 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-image: url('../assets/images/login.jpg');
+    background-size: cover; /* Cover the entire viewport */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    color: #333; /* Default text color */
+    overflow-x: hidden;
+}
+
+/* Form Container */
+form {
+    max-width: 600px; /* Limit the form width */
+    width: 90%; /* Ensure responsiveness */
+    margin: 20px auto; /* Center the form */
+    padding: 20px; /* Add padding for spacing */
+    background-color: #ffffff; /* White background for contrast */
+    border-radius: 12px; /* Rounded corners for a modern look */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow: hidden; /* Prevent overflow */
+}
+
+/* Form Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-title {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.form-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-section h3 {
+    color: #3498db;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.optional-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px dashed #ccc;
+}
+
+.optional-section h3 {
+    color: #7f8c8d;
+}
+
+/* Input Fields */
+input[type="text"],
+select,
+input[type="file"] {
+    width: 100%;
+    padding: 12px 15px; /* Add horizontal padding to create space from the border */
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    box-sizing: border-box; /* Ensure padding doesn't affect the width */
+}
+
+input[type="text"]:focus,
+select:focus,
+input[type="file"]:focus {
+    border-color: #1a541c; /* Dark green border on focus */
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(26, 84, 28, 0.2);
+    outline: none;
+}
+
+span p {
+    color: #e74c3c;
+    font-size: 13px;
+    margin: -15px 0 15px 0;
+    font-weight: 500;
+}
+
+
+/* Button Container Styles */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.back-button,
+.submit-button {
+    flex: 1;
+    margin: 0 10px;
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: none;
+    font-weight: 600;
+}
+
+.back-button {
+    background-color: #1a541c;
+    color: white;
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button {
+    background-color: #d72f2f;
+    color: white;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    form {
+        padding: 20px;
+    }
+    
+    .button-container {
+        flex-direction: column;
+    }
+    
+    .back-button,
+    .submit-button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
