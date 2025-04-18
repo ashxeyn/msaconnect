@@ -31,7 +31,7 @@ $eventPhotos = $adminObj->fetchEventPhotos();
 <body>
 
 <div>
-    <h1 class="mb-4">Manage Event Photos</h1>
+<h2 class="mb-4">Event Management</h2>
 
     <button class="btn btn-success mb-3" onclick="openEventModal('addEditEventModal', null, 'add')">Add Event</button>
 

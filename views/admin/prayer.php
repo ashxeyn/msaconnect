@@ -35,7 +35,7 @@ $prayers = $adminObj->fetchFridayPrayers();
                 <?php if ($prayers): ?>
                     <?php foreach ($prayers as $p): ?>
                         <tr>
-                            <td><?= clean_input($p['khutbah_date']) ?></td>
+                            <td><?= formatDate2($p['khutbah_date']) ?></td>
                             <td><?= clean_input($p['speaker']) ?></td>
                             <td><?= clean_input($p['topic']) ?></td>
                             <td><?= clean_input($p['location']) ?></td>

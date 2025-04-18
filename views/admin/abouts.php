@@ -51,7 +51,7 @@ $abouts = $adminObj->fetchAbouts();
                 <h5><strong>Description:</strong></h5>
                 <p><?= clean_input($about['description']) ?></p>
 
-                <small><strong>Created At:</strong> <?= clean_input($about['created_at']) ?></small>
+                <small><strong>Created At:</strong> <?= formatDate($about['created_at']) ?></small>
 
                 <div class="card-actions">
                     <button class="btn btn-primary" onclick="openAboutModal('addEditAboutModal', <?= $about['id'] ?>, 'edit')">Edit</button>

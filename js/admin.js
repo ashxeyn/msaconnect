@@ -1447,6 +1447,120 @@ function processAbout(aboutId, action) {
     });
 }
 
+// DOWNLOADS FUNCTIONS
+function openFileModal(modalId, fileId, action) {
+    $('.modal').modal('hide'); 
+    $('.modal-backdrop').remove(); 
+    setTimeout(() => {
+        const modal = $('#' + modalId);
+        modal.attr('aria-hidden', 'false');
+        modal.modal('show'); 
+        setFileId(fileId, action);
+    }, 300);
+}
+
+function setFileId(fileId, action) {
+    if (action === 'edit') {
+        $.ajax({
+            url: "../../handler/admin/getFile.php",
+            type: "GET",
+            data: { file_id: fileId },
+            success: function(response) {
+                const file = JSON.parse(response);
+                $('#fileId').val(file.file_id);
+                $('#file_name').val(file.file_name);
+                $('#fileModalTitle').text('Edit File');
+                $('#confirmSaveFile').text('Update File');
+                
+                $('#current-file-info').show();
+                $('#current-file-name').text(file.file_name);
+
+                let fileType = file.file_type;
+                if (fileType === 'application/pdf') {
+                    fileType = 'PDF';
+                } else if (fileType === 'application/vnd.openxmlformats-officedocument.word') {
+                    fileType = 'DOCX';
+                }
+
+                $('#current-file-type').text(fileType);
+                $('#current-file-size').text(formatFileSize(file.file_size));
+            },
+            error: function() {
+                alert("An error occurred while fetching file data.");
+            }
+        });
+
+        $('#confirmSaveFile').off('click').on('click', function (e) {
+            e.preventDefault(); 
+            processFile(fileId, 'edit');
+        });
+
+    } else if (action === 'delete') {
+        $.ajax({
+            url: "../../handler/admin/getFile.php",
+            type: "GET",
+            data: { file_id: fileId },
+            success: function(response) {
+                const file = JSON.parse(response);
+                $('#delete-file-name').text(file.file_name);
+            }
+        });
+        
+        $('#confirmDeleteFile').off('click').on('click', function () {
+            processFile(fileId, 'delete');
+        });
+
+    } else if (action === 'add') {
+        $('#fileForm')[0].reset();
+        $('#fileModalTitle').text('Add File');
+        $('#confirmSaveFile').text('Add File');
+        $('#current-file-info').hide();
+        
+        $('#confirmSaveFile').off('click').on('click', function (e) {
+            e.preventDefault();
+            processFile(null, 'add');
+        });
+    }
+}
+
+function processFile(fileId, action) {
+    let formData = new FormData(document.getElementById('fileForm'));
+    if (fileId) {
+        formData.append('file_id', fileId);
+    }
+    formData.append('action', action);
+
+    $.ajax({
+        url: "../../handler/admin/fileAction.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            if (response.trim() === "success") {
+                $(".modal").modal("hide");
+                $("body").removeClass("modal-open");
+                $(".modal-backdrop").remove();
+                loadDownloadablesSection(); 
+            } else {
+                console.log(response);
+                // console.log("Error: " + response);
+            }
+        },
+        error: function() {
+            alert("An error occurred while processing the request.");
+        }
+    });
+}
+
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
+
 $(document).on('hidden.bs.modal', function () {
     if ($('.modal.show').length === 0) { 
         $('body').removeClass('modal-open'); 

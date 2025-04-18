@@ -1057,113 +1057,68 @@ function getCashOutTransactions($schoolYearId, $semester = null, $month = null, 
     }
 
     // ABOUTS Functions
-
-function fetchAbouts() {
-    $sql = "SELECT * FROM about_msa ORDER BY id DESC";
-    
-    $query = $this->db->connect()->prepare($sql);
-    $query->execute();
-    
-    return $query->fetchAll();
-}
-
-function getAboutById($aboutId) {
-    $sql = "SELECT * FROM about_msa WHERE id = :about_id";
-    
-    $query = $this->db->connect()->prepare($sql);
-    $query->bindParam(':about_id', $aboutId);
-    $query->execute();
-
-    return $query->fetch();
-}
-
-function addAbout($mission, $vision, $description) {
-    $sql = "INSERT INTO about_msa (mission, vision, description) VALUES (:mission, :vision, :description)";
-    
-    $query = $this->db->connect()->prepare($sql);
-    $query->bindParam(':mission', $mission);
-    $query->bindParam(':vision', $vision);
-    $query->bindParam(':description', $description);
-
-    return $query->execute();
-}
-
-function updateAbout($aboutId, $mission, $vision, $description) {
-    $sql = "UPDATE about_msa 
-            SET mission = :mission, 
-                vision = :vision, 
-                description = :description
-            WHERE id = :about_id";
-
-    $query = $this->db->connect()->prepare($sql);
-    $query->bindParam(':mission', $mission);
-    $query->bindParam(':vision', $vision);
-    $query->bindParam(':description', $description);
-    $query->bindParam(':about_id', $aboutId);
-
-    return $query->execute();
-}
-
-function deleteAbout($aboutId) {
-    $sql = "DELETE FROM about_msa WHERE id = :about_id";
-
-    $query = $this->db->connect()->prepare($sql);
-    $query->bindParam(':about_id', $aboutId);
-
-    return $query->execute();
-}
-
-    // File functions
-    function addFile($data) {
-        $sql = "INSERT INTO downloadable_files (file_name, file_type, uploaded_by, file_path)
-                VALUES (:file_name, :file_type, :uploaded_by, :file_path)";
+    function fetchAbouts() {
+        $sql = "SELECT * FROM about_msa ORDER BY id DESC";
         
         $query = $this->db->connect()->prepare($sql);
-
-        $query->bindParam(':file_name', $data['file_name']);
-        $query->bindParam(':file_type', $data['file_type']);
-        $query->bindParam(':uploaded_by', $data['uploaded_by']);
-        $query->bindParam(':file_path', $data['file_path']);
-
-        if ($query->execute()) {
-            return true;
-        } else {
-            return "Failed to add file.";
-        }
+        $query->execute();
+        
+        return $query->fetchAll();
     }
 
-    function updateFile($fileId, $fileName, $fileType, $filePath) {
-        $sql = "UPDATE downloadable_files 
-                SET file_name = :file_name, 
-                    file_type = :file_type, 
-                    file_path = :file_path 
-                WHERE file_id = :file_id";
-
+    function getAboutById($aboutId) {
+        $sql = "SELECT * FROM about_msa WHERE id = :about_id";
+        
         $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':about_id', $aboutId);
+        $query->execute();
 
-        $query->bindParam(':file_name', $fileName);
-        $query->bindParam(':file_type', $fileType);
-        $query->bindParam(':file_path', $filePath);
-        $query->bindParam(':file_id', $fileId);
+        return $query->fetch();
+    }
+
+    function addAbout($mission, $vision, $description) {
+        $sql = "INSERT INTO about_msa (mission, vision, description) VALUES (:mission, :vision, :description)";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':mission', $mission);
+        $query->bindParam(':vision', $vision);
+        $query->bindParam(':description', $description);
 
         return $query->execute();
     }
 
-    function deleteFile($fileId) {
-        $sql = "DELETE FROM downloadable_files WHERE file_id = :file_id";
-        $query = $this->db->connect()->prepare($sql);
-        $query->bindParam(':file_id', $fileId);
+    function updateAbout($aboutId, $mission, $vision, $description) {
+        $sql = "UPDATE about_msa 
+                SET mission = :mission, 
+                    vision = :vision, 
+                    description = :description
+                WHERE id = :about_id";
 
-        if ($query->execute()) {
-            return true;
-        } else {
-            return "Failed to delete file.";
-        }
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':mission', $mission);
+        $query->bindParam(':vision', $vision);
+        $query->bindParam(':description', $description);
+        $query->bindParam(':about_id', $aboutId);
+
+        return $query->execute();
     }
 
-    function fetchFiles() {
-        $sql = "SELECT *
-                FROM downloadable_files";
+    function deleteAbout($aboutId) {
+        $sql = "DELETE FROM about_msa WHERE id = :about_id";
+
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':about_id', $aboutId);
+
+        return $query->execute();
+    }
+
+        // File functions
+    function fetchDownloadableFiles() {
+        $sql = "SELECT f.file_id, f.file_name, f.file_path, f.file_type, f.file_size, 
+                    f.created_at, u.username 
+                FROM downloadable_files f
+                LEFT JOIN users u ON f.user_id = u.user_id
+                ORDER BY f.file_id DESC";
         
         $query = $this->db->connect()->prepare($sql);
         $query->execute();
@@ -1171,15 +1126,61 @@ function deleteAbout($aboutId) {
     }
 
     function getFileById($fileId) {
-        $sql = "SELECT file_id, file_name, file_type, uploaded_by, file_path
-                FROM downloadable_files
-                WHERE file_id = :file_id";
+        $sql = "SELECT f.file_id, f.file_name, f.file_path, f.file_type, f.file_size, 
+                    f.created_at, u.username 
+                FROM downloadable_files f
+                LEFT JOIN users u ON f.user_id = u.user_id
+                WHERE f.file_id = :file_id";
 
         $query = $this->db->connect()->prepare($sql);
         $query->bindParam(':file_id', $fileId);
         $query->execute();
-
         return $query->fetch();
+    }
+
+    function addFile($fileName, $filePath, $fileType, $fileSize, $userId) {
+        $sql = "INSERT INTO downloadable_files (file_name, file_path, file_type, file_size, user_id) 
+                VALUES (:file_name, :file_path, :file_type, :file_size, :user_id)";
+
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':file_name', $fileName);
+        $query->bindParam(':file_path', $filePath);
+        $query->bindParam(':file_type', $fileType);
+        $query->bindParam(':file_size', $fileSize);
+        $query->bindParam(':user_id', $userId);
+        return $query->execute();
+    }
+
+    function updateFile($fileId, $fileName, $filePath, $fileType, $fileSize) {
+        $sql = "UPDATE downloadable_files 
+                SET file_name = :file_name, file_path = :file_path, 
+                    file_type = :file_type, file_size = :file_size 
+                WHERE file_id = :file_id";
+
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':file_name', $fileName);
+        $query->bindParam(':file_path', $filePath);
+        $query->bindParam(':file_type', $fileType);
+        $query->bindParam(':file_size', $fileSize);
+        $query->bindParam(':file_id', $fileId);
+        return $query->execute();
+    }
+
+    function deleteFile($fileId) {
+        $sql = "DELETE FROM downloadable_files WHERE file_id = :file_id";
+
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':file_id', $fileId);
+        return $query->execute();
+    }
+
+    function getFileExtension($fileType) {
+        $extensions = [
+            'application/pdf' => 'PDF',
+            'application/vnd.openxmlformats-officedocument.word' => 'DOCX'
+        ];
+        
+        return $extensions[$fileType] ?? $fileType;
     }
 
 }

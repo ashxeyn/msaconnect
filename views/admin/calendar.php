@@ -39,7 +39,7 @@ $calEvents = $adminObj->fetchCalendarEvents();
                 <?php if ($calEvents): ?>
                     <?php foreach ($calEvents as $calEv): ?>
                         <tr>
-                            <td><?= clean_input($calEv['activity_date']) ?></td>
+                            <td><?= formatDate2($calEv['activity_date']) ?></td>
                             <td><?= date('l', strtotime($calEv['activity_date'])) ?></td>
                             <td><?= clean_input($calEv['title']) ?></td>
                             <td><?= clean_input($calEv['description']) ?></td>
