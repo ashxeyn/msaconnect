@@ -14,23 +14,26 @@ if ($action === 'edit') {
     $programId = clean_input($_POST['program']);
     $positionId = clean_input($_POST['position']);
     $schoolYearId = clean_input($_POST['schoolYear']);
-    $image = $_FILES['image']['name'] ?? '';
+    $existingImage = $_POST['existing_image'] ?? ''; 
 
-    if ($image) {
+     if (isset($_FILES['image']) && $_FILES['image']['name'] != "") {
+        $imageName = time() . '_' . basename($_FILES['image']['name']);
         $targetDir = "../../assets/officers/";
-        $targetFile = $targetDir . basename($image);
+        $targetFile = $targetDir . $imageName;
         move_uploaded_file($_FILES['image']['tmp_name'], $targetFile);
+    } else {
+        $imageName = basename($existingImage); 
     }
     $result = $adminObj->updateOfficer(
-        $_POST['officerId'],
-        $_POST['surname'],
-        $_POST['firstName'],
-        $_POST['middleName'],
-        $_POST['position'],
-        $_POST['schoolYear'],
-        $_POST['program'],
-        $_FILES['image']['name'] ?? null
-    );    
+        $officerId,
+        $surname,
+        $firstName,
+        $middleName,
+        $positionId,
+        $schoolYearId,
+        $programId,
+        $imageName
+    );  
     echo $result ? "success" : "error";
 } elseif ($action === 'delete') {
     $result = $adminObj->deleteOfficer($officerId);

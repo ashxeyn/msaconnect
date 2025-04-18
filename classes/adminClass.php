@@ -55,15 +55,21 @@ class Admin {
         }
     }
     
-    function updateOfficer($data) {
-        $existingImage = $data['existingImage'];
-        $newImage = $data['image']['name'] ?? null;
+    function updateOfficer($officerId, $surname, $firstName, $middleName, $position, $schoolYear, $program, $existingImage, $image = null) {
+        $imageToSave = $existingImage;
     
-        if (!empty($newImage)) {
-            $imageToSave = $newImage;
-            move_uploaded_file($data['image']['tmp_name'], "../../assets/officers/" . $newImage);
-        } else {
-            $imageToSave = $existingImage;
+        if (isset($image) && is_array($image) && !empty($image['name'])) {
+            $newImage = $image['name'];
+            $targetPath = "../../assets/officers/" . $newImage;
+            if (move_uploaded_file($image['tmp_name'], $targetPath)) {
+                $imageToSave = $newImage;
+            }
+        } elseif (empty($existingImage) && isset($image) && !empty($image['name'])) {
+            $newImage = $image['name'];
+            $targetPath = "../../assets/officers/" . $newImage;
+            if (move_uploaded_file($image['tmp_name'], $targetPath)) {
+                $imageToSave = $newImage;
+            }
         }
     
         $sql = "UPDATE executive_officers 
@@ -77,20 +83,20 @@ class Admin {
                 WHERE officer_id = :officer_id";
     
         $query = $this->db->connect()->prepare($sql);
-        $query->bindParam(':last_name', $data['surname']);
-        $query->bindParam(':first_name', $data['firstName']);
-        $query->bindParam(':middle_name', $data['middleName']);
-        $query->bindParam(':position_id', $data['position']);
-        $query->bindParam(':school_year_id', $data['schoolYear']);
-        $query->bindParam(':program_id', $data['program']);
-        $query->bindParam(':image', $imageToSave);
-        $query->bindParam(':officer_id', $data['officerId']);
+    
+        $query->bindParam(':last_name', $surname);
+        $query->bindParam(':first_name', $firstName);
+        $query->bindParam(':middle_name', $middleName);
+        $query->bindParam(':position_id', $position);
+        $query->bindParam(':school_year_id', $schoolYear);
+        $query->bindParam(':program_id', $program);
+        $query->bindParam(':image', $imageToSave);  
+        $query->bindParam(':officer_id', $officerId);
     
         return $query->execute();
     }
     
-        
-
+    
     function deleteOfficer($officerId) {
         $sql = "DELETE FROM executive_officers WHERE officer_id = :officer_id";
         $query = $this->db->connect()->prepare($sql);
@@ -167,37 +173,43 @@ class Admin {
         $query->execute();
     }
 
-    function updateVolunteer($volunteerId, $surname, $firstName, $middleName, $year, $section, $programId, $contact, $email, $corFile = null) {
+    function updateVolunteer($volunteerId, $surname, $firstName, $year, $section, $programId, $contact, $email, $corFile = null) {
         $sql = "UPDATE volunteers 
                 SET last_name = :last_name, 
                     first_name = :first_name, 
-                    middle_name = :middle_name, 
                     year = :year, 
                     section = :section, 
                     program_id = :program_id, 
                     contact = :contact, 
-                    email = :email, 
-                    cor_file = IF(:cor_file IS NOT NULL AND :cor_file != '', :cor_file, cor_file)
-                WHERE volunteer_id = :volunteer_id";
+                    email = :email";
+                    
+        if ($corFile !== null && $corFile !== '') {
+            $sql .= ", cor_file = :cor_file";
+        }
+        
+        $sql .= " WHERE volunteer_id = :volunteer_id";
     
         $query = $this->db->connect()->prepare($sql);
     
         $query->bindParam(':last_name', $surname);
         $query->bindParam(':first_name', $firstName);
-        $query->bindParam(':middle_name', $middleName);
         $query->bindParam(':year', $year);
         $query->bindParam(':section', $section);
         $query->bindParam(':program_id', $programId);
         $query->bindParam(':contact', $contact);
         $query->bindParam(':email', $email);
-        $query->bindParam(':cor_file', $corFile);
         $query->bindParam(':volunteer_id', $volunteerId);
+        
+        if ($corFile !== null && $corFile !== '') {
+            $query->bindParam(':cor_file', $corFile);
+        }
     
         if (!$query->execute()) {
-            return "Failed to update volunteer.";
+            return false;
         }
         return true;
     }
+    
 
     function getVolunteerById($volunteerId) {
         $sql = "SELECT 
@@ -1043,4 +1055,131 @@ function getCashOutTransactions($schoolYearId, $semester = null, $month = null, 
         $query->execute();
         return $query->fetchAll();
     }
+
+    // ABOUTS Functions
+
+function fetchAbouts() {
+    $sql = "SELECT * FROM about_msa ORDER BY id DESC";
+    
+    $query = $this->db->connect()->prepare($sql);
+    $query->execute();
+    
+    return $query->fetchAll();
+}
+
+function getAboutById($aboutId) {
+    $sql = "SELECT * FROM about_msa WHERE id = :about_id";
+    
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':about_id', $aboutId);
+    $query->execute();
+
+    return $query->fetch();
+}
+
+function addAbout($mission, $vision, $description) {
+    $sql = "INSERT INTO about_msa (mission, vision, description) VALUES (:mission, :vision, :description)";
+    
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':mission', $mission);
+    $query->bindParam(':vision', $vision);
+    $query->bindParam(':description', $description);
+
+    return $query->execute();
+}
+
+function updateAbout($aboutId, $mission, $vision, $description) {
+    $sql = "UPDATE about_msa 
+            SET mission = :mission, 
+                vision = :vision, 
+                description = :description
+            WHERE id = :about_id";
+
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':mission', $mission);
+    $query->bindParam(':vision', $vision);
+    $query->bindParam(':description', $description);
+    $query->bindParam(':about_id', $aboutId);
+
+    return $query->execute();
+}
+
+function deleteAbout($aboutId) {
+    $sql = "DELETE FROM about_msa WHERE id = :about_id";
+
+    $query = $this->db->connect()->prepare($sql);
+    $query->bindParam(':about_id', $aboutId);
+
+    return $query->execute();
+}
+
+    // File functions
+    function addFile($data) {
+        $sql = "INSERT INTO downloadable_files (file_name, file_type, uploaded_by, file_path)
+                VALUES (:file_name, :file_type, :uploaded_by, :file_path)";
+        
+        $query = $this->db->connect()->prepare($sql);
+
+        $query->bindParam(':file_name', $data['file_name']);
+        $query->bindParam(':file_type', $data['file_type']);
+        $query->bindParam(':uploaded_by', $data['uploaded_by']);
+        $query->bindParam(':file_path', $data['file_path']);
+
+        if ($query->execute()) {
+            return true;
+        } else {
+            return "Failed to add file.";
+        }
+    }
+
+    function updateFile($fileId, $fileName, $fileType, $filePath) {
+        $sql = "UPDATE downloadable_files 
+                SET file_name = :file_name, 
+                    file_type = :file_type, 
+                    file_path = :file_path 
+                WHERE file_id = :file_id";
+
+        $query = $this->db->connect()->prepare($sql);
+
+        $query->bindParam(':file_name', $fileName);
+        $query->bindParam(':file_type', $fileType);
+        $query->bindParam(':file_path', $filePath);
+        $query->bindParam(':file_id', $fileId);
+
+        return $query->execute();
+    }
+
+    function deleteFile($fileId) {
+        $sql = "DELETE FROM downloadable_files WHERE file_id = :file_id";
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':file_id', $fileId);
+
+        if ($query->execute()) {
+            return true;
+        } else {
+            return "Failed to delete file.";
+        }
+    }
+
+    function fetchFiles() {
+        $sql = "SELECT *
+                FROM downloadable_files";
+        
+        $query = $this->db->connect()->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
+    function getFileById($fileId) {
+        $sql = "SELECT file_id, file_name, file_type, uploaded_by, file_path
+                FROM downloadable_files
+                WHERE file_id = :file_id";
+
+        $query = $this->db->connect()->prepare($sql);
+        $query->bindParam(':file_id', $fileId);
+        $query->execute();
+
+        return $query->fetch();
+    }
+
 }

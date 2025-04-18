@@ -180,3 +180,59 @@ function loadPrayerSchedSection() {
         }
     });
 }
+
+function loadDownloadablesSection() {
+    $.ajax({
+        url: "../admin/downloadables.php",
+        method: 'GET',
+        success: function (response) {
+            $('#contentArea').html(response);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error loading bylaws section:', error);
+            $('#contentArea').html('<p class="text-danger">Failed to load Bylaws section. Please try again.</p>');
+        }
+    });
+}
+
+function loadEnrollmentSection() {
+    $.ajax({
+        url: "../admin/enrollment.php",
+        method: 'GET',
+        success: function (response) {
+            $('#contentArea').html(response);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error loading enrollment section:', error);
+            $('#contentArea').html('<p class="text-danger">Failed to load Enrollment section. Please try again.</p>');
+        }
+    });
+}
+
+function loadDonationSection() {
+    $.ajax({
+        url: "../admin/donations.php",
+        method: 'GET',
+        success: function (response) {
+            $('#contentArea').html(response);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error loading donations section:', error);
+            $('#contentArea').html('<p class="text-danger">Failed to load Donations section. Please try again.</p>');
+        }
+    });
+}
+
+function loadStudentsSection() {
+    $.ajax({
+        url: "../admin/students.php",
+        method: 'GET',
+        success: function (response) {
+            $('#contentArea').html(response);
+        },
+        error: function (xhr, status, error) {
+            console.error('Error loading students section:', error);
+            $('#contentArea').html('<p class="text-danger">Failed to load Students section. Please try again.</p>');
+        }
+    });
+}

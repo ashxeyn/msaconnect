@@ -51,7 +51,7 @@ require_once 'head.php';
         </li>
         <li class="nav-item">
             <a href="#" onclick="loadAboutsSection()" class="nav-link text-white">
-                <i class="bi bi-info-circle me-2"></i> <span class="sidebar-text">Abouts & Bylaws</span>
+                <i class="bi bi-info-circle me-2"></i> <span class="sidebar-text">Abouts</span>
             </a>
         </li>
         <li class="nav-item">
@@ -59,11 +59,25 @@ require_once 'head.php';
                 <i class="bi bi-question-circle me-2"></i> <span class="sidebar-text">FAQs</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="#" onclick="loadDownloadablesSection()" class="nav-link text-white">
+                <i class="bi bi-arrow-down-circle me-2"></i> <span class="sidebar-text">Downloadables</span>
+            </a>
 
         <li>
             <hr class="text-white">
             <span class="text-uppercase text-muted small fw-bold sidebar-text">Student Management</span>
         </li>
+        <li class="nav-item">
+            <a href="#" onclick="loadEnrollmentSection()" class="nav-link text-white">
+                <i class="bi bi-person-bounding-box me-2"></i> <span class="sidebar-text">Enrollment</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" onclick="loadStudentsSection()" class="nav-link text-white">
+                <i class="bi bi-person-vcard me-2"></i> <span class="sidebar-text">Students</span>
+            </a>
+        </li>     
         <li class="nav-item">
             <a href="#" onclick="loadOfficersSection()" class="nav-link text-white">
                 <i class="bi bi-person-badge me-2"></i> <span class="sidebar-text">Officers</span>
@@ -77,6 +91,11 @@ require_once 'head.php';
         <li class="nav-item">
             <a href="#" onclick="loadRegistrationsSection()" class="nav-link text-white">
                 <i class="bi bi-person-plus me-2"></i> <span class="sidebar-text">Registrations</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#" onclick="loadDonationSection()" class="nav-link text-white">
+                <i class="bi bi-collection me-2"></i> <span class="sidebar-text">Donations</span>
             </a>
         </li>
 

@@ -369,7 +369,6 @@ function processOfficer(officerId, action) {
     });
 }
 
-
 // VOLUNTEER FUNCTIONS
 function openVolunteerModal(modalId, volunteerId, action) {
     $('.modal').modal('hide');
@@ -395,6 +394,8 @@ function setVolunteerId(volunteerId, action) {
                 $('#surname').val(volunteer.last_name);
                 $('#program').val(volunteer.program_id);
                 $('#contact').val(volunteer.contact);
+                $('#section').val(volunteer.section);
+                $('#year_level').val(volunteer.year_level);
                 $('#email').val(volunteer.email);
                 $('#existing_image').val(volunteer.cor_file);
                 $('#modalTitle').text('Edit Volunteer');
@@ -402,7 +403,7 @@ function setVolunteerId(volunteerId, action) {
 
                 if (volunteer.cor_file) {
                     $('#image-preview').show();
-                    $('#preview-img').attr('src', `../../assets/cors/${volunteer.cor_file}`);
+                    $('#preview-img').attr('src', '../../assets/cors/' + volunteer.cor_file);
                 } else {
                     $('#image-preview').hide();
                 }
@@ -462,12 +463,14 @@ function processVolunteer(volunteerId, action) {
                 $(".modal").modal("hide");
                 $("body").removeClass("modal-open");
                 $(".modal-backdrop").remove();
-                loadVolunteersSection();
+                loadVolunteersSection(); // Reload the page to show updated data
             } else {
-                console.log(response);
+                console.log("Error response:", response);
+                alert("Failed to process the request. Please check the console for details.");
             }
         },
-        error: function() {
+        error: function(xhr, status, error) {
+            console.error("AJAX Error:", error);
             alert("An error occurred while processing the request.");
         }
     });
@@ -1350,6 +1353,96 @@ function loadFilteredTransparencySection(schoolYearId, semester, startDate, endD
         error: function (xhr, status, error) {
             console.error('Error loading transparency section:', error);
             $('#contentArea').html('<p class="text-danger">Failed to load Transparency section. Please try again.</p>');
+        }
+    });
+}
+
+// ABOUTS FUNCTIONS
+function openAboutModal(modalId, aboutId, action) {
+    $('.modal').modal('hide');
+    $('.modal-backdrop').remove();
+    setTimeout(() => {
+        const modal = $('#' + modalId);
+        modal.attr('aria-hidden', 'false');
+        modal.modal('show');
+        setAboutId(aboutId, action);
+    }, 300);
+}
+
+function setAboutId(aboutId, action) {
+    if (action === 'edit') {
+        $.ajax({
+            url: "../../handler/admin/getAbouts.php",
+            type: "GET",
+            data: { id: aboutId },
+            success: function (response) {
+                try {
+                    const about = JSON.parse(response);
+                    $('#aboutId').val(about.id);
+                    $('#mission').val(about.mission);
+                    $('#vision').val(about.vision);
+                    $('#description').val(about.description);
+                    $('#aboutModalTitle').text('Edit About MSA');
+                    $('#confirmSaveAbout').text('Update About');
+                    $('#addEditAboutModal').modal('show');
+                } catch (e) {
+                    console.error("Invalid JSON response:", response);
+                    alert("An error occurred while fetching the about data.");
+                }
+            },
+            error: function () {
+                alert("An error occurred while fetching the about data.");
+            }
+        });
+
+        $('#confirmSaveAbout').off('click').on('click', function (e) {
+            e.preventDefault();
+            processAbout(aboutId, 'edit');
+        });
+
+    } else if (action === 'delete') {
+        $('#aboutIdToDelete').val(aboutId);
+        $('#deleteAboutModal').modal('show');
+        $('#confirmDeleteAbout').off('click').on('click', function () {
+            processAbout(aboutId, 'delete');
+        });
+
+    } else if (action === 'add') {
+        $('#aboutForm')[0].reset();
+        $('#aboutModalTitle').text('Add About MSA');
+        $('#confirmSaveAbout').text('Add About');
+        $('#confirmSaveAbout').off('click').on('click', function (e) {
+            e.preventDefault();
+            processAbout(null, 'add');
+        });
+    }
+}
+
+function processAbout(aboutId, action) {
+    let formData = new FormData(document.getElementById('aboutForm'));
+    if (aboutId) formData.append('id', aboutId);
+    formData.append('action', action);
+
+    $.ajax({
+        url: "../../handler/admin/aboutsAction.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if (response.trim() === "success") {
+                $(".modal").modal("hide");
+                $("body").removeClass("modal-open");
+                $(".modal-backdrop").remove();
+                loadAboutsSection();
+            } else {
+                console.error("Failed to process request:", response);
+                alert("Failed to process request: " + response);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("AJAX error:", status, error);
+            alert("An error occurred while processing the request.");
         }
     });
 }
